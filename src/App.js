@@ -1,13 +1,14 @@
-import React from 'react';
-
+import React , { Component } from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div>
-      Hello !
-    </div>
-  );
+import Banner from './components/banner';
+import Headers from './components/header'
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <Headers/>
+        <Banner />
+      </div>
+    );
+  }
 }
-
-export default App;
