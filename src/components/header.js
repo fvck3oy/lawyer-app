@@ -7,7 +7,7 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
+    Dropdown,
     DropdownToggle,
     DropdownMenu,
     DropdownItem
@@ -15,27 +15,33 @@ import {
 export default class Header extends Component {
     state = {
         isOpen: false,
+        dropdownOpen:false
     }
     toggle = () => {
         this.setState({ isOpen: !this.state.isOpen })
     }
+    onMouseEnter = () => {
+        this.setState({ dropdownOpen: true });
+    }
+
+    onMouseLeave = () => {
+        this.setState({ dropdownOpen: false });
+    }
     render() {
         return (
             <div className="nav-color">
-                <Navbar expand="md" style={{ backgroundColor:'#f90' , color:'white'}}>
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                <Navbar expand="md" style={{ backgroundColor: '#f90', color: 'white' }}>
+                    <NavbarBrand href="/">ชำนาญกรุ๊ป</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
+                            
                             <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                                <NavLink href="/components/">หน้าแรก</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
+                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle nav>
+                                    เกี่ยวกับองค์กร
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
@@ -44,12 +50,51 @@ export default class Header extends Component {
                                     <DropdownItem>
                                         Option 2
                                     </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
+                                    
                                 </DropdownMenu>
-                            </UncontrolledDropdown>
+                            </Dropdown>
+                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle nav>
+                                    ปรึกษา
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        Option 1
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Option 2
+                                    </DropdownItem>
+                                    
+                                </DropdownMenu>
+                            </Dropdown>
+                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle nav>
+                                    บทความ/ข่าว
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        Option 1
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Option 2
+                                    </DropdownItem>
+                                    
+                                </DropdownMenu>
+                            </Dropdown>
+                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle nav>
+                                    ขายที่ดิน
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        Option 1
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Option 2
+                                    </DropdownItem>
+                                    
+                                </DropdownMenu>
+                            </Dropdown>
                         </Nav>
                     </Collapse>
                 </Navbar>
