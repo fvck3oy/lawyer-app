@@ -13,6 +13,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import '../App.css'
+import logo from '../images/logo.jpg'
 export default class Header extends Component {
     state = {
         isOpen: false,
@@ -69,7 +70,7 @@ export default class Header extends Component {
         return (
             <div className="nav-color">
                 <Navbar expand="md" style={{ backgroundColor: '#f90', color: 'white' }} dark>
-                    <NavbarBrand href="/">ชำนาญกรุ๊ป</NavbarBrand>
+                    <NavbarBrand href="/"><img src={logo} className="img-fluid" style={{maxWidth:'50px'}} alt="logo" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar >
