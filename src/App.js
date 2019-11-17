@@ -8,7 +8,7 @@ import TestMap from './components/testMap'
 export default class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/test" component={withRouter(TestMap)} />
