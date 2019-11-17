@@ -44,9 +44,6 @@ export default class CardNews extends Component {
                         </Card>
                     </Col>
                 </Row>
-
-
-
             </Container>
         )
     }

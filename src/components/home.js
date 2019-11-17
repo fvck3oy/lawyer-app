@@ -8,6 +8,8 @@ import image1 from '../images/image1.png'
 import image2 from '../images/image2.png'
 import image3 from '../images/image3.png'
 import image4 from '../images/image4.png'
+import qrLine from '../images/qr_line.jpg'
+
 import {
     Container, Row, Col
 } from 'reactstrap';
@@ -21,7 +23,7 @@ export default class Home extends Component {
                     <Row>
                         <Col sm={3}>
                             <div>
-                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color:'white' }}>
+                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color: 'white' }}>
                                     <div style={{ maxWidth: '80px' }}>
                                         <img src={image1} className="img-fluid" alt="image1" />
                                     </div>
@@ -30,27 +32,27 @@ export default class Home extends Component {
                                     </div>
                                 </div>
 
-                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color:'white' }}>
+                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color: 'white' }}>
                                     <div style={{ maxWidth: '80px' }}>
-                                        <img src={image2} className="img-fluid" alt="image2"/>
+                                        <img src={image2} className="img-fluid" alt="image2" />
                                     </div>
                                     <div className="ml-2">
                                         pumin swangjang
                                     </div>
                                 </div>
 
-                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color:'white' }}>
+                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color: 'white' }}>
                                     <div style={{ maxWidth: '80px' }}>
-                                        <img src={image3} className="img-fluid" alt="image3"/>
+                                        <img src={image3} className="img-fluid" alt="image3" />
                                     </div>
                                     <div className="ml-2">
                                         pumin swangjang
                                     </div>
                                 </div>
 
-                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color:'white' }}>
+                                <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color: 'white' }}>
                                     <div style={{ maxWidth: '80px' }}>
-                                        <img src={image4} className="img-fluid" alt="image4"/>
+                                        <img src={image4} className="img-fluid" alt="image4" />
                                     </div>
                                     <div className="ml-2">
                                         pumin swangjang
@@ -65,6 +67,9 @@ export default class Home extends Component {
                     </Row>
                     <Row>
                         <Land />
+                    </Row>
+                    <Row>
+                        <Col md={3}><img src={qrLine} className="img-fluid" /></Col>
                     </Row>
                 </Container>
                 <Footer />
