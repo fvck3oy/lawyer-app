@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5fe3a3f40494c92d0ce7499b6ec4c2ff",
+    "revision": "16a60e8ae2789132f3f4a51bfc1502ce",
     "url": "/lawyer-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lawyer-app/static/css/2.e76d2b5a.chunk.css"
   },
   {
-    "revision": "4c94f9241a576a582042",
+    "revision": "1853453a9046a3fbfc20",
     "url": "/lawyer-app/static/css/main.0df3d602.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lawyer-app/static/js/2.b8bc49fc.chunk.js"
   },
   {
-    "revision": "4c94f9241a576a582042",
-    "url": "/lawyer-app/static/js/main.79ae999b.chunk.js"
+    "revision": "1853453a9046a3fbfc20",
+    "url": "/lawyer-app/static/js/main.06aa6075.chunk.js"
   },
   {
     "revision": "7fa47103fe7d366478c4",
