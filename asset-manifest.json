@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/lawyer-app/static/css/main.0df3d602.chunk.css",
+    "main.js": "/lawyer-app/static/js/main.79ae999b.chunk.js",
+    "main.js.map": "/lawyer-app/static/js/main.79ae999b.chunk.js.map",
+    "runtime-main.js": "/lawyer-app/static/js/runtime-main.26ee4dd3.js",
+    "runtime-main.js.map": "/lawyer-app/static/js/runtime-main.26ee4dd3.js.map",
+    "static/css/2.e76d2b5a.chunk.css": "/lawyer-app/static/css/2.e76d2b5a.chunk.css",
+    "static/js/2.b8bc49fc.chunk.js": "/lawyer-app/static/js/2.b8bc49fc.chunk.js",
+    "static/js/2.b8bc49fc.chunk.js.map": "/lawyer-app/static/js/2.b8bc49fc.chunk.js.map",
+    "index.html": "/lawyer-app/index.html",
+    "precache-manifest.70e735f1b32b9fda60d9d131652d0b63.js": "/lawyer-app/precache-manifest.70e735f1b32b9fda60d9d131652d0b63.js",
+    "service-worker.js": "/lawyer-app/service-worker.js",
+    "static/css/2.e76d2b5a.chunk.css.map": "/lawyer-app/static/css/2.e76d2b5a.chunk.css.map",
+    "static/css/main.0df3d602.chunk.css.map": "/lawyer-app/static/css/main.0df3d602.chunk.css.map",
+    "static/media/image1.png": "/lawyer-app/static/media/image1.5221a1f1.png",
+    "static/media/image2.png": "/lawyer-app/static/media/image2.f7294f16.png",
+    "static/media/image3.png": "/lawyer-app/static/media/image3.8785ecfb.png",
+    "static/media/image4.png": "/lawyer-app/static/media/image4.2b085c50.png",
+    "static/media/logo.jpg": "/lawyer-app/static/media/logo.ae1760da.jpg",
+    "static/media/qr_line.jpg": "/lawyer-app/static/media/qr_line.ee10e5bd.jpg",
+    "static/media/styles.css": "/lawyer-app/static/media/revicons.2feb69cc.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.26ee4dd3.js",
+    "static/css/2.e76d2b5a.chunk.css",
+    "static/js/2.b8bc49fc.chunk.js",
+    "static/css/main.0df3d602.chunk.css",
+    "static/js/main.79ae999b.chunk.js"
+  ]
+}
