@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router
 
 import Home from './components/home'
 import TestMap from './components/testMap'
-
+import SaleLand from './components/saleLand'
 export default class App extends Component {
   render() {
     return (
@@ -12,6 +12,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/test" component={withRouter(TestMap)} />
+          <Route exact path="/saleLand" component={withRouter(SaleLand)} />
         </Switch>
       </Router>
     );

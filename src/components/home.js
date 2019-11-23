@@ -21,7 +21,7 @@ export default class Home extends Component {
                 <Banner />
                 <Container className="pt-2 pb-5">
                     <Row>
-                        <Col sm={3}>
+                        <Col md={3}>
                             <div>
                                 <div className="d-flex p-2 m-2 align-items-center" style={{ backgroundColor: '#f90', borderRadius: '10px', color: 'white' }}>
                                     <div style={{ maxWidth: '80px' }}>
@@ -69,7 +69,10 @@ export default class Home extends Component {
                         <Land />
                     </Row>
                     <Row>
-                        <Col md={3}><img src={qrLine} className="img-fluid" /></Col>
+                        <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" /></div></Col>
+                        <Col md={9} className="p-5">ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230<br />
+                            โทร. 02-9461171-5<br /> 
+                            Fax 02-106-2114 </Col>
                     </Row>
                 </Container>
                 <Footer />
