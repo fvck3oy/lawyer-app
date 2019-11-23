@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import Carousel  from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container
+    Card, CardImg, Container
 } from 'reactstrap';
-import CustomDot from './customDot'
 const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.

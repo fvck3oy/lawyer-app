@@ -49,7 +49,7 @@ export default class SaleLand extends Component {
                     </Row>
 
                     <Row>
-                        <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" /></div></Col>
+                        <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" alt={qrLine} /></div></Col>
                         <Col md={9} className="p-5">ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230<br />
                             โทร. 02-9461171-5<br />
                             Fax 02-106-2114 </Col>
