@@ -33,7 +33,7 @@ export default class Land extends Component {
             <Container>
                
                         <Carousel responsive={responsive} autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                            autoPlaySpeed={1000} infinite={true} arrows={false} >
+                            autoPlaySpeed={2000} infinite={true} arrows={false} >
                             
                             <div className="p-3">
                                 <Card>
