@@ -12,8 +12,8 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import '../App.css'
-import logo from '../images/logo.jpg'
+import '../../App.css'
+import logo from '../../images/logo.jpg'
 export default class Header extends Component {
     state = {
         isOpen: false,
