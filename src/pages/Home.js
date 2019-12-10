@@ -9,11 +9,12 @@ import image1 from '../images/image1.png'
 import image2 from '../images/image2.png'
 import image3 from '../images/image3.png'
 import image4 from '../images/image4.png'
-import qrLine from '../images/qr_line.jpg'
+
 
 import { Container, Row, Col } from 'reactstrap'
 import './Home.css'
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+import LineContact from '../components/LineContact/LineContact';
 // const styles = {
 //     editor: {
 //         border: '1px solid gray',
@@ -75,7 +76,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <Header />
+                {/* <Header /> */}
                 <Banner />
                 <Container className="pt-2 pb-5">
                     {/* <Row>
@@ -96,18 +97,30 @@ export default class Home extends Component {
                     <Row>
                         <Col md={3} className="mt-2 mb-2">
                             <div className="home-menu mt-2">
-                                <div className="each-menu p-2 mb-2">
-                                <img style={{ width: '50px' }} src={image1} className="img-fluid mr-2" alt="image1" />ฎีกา
+                                <a href="http://deka.supremecourt.or.th/" style={{ color: '#f90' }}>
+                                    <div className="each-menu p-2 mb-2">
+                                        <img src={image1} className="mr-2 menu-image" alt="image1" />
+                                        ฎีกา
                                 </div>
-                                <div className="each-menu p-2 mt-2 mb-2">
-                                <img style={{ width: '50px' }} src={image2} className="img-fluid mr-2" alt="image2" />กรมบังคับคดี
+                                </a>
+
+                                <a href="http://www.led.go.th" style={{ color: '#f90' }}>
+                                    <div className="each-menu p-2 mt-2 mb-2">
+                                        <img src={image2} className="mr-2 menu-image" alt="image2" />กรมบังคับคดี
+                                    </div>
+                                </a>
+
+                                <a href="https://www.dol.go.th" style={{ color: '#f90' }}>
+                                    <div className="each-menu p-2 mt-2 mb-2">
+                                        <img src={image3} className="mr-2 menu-image" alt="image3" />กรมที่ดิน
+                                    </div>
+                                </a>
+
+                                <a href="https://www.dbd.go.th" style={{ color: '#f90' }}>
+                                    <div className="each-menu p-2 mt-2">
+                                        <img src={image4} className="menu-image" alt="image4" />   กรมพัฒนาธุรกิจการค้า
                                 </div>
-                                <div className="each-menu p-2 mt-2 mb-2">
-                                <img style={{ width: '50px' }} src={image3} className="img-fluid mr-2" alt="image3" />กรมที่ดิน
-                                </div>
-                                <div className="each-menu p-2 mt-2">
-                                <img style={{ width: '50px' }} src={image4} className="img-fluid mr-2" alt="image4" />กรมพัฒนาธุรกิจการค้า
-                                </div>
+                                </a>
                             </div>
                         </Col>
                         <Col md={9}>
@@ -117,15 +130,11 @@ export default class Home extends Component {
                     <Row>
                         <CardLands />
                     </Row>
-                    <Row>
-                        <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" alt={qrLine} /></div></Col>
-                        <Col md={9} className="p-5">ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230<br />
-                            โทร. 02-9461171-5<br />
-                            Fax 02-106-2114 </Col>
-                    </Row>
+
+                    <LineContact />
+
                 </Container>
-                <Footer />
-            </div>
+            </div >
         )
     }
 }

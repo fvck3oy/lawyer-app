@@ -7,12 +7,30 @@
   color: #f90;
   cursor: pointer;
   border-radius: 5px;
-  border:solid 1px #f90; 
-  
-}
-.each-menu:hover {
-  background-color: #f90;
-  color: #fff;
   cursor: pointer;
+  /* border:solid 1px #f90;  */
+}
+
+
+.each-menu:hover {
+  
+  color: #f90;
 
 }
+
+.menu-image{
+  max-width: 50px;
+}
+
+/* 
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... } */
+

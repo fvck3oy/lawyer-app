@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap';
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-import qrLine from '../images/qr_line.jpg'
 import MapComponent from '../components/testMap'
 import PictureSaleLands from '../components/PictureSaleLands/PictureSaleLands';
 import AddMarker from '../components/addMarker'
+import LineContact from '../components/LineContact/LineContact';
 
 export default class SaleLand extends Component {
-  state = { 
+  state = {
     isMarkerShown: false,
   }
   handleMarkerClick = () => {
@@ -18,7 +18,7 @@ export default class SaleLand extends Component {
   render() {
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <Container>
           <Row className="m-3">
             <Col>
@@ -60,14 +60,8 @@ export default class SaleLand extends Component {
             </Col>
           </Row>
 
-          <Row>
-            <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" alt={qrLine} /></div></Col>
-            <Col md={9} className="p-5">ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230<br />
-              โทร. 02-9461171-5<br />
-              Fax 02-106-2114 </Col>
-          </Row>
+          <LineContact />
         </Container>
-        <Footer />
       </div>
     )
   }

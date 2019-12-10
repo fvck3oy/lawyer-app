@@ -12,15 +12,25 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import '../../App.css'
+import './Header.css'
 import logo from '../../images/logo.jpg'
+
+
 export default class Header extends Component {
     state = {
         isOpen: false,
         dropdownOpen: false,
 
         isOpen2: false,
-        dropdownOpen2: false
+        dropdownOpen2: false,
+
+        isOpen3: false,
+        dropdownOpen3: false,
+
+        isOpen4: false,
+        dropdownOpen4: false,
+
+
     }
     toggle = () => {
         this.setState({ isOpen: !this.state.isOpen })
@@ -32,6 +42,18 @@ export default class Header extends Component {
     onMouseLeave = () => {
         this.setState({ dropdownOpen: false });
     }
+
+    toggle1 = () => {
+        this.setState({ isOpen1: !this.state.isOpen1 })
+    }
+    onMouseEnter1 = () => {
+        this.setState({ dropdownOpen1: true });
+    }
+
+    onMouseLeave1 = () => {
+        this.setState({ dropdownOpen1: false });
+    }
+
 
     toggle2 = () => {
         this.setState({ isOpen2: !this.state.isOpen2 })
@@ -68,72 +90,72 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div className="nav-color">
-                <Navbar expand="md" style={{ backgroundColor: '#f90', color: 'white' }} dark>
-                    <NavbarBrand href="/"><img src={logo} className="img-fluid" style={{maxWidth:'50px'}} alt="logo" /></NavbarBrand>
+            <div>
+                <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
+                    <NavbarBrand href="/"><img src={logo} className="img-fluid" style={{ maxWidth: '50px' }} alt="logo" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar >
+                        <Nav className="ml-auto" navbar>
 
                             <NavItem>
-                                <NavLink href="/components/">หน้าแรก</NavLink>
+                                <NavLink href="/">หน้าแรก</NavLink>
                             </NavItem>
-                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+
+                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter1} onMouseLeave={this.onMouseLeave1} isOpen={this.state.dropdownOpen1} toggle={this.toggle1}>
                                 <DropdownToggle nav>
                                     เกี่ยวกับองค์กร
-                                </DropdownToggle>
+                                    </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem>
-                                        องค์กรที่ 1
-                                    </DropdownItem>
+                                <DropdownItem href="/me">องค์กรที่ 1
+                                        </DropdownItem>
                                     <DropdownItem>
                                         องค์กรที่ 2
-                                    </DropdownItem>
-
+                                        </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
                                 <DropdownToggle nav>
                                     ปรึกษา
-                                </DropdownToggle>
+                                    </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         ปรึกษา 1
-                                    </DropdownItem>
+                                        </DropdownItem>
                                     <DropdownItem>
                                         ปรึกษา 2
-                                    </DropdownItem>
-
+                                        </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter3} onMouseLeave={this.onMouseLeave3} isOpen={this.state.dropdownOpen3} toggle={this.toggle3}>
                                 <DropdownToggle nav>
                                     บทความ/ข่าว
-                                </DropdownToggle>
+                                    </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
-                                        ข่าวที่ 1
-                                    </DropdownItem>
+                                        บทความ 1
+                                        </DropdownItem>
                                     <DropdownItem>
-                                        ข่าวที่ 2
-                                    </DropdownItem>
-
+                                        บทความ 1
+                                        </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter4} onMouseLeave={this.onMouseLeave4} isOpen={this.state.dropdownOpen4} toggle={this.toggle4}>
                                 <DropdownToggle nav>
                                     ขายที่ดิน
-                                </DropdownToggle>
+                                    </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         ที่ดิน 1
-                                    </DropdownItem>
+                                        </DropdownItem>
                                     <DropdownItem>
                                         ที่ดิน 2
-                                    </DropdownItem>
-
+                                        </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+
                         </Nav>
                     </Collapse>
                 </Navbar>
