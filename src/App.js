@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Login from './pages/Login'
 import Footer from './components/Footer/Footer';
 import Forgotpass from './pages/Forgotpass'
+import ResetPassword from './pages/ResetPassword'
 
 export default class App extends Component {
   render() {
@@ -22,6 +23,8 @@ export default class App extends Component {
           <Route exact path="/register" component={withRouter(Register)} />
           <Route exact path="/login" component={withRouter(Login)} />
           <Route exact path="/forgotpass" component={withRouter(Forgotpass)} />
+          <Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
+
           <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>
         <Footer />
