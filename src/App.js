@@ -7,21 +7,24 @@ import SaleLand from './pages/SaleLand'
 import TestMap from './components/testMap'
 import Header from './components/Header/Header'
 import Register from './pages/Register';
+import Login from './pages/Login'
 import Footer from './components/Footer/Footer';
+import Forgotpass from './pages/Forgotpass'
 
 export default class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
-      <Header/>
+        <Header />
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/saleLand" component={withRouter(SaleLand)} />
           <Route exact path="/register" component={withRouter(Register)} />
-
+          <Route exact path="/login" component={withRouter(Login)} />
+          <Route exact path="/forgotpass" component={withRouter(Forgotpass)} />
           <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>
-      <Footer/>
+        <Footer />
       </Router>
     );
   }

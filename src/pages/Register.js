@@ -10,7 +10,7 @@ import {
   Col,
   Checkbox,
   Button,
-  AutoComplete,
+  AutoComplete
 } from 'antd';
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
@@ -58,7 +58,7 @@ class Register extends Component {
 
 
   render() {
-    const { firstname, lastname, email, password, phone_number } = this.state
+
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -95,7 +95,7 @@ class Register extends Component {
         <Option value="66">+66</Option>
       </Select>,
     );
-    
+
     return (
       <Container style={{ height: '100vh' }}>
         <Row className="p-5">
@@ -140,6 +140,14 @@ class Register extends Component {
                   ],
                 })(<Input />)}
               </Form.Item>
+
+              <Form.Item label="Phone Number">
+                {getFieldDecorator('phone', {
+                  rules: [{ required: true, message: 'Please input your phone number!' }],
+                })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder="83176xxxx" />)}
+              </Form.Item>
+
+
               <Form.Item label="Password" hasFeedback>
                 {getFieldDecorator('password', {
                   rules: [
@@ -153,6 +161,7 @@ class Register extends Component {
                   ],
                 })(<Input.Password />)}
               </Form.Item>
+
               <Form.Item label="Confirm Password" hasFeedback>
                 {getFieldDecorator('confirm', {
                   rules: [
@@ -167,14 +176,7 @@ class Register extends Component {
                 })(<Input.Password onBlur={this.handleConfirmBlur} />)}
               </Form.Item>
 
-
-              <Form.Item label="Phone Number">
-                {getFieldDecorator('phone', {
-                  rules: [{ required: true, message: 'Please input your phone number!' }],
-                })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder="83176xxxx" />)}
-              </Form.Item>
               <Form.Item {...tailFormItemLayout}>
-
                 <Button type="primary" htmlType="submit">
                   Register
                 </Button>

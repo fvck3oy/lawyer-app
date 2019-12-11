@@ -1,0 +1,14 @@
+
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+
+  width: 100%;
+}
+
+@media (max-width: 354px) { 
+  .login-form-forgot {
+    float: left;
+  }
+ }
