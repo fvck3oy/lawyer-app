@@ -12,11 +12,17 @@ import Footer from './components/Footer/Footer';
 import Forgotpass from './pages/Forgotpass'
 import ResetPassword from './pages/ResetPassword'
 
+import history from "./utils/history";
+import Profile from './components/Profile'
+import PrivateRoute from './components/PrivateRoute'
+import NavBar from './components/NavBar'
+
 export default class App extends Component {
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router basename={process.env.PUBLIC_URL} history={history}>
         <Header />
+        <NavBar />
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/saleLand" component={withRouter(SaleLand)} />
@@ -25,6 +31,7 @@ export default class App extends Component {
           <Route exact path="/forgotpass" component={withRouter(Forgotpass)} />
           <Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
 
+          <PrivateRoute path="/profile" component={Profile} />
           <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>
         <Footer />
