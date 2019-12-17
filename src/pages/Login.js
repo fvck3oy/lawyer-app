@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox, } from 'antd';
 import { Container, Row, Col } from 'reactstrap'
+import axios from 'axios'
 import './Login.css'
-
+import url from '../url_config'
 class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        axios.post(`${url}/users/login`, values).then(res => {
+          const { data } = res
+          console.log("res ", data);
+          
+          // this.props.history.push(`/`)
+        })
       }
     });
   };

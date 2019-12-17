@@ -14,15 +14,19 @@ import {
 } from 'antd';
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import url from '../../src/url_config'
+
 const { Option } = Select;
+
 class Register extends Component {
   state = {
     confirmDirty: false,
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
-    phone_number: ''
+    // firstname: '',
+    // lastname: '',
+    // email: '',
+    // password: '',
+    // phone_number: ''
   };
 
   handleSubmit = e => {
@@ -30,6 +34,11 @@ class Register extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        values.user_type = 'register'
+        axios.post(`${url}/users/create`, values).then(res => {
+          const { data } = res
+          this.props.history.push(`/login`)
+        })
       }
     });
   };
@@ -142,7 +151,7 @@ class Register extends Component {
               </Form.Item>
 
               <Form.Item label="Phone Number">
-                {getFieldDecorator('phone', {
+                {getFieldDecorator('tel', {
                   rules: [{ required: true, message: 'Please input your phone number!' }],
                 })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder="83176xxxx" />)}
               </Form.Item>
