@@ -14,7 +14,30 @@ import {
 } from 'reactstrap';
 import './Header.css'
 import logo from '../../images/logo.jpg'
+import { Link } from "react-router-dom";
+import { useAuth0 } from "../../react-auth0-spa";
+const LoginFB = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  return (
+    <div>
+      {!isAuthenticated && (
 
+         <NavLink href="/login">Login</NavLink>
+
+      )}
+
+      {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+      {isAuthenticated && <NavLink href="/login"  onClick={() => logout()}>LogOut</NavLink>}
+      {/* {isAuthenticated && (
+        <span>
+          <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+        </span>
+      )} */}
+    </div>
+  );
+}
+  
 
 export default class Header extends Component {
     state = {
@@ -106,7 +129,7 @@ export default class Header extends Component {
                                     เกี่ยวกับองค์กร
                                     </DropdownToggle>
                                 <DropdownMenu right>
-                                <DropdownItem href="/me">องค์กรที่ 1
+                                    <DropdownItem href="/me">องค์กรที่ 1
                                         </DropdownItem>
                                     <DropdownItem>
                                         องค์กรที่ 2
@@ -155,7 +178,9 @@ export default class Header extends Component {
                                         </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
-
+                            <NavItem>
+                                <LoginFB/>
+                            </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>

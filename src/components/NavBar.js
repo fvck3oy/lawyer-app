@@ -14,12 +14,12 @@ const NavBar = () => {
 
       {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
       {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-      {isAuthenticated && (
+      {/* {isAuthenticated && (
         <span>
           <Link to="/">Home</Link>&nbsp;
         <Link to="/profile">Profile</Link>
         </span>
-      )}
+      )} */}
     </div>
   );
 };

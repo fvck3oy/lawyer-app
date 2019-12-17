@@ -15,14 +15,14 @@ import ResetPassword from './pages/ResetPassword'
 import history from "./utils/history";
 import Profile from './components/Profile'
 import PrivateRoute from './components/PrivateRoute'
-import NavBar from './components/NavBar'
+
 
 export default class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} history={history}>
         <Header />
-        <NavBar />
+
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/saleLand" component={withRouter(SaleLand)} />

@@ -4,6 +4,26 @@ import { Container, Row, Col } from 'reactstrap'
 import axios from 'axios'
 import './Login.css'
 import url from '../url_config'
+import { useAuth0 } from "../react-auth0-spa";
+const LoginFB = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  return (
+    <div>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
+      )}
+      {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+      {/* {isAuthenticated && (
+        <span>
+          <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+        </span>
+      )} */}
+    </div>
+  );
+};
+
 class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -13,7 +33,7 @@ class Login extends Component {
         axios.post(`${url}/users/login`, values).then(res => {
           const { data } = res
           console.log("res ", data);
-          
+
           // this.props.history.push(`/`)
         })
       }
@@ -92,9 +112,15 @@ class Login extends Component {
                 </Button>
                 Or <a href="/register">register now!</a>
               </Form.Item>
+
             </Form>
           </Col>
         </Row>
+        <LoginFB />
+        {/* <Row>
+          <Col> */}
+        {/* </Col>
+        </Row> */}
       </Container>
     )
   }
