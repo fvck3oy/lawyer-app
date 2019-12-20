@@ -16,6 +16,7 @@ import history from "./utils/history";
 import Profile from './components/Profile'
 import PrivateRoute from './components/privateRoute'
 import CreateSaleLand from './pages/CreateSaleLand';
+import Admin from './pages/Admin';
 
 
 export default class App extends Component {
@@ -23,7 +24,6 @@ export default class App extends Component {
     return (
       <Router basename={process.env.PUBLIC_URL} history={history}>
         <Header />
-
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/register" component={withRouter(Register)} />
@@ -36,6 +36,7 @@ export default class App extends Component {
           
           <Route exact path="/saleLand" component={withRouter(SaleLand)} />
           <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
+          <Route exact path="/admin" component={withRouter(Admin)} />
         </Switch>
         <Footer />
       </Router>

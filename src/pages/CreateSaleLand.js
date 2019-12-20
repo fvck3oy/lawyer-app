@@ -76,7 +76,7 @@ export default class CreateSaleLand extends Component {
       </div>
     );
     return (
-      <Container>
+      <Container>   
       <div className="clearfix">
         <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
