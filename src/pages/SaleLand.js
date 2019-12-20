@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap';
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-import MapComponent from '../components/testMap'
+import Map from '../components/ShowMap/ShowMap'
 import PictureSaleLands from '../components/PictureSaleLands/PictureSaleLands';
 import AddMarker from '../components/addMarker'
 import LineContact from '../components/LineContact/LineContact';
@@ -11,14 +11,13 @@ export default class SaleLand extends Component {
   state = {
     isMarkerShown: false,
   }
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
-  }
+  // handleMarkerClick = () => {
+  //   this.setState({ isMarkerShown: false })
+  //   this.delayedShowMarker()
+  // }
   render() {
     return (
       <div>
-        {/* <Header /> */}
         <Container>
           <Row className="m-3">
             <Col>
@@ -38,9 +37,9 @@ export default class SaleLand extends Component {
           <Row className="ml-2"><Col><div className="mt-2 mb-2">อัพเดทล่าสุดวันที่ 20-08-2562 15:20</div></Col></Row>
           <Row>
             <Col><div className="mt-2 mb-2 p-4">
-              <MapComponent
+              <Map
                 isMarkerShown={this.state.isMarkerShown}
-                onMarkerClick={this.handleMarkerClick}
+                // onMarkerClick={this.handleMarkerClick}
               /></div>
             </Col>
           </Row>

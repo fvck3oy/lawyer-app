@@ -9,17 +9,9 @@ const LoginFB = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <div>
-      {!isAuthenticated && (
-        <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
-      )}
-      {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
-      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-      {/* {isAuthenticated && (
-        <span>
-          <Link to="/">Home</Link>&nbsp;
-        <Link to="/profile">Profile</Link>
-        </span>
-      )} */}
+
+      <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
+
     </div>
   );
 };
@@ -33,14 +25,15 @@ class Login extends Component {
         axios.post(`${url}/users/login`, values).then(res => {
           const { data } = res
           console.log("res ", data);
-
-          // this.props.history.push(`/`)
+          localStorage.setItem('token', data.token)
+          this.props.history.push(`/`)
         })
       }
     });
   };
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { loginWithRedirect } = useAuth0();
     const formItemLayout = {
 
       wrapperCol: {
@@ -116,7 +109,11 @@ class Login extends Component {
             </Form>
           </Col>
         </Row>
-        <LoginFB />
+        <div>
+
+          <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
+
+        </div>
         {/* <Row>
           <Col> */}
         {/* </Col>

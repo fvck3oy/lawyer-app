@@ -1,4 +1,4 @@
-import decode from 'm'
+import decode from 'jwt-decode'
 import moment from 'moment'
 
 const TOKEN_KEY = 'token'
