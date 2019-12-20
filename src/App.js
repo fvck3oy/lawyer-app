@@ -14,7 +14,8 @@ import ResetPassword from './pages/ResetPassword'
 
 import history from "./utils/history";
 import Profile from './components/Profile'
-import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute from './components/privateRoute'
+import CreateSaleLand from './pages/CreateSaleLand';
 
 
 export default class App extends Component {
@@ -34,6 +35,7 @@ export default class App extends Component {
           <Route exact path="/test" component={withRouter(TestMap)} />
           
           <Route exact path="/saleLand" component={withRouter(SaleLand)} />
+          <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
         </Switch>
         <Footer />
       </Router>

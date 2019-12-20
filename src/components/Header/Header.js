@@ -21,9 +21,7 @@ const LoginFB = () => {
   return (
     <div>
       {!isAuthenticated && (
-
          <NavLink href="/login">Login</NavLink>
-
       )}
 
       {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}

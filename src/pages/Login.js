@@ -9,9 +9,7 @@ const LoginFB = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <div>
-
       <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
-
     </div>
   );
 };
@@ -33,7 +31,7 @@ class Login extends Component {
   };
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { loginWithRedirect } = useAuth0();
+    // const { loginWithRedirect } = useAuth0();
     const formItemLayout = {
 
       wrapperCol: {
@@ -109,11 +107,11 @@ class Login extends Component {
             </Form>
           </Col>
         </Row>
-        <div>
-
+        {/* <div>
           <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
+        </div> */}
+        <LoginFB/>
 
-        </div>
         {/* <Row>
           <Col> */}
         {/* </Col>
