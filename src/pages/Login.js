@@ -23,6 +23,7 @@ class Login extends Component {
         axios.post(`${url}/users/login`, values).then(res => {
           const { data } = res
           console.log("res ", data);
+          // this.props.onUserChanged(res);
           localStorage.setItem('token', data.token)
           this.props.history.push(`/`)
         })

@@ -10,12 +10,13 @@ import {
     Dropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
 } from 'reactstrap';
 import './Header.css'
 import logo from '../../images/logo.jpg'
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
+import auth from "../../service/index"
 const LoginFB = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
@@ -25,7 +26,7 @@ const LoginFB = () => {
       )}
 
       {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
-      {isAuthenticated && <NavLink href="/login"  onClick={() => logout()}>LogOut</NavLink>}
+      {isAuthenticated && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>}
       {/* {isAuthenticated && (
         <span>
           <Link to="/">Home</Link>&nbsp;
@@ -109,6 +110,11 @@ export default class Header extends Component {
         this.setState({ dropdownOpen4: false });
     }
 
+    // logOut=()=> {
+	// 	auth.clearToken()
+	// 	this.props.history.push('/')
+	// }
+
     render() {
         return (
             <div>
@@ -178,6 +184,7 @@ export default class Header extends Component {
                             </Dropdown>
                             <NavItem>
                                 <LoginFB/>
+                                {/* LogOut */}
                             </NavItem>
                         </Nav>
                     </Collapse>

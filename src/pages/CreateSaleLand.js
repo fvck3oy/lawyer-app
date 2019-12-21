@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Upload, Icon, Modal } from 'antd';
 import { Container } from 'reactstrap'
-
+import axios from 'axios'
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -48,6 +48,8 @@ export default class CreateSaleLand extends Component {
     ],
   };
 
+ 
+
   handleCancel = () => this.setState({ previewVisible: false });
 
   handlePreview = async file => {
@@ -64,7 +66,7 @@ export default class CreateSaleLand extends Component {
   handleChange = ({ fileList }) => {
     this.setState({ fileList })
     console.log("Field : ", fileList);
-    
+
   }
 
   render() {
@@ -76,21 +78,21 @@ export default class CreateSaleLand extends Component {
       </div>
     );
     return (
-      <Container>   
-      <div className="clearfix">
-        <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          listType="picture-card"
-          fileList={fileList}
-          onPreview={this.handlePreview}
-          onChange={this.handleChange}
-        >
-          {fileList.length >= 8 ? null : uploadButton}
-        </Upload>
-        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
-        </Modal>
-      </div>
+      <Container>
+        <div className="clearfix">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture-card"
+            fileList={fileList}
+            onPreview={this.handlePreview}
+            onChange={this.handleChange}
+          >
+            {fileList.length >= 8 ? null : uploadButton}
+          </Upload>
+          <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+          </Modal>
+        </div>
       </Container>
     );
   }
