@@ -35,15 +35,15 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
           <Route exact path="/register" component={withRouter(Register)} />
-          <Route exact path="/login" component={withRouter(Login)} />
-          {/* <Route exact path="/login" component={() => <Login onUserChanged={this.onUserChanged} />} /> */}
+          {/* <Route exact path="/login" component={withRouter(Login)} /> */}
+          <Route exact path="/login" component={() => <Login onUserChanged={this.onUserChanged} />} />
           <Route exact path="/forgotpass" component={withRouter(Forgotpass)} />
           <Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
 
           <PrivateRoute path="/profile" component={Profile} />
           <Route exact path="/test" component={withRouter(TestMap)} />
 
-          <Route exact path="/saleLand" component={withRouter(SaleLand)} />
+          <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />
           <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
           <Route exact path="/admin" component={withRouter(Admin)} />
         </Switch>

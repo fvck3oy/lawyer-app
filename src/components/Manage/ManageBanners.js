@@ -134,7 +134,7 @@ export default class ManageBanners extends Component {
                 {fileList.length >= 1 ? null : uploadButton}
               </Upload>
             </div>
-          
+
             <div>
               <Button onClick={this.handleSubmit}>Submit</Button>
             </div>

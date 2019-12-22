@@ -123,7 +123,7 @@ export default class Home extends Component {
                                 </a>
                             </div>
                         </Col>
-                        <Col md={9}>
+                        <Col md={9} >
                             <CardNews />
                         </Col>
                     </Row>

@@ -4,26 +4,45 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Map from '../components/ShowMap/ShowMap'
 import PictureSaleLands from '../components/PictureSaleLands/PictureSaleLands';
-import AddMarker from '../components/addMarker'
 import LineContact from '../components/LineContact/LineContact';
+import axios from 'axios'
+import url from '../url_config'
 
 export default class SaleLand extends Component {
   state = {
     isMarkerShown: false,
+    data: {}
   }
   // handleMarkerClick = () => {
   //   this.setState({ isMarkerShown: false })
   //   this.delayedShowMarker()
   // }
+
+  componentDidMount = () => {
+    this.saleLand()
+  }
+
+  saleLand = async () => {
+
+    await axios.get(`${url}/lands/${this.props.match.params.id}`).then(res => {
+      const { data } = res
+
+      this.setState({ data });
+      console.log("Data : ", data);
+
+    })
+  }
+
   render() {
+    const { data } = this.state
     return (
       <div>
         <Container>
           <Row className="m-3">
             <Col>
               <div className="d-flex">
-                <div>Filter</div>
-                <div><input /></div>
+                {/* <div>Filter</div>
+                <div><input /></div> */}
               </div>
 
             </Col>
@@ -31,27 +50,26 @@ export default class SaleLand extends Component {
 
           <Row>
             <Col>
-              <div className="mt-2 mb-2">เลขที่ประกาศ 0-0001</div>
+              <div className="mt-2 mb-2">เลขที่ประกาศ {data.id}</div>
             </Col>
           </Row>
           <Row className="ml-2"><Col><div className="mt-2 mb-2">อัพเดทล่าสุดวันที่ 20-08-2562 15:20</div></Col></Row>
+
+          <Row><Col><div className="mt-2 mb-2"><PictureSaleLands /></div></Col></Row>
+          <Row><Col><div className="mt-2 mb-2">{data.title}</div></Col></Row>
+
+          <Row><Col><div className="mt-2 mb-2 ml-5">{data.detail}</div></Col></Row>
+
           <Row>
             <Col><div className="mt-2 mb-2 p-4">
               <Map
                 isMarkerShown={this.state.isMarkerShown}
-                // onMarkerClick={this.handleMarkerClick}
+              // lat={data.lat}
+              // lng={data.lng}
+              // onMarkerClick={this.handleMarkerClick}
               /></div>
             </Col>
           </Row>
-
-          <Row>
-            <Col><AddMarker /></Col>
-          </Row>
-
-          <Row><Col><div className="mt-2 mb-2">ขายที่ดิน 16 ไร่ เขตสาคร กทม. ราคา 15,000,000 บาท (สนใจติดต่อ)</div></Col></Row>
-          <Row><Col><div className="mt-2 mb-2"><PictureSaleLands /></div></Col></Row>
-          <Row><Col><div className="mt-2 mb-2">รายละเอียด</div></Col></Row>
-
           <Row>
             <Col><div className="mt-2 mb-2 ml-3">
               ราคาพิเศษเฉพาะงานประมูลขายบ้านมือสอง (รวมที่ดินเปล่า) ธอส. ครั้งที่ 4/2562 ในวันเสาร์ที่ 14 ธันวาคม 2562 โดยเปิดให้ลงชื่อเข้าร่วมประมูลตั้งแต่เวลา 8.00 น.

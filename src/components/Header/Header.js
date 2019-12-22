@@ -17,26 +17,26 @@ import logo from '../../images/logo.jpg'
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
 import auth from "../../service/index"
-const LoginFB = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  return (
-    <div>
-      {!isAuthenticated && (
-         <NavLink href="/login">Login</NavLink>
-      )}
+// const LoginFB = () => {
+//   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+//   return (
+//     <div>
+//       {!isAuthenticated && (
+//          <NavLink href="/login">Login</NavLink>
+//       )}
 
-      {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
-      {isAuthenticated && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>}
-      {/* {isAuthenticated && (
-        <span>
-          <Link to="/">Home</Link>&nbsp;
-        <Link to="/profile">Profile</Link>
-        </span>
-      )} */}
-    </div>
-  );
-}
-  
+//       {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+//       {isAuthenticated && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>}
+//       {/* {isAuthenticated && (
+//         <span>
+//           <Link to="/">Home</Link>&nbsp;
+//         <Link to="/profile">Profile</Link>
+//         </span>
+//       )} */}
+//     </div>
+//   );
+// }
+
 
 export default class Header extends Component {
     state = {
@@ -52,6 +52,7 @@ export default class Header extends Component {
         isOpen4: false,
         dropdownOpen4: false,
 
+        user: null
 
     }
     toggle = () => {
@@ -110,12 +111,28 @@ export default class Header extends Component {
         this.setState({ dropdownOpen4: false });
     }
 
-    // logOut=()=> {
-	// 	auth.clearToken()
-	// 	this.props.history.push('/')
-	// }
+    logOut = () => {
+        auth.clearToken()
+        this.props.history.push('/')
+    }
+
+    // componentWillReceiveProps = nextProps => {
+    //     if (nextProps.user !== null) {
+    //         console.log("nestProps : ", nextProps);
+    //         // this.setState({ user: nextProps.user.data.token });
+    //         // console.log("user : ",this.state.user);
+    //         let user = auth.getToken()
+    //         let userDecoded = auth.decodeToken(user)
+    //         let userId = userDecoded.id
+    //         let userFirstName = userDecoded.firstname
+    //         let userLastName = userDecoded.lastname
+
+    //         this.setState({ user: userFirstName })
+    //     }
+    // };
 
     render() {
+
         return (
             <div>
                 <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
@@ -183,8 +200,17 @@ export default class Header extends Component {
                                 </DropdownMenu>
                             </Dropdown>
                             <NavItem>
-                                <LoginFB/>
-                                {/* LogOut */}
+                                {/* <NavLink href="/login">Login</NavLink> */}
+
+                                {/* <LoginFB/> */}
+                                {/* {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+
+                                {/* {!this.state.user && (
+                                    <NavLink href="/login">Login</NavLink>
+                                )}
+                                 {this.state.user && (
+                                    <NavLink href="/">LogOut</NavLink>
+                                )} */}
                             </NavItem>
                         </Nav>
                     </Collapse>

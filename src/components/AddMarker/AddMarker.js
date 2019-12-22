@@ -2,9 +2,9 @@
 
 import React, { Component } from "react"
 import { compose, withProps, lifecycle } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
 
-const MapComponent = compose(
+const AddMarker = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD7znYiqytpFwvWR0wIfDHWBGH7BZQ1PWU&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
@@ -20,6 +20,7 @@ const MapComponent = compose(
         onMarkerMounted: ref => {
           refs.marker = ref;
         },
+
         onPositionChanged: () => {
           const position = refs.marker.getPosition();
           console.log("Position : ", position.toString());
@@ -30,20 +31,25 @@ const MapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) =>
-  <GoogleMap defaultZoom={18} defaultCenter={{ lat: 7.5593851, lng: 99.61100650000003 }}>
-    {props.isMarkerShown && <Marker position={{ lat: 7.5593851, lng: 99.61100650000003 }} draggable={false} ref={props.onMarkerMounted} />}
+  // <GoogleMap
+  //   defaultZoom={18}
+  //   defaultCenter={{ lat: 7.890030, lng: 98.398180 }}
+  // >
+  //   {props.isMarkerShown && <Marker position={{ lat: 7.890030, lng: 98.398180 }} onClick={props.onMarkerClick} />}
+  // </GoogleMap>
+
+  <GoogleMap defaultZoom={18} defaultCenter={{ lat: 7.890030, lng: 98.398180 }}>
+    <Marker position={{ lat: 7.890030, lng: 98.398180 }} draggable={true} ref={props.onMarkerMounted} onPositionChanged={props.onPositionChanged} />
   </GoogleMap>
 )
 
-export default class Map extends Component {
+export default class TestMap extends Component {
   state = {
-    isMarkerShown: false,
+    isMarkerShown: true,
   }
 
   componentDidMount() {
     this.delayedShowMarker()
-    console.log("props => " ,this.props);
-    
   }
 
   delayedShowMarker = () => {
@@ -59,11 +65,9 @@ export default class Map extends Component {
 
   render() {
     return (
-      <MapComponent
-        // isMarkerShown={this.state.isMarkerShown}
-        // lat={this.props.lat}
-        // lng={this.props.lng}
-      // onMarkerClick={this.handleMarkerClick}
+      <AddMarker
+        isMarkerShown={this.state.isMarkerShown}
+        onMarkerClick={this.handleMarkerClick}
       />
     )
   }
