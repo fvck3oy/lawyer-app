@@ -14,7 +14,7 @@ import ResetPassword from './pages/ResetPassword'
 
 import history from "./utils/history";
 import Profile from './components/Profile'
-import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute from './components/privateRoute'
 import CreateSaleLand from './pages/CreateSaleLand';
 import Admin from './pages/Admin';
 
