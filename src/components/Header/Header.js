@@ -172,19 +172,9 @@ export default class Header extends Component {
                                 </DropdownMenu>
                             </Dropdown>
 
-                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter3} onMouseLeave={this.onMouseLeave3} isOpen={this.state.dropdownOpen3} toggle={this.toggle3}>
-                                <DropdownToggle nav>
-                                    บทความ/ข่าว
-                                    </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        บทความ 1
-                                        </DropdownItem>
-                                    <DropdownItem>
-                                        บทความ 1
-                                        </DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <NavItem>
+                                <NavLink href="/allArticle">บทความ/ข่าว</NavLink>
+                            </NavItem>
 
                               <NavItem>
                                 <NavLink href="/allSaleLand">ขายที่ดิน</NavLink>
