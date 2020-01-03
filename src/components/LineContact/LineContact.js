@@ -5,10 +5,11 @@ export default class LineContact extends Component {
   render() {
     return (
       <Row>
-        <Col md={3} className="d-flex justify-content-center align-items-center"><div><img src={qrLine} className="img-fluid" alt={qrLine} /></div></Col>
-        <Col md={9} className="p-5" style={{alignItems:'center', display:'flex'}}>ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230<br />
-          โทร. 02-9461171-5<br />
-          Fax 02-106-2114 </Col>
+        <Col md={4} className="d-flex justify-content-center align-items-center p-2"><div><img src={qrLine} className="img-fluid" alt={qrLine} style={{ maxWidth: '150px' }} /></div></Col>
+        <Col md={8} className="p-2" style={{display: 'flex', color: '#fff' , justifyContent:'center',flexDirection:'column' , textAlign:'left'}}>
+          <div>ชำนาญกรุ๊ป เลขที่ตั้ง 200/94 ซอยนวลจันทร์ 9 เเขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพฯ 10230</div>
+          <div>โทร. 02-9461171-5</div>
+          <div>Fax 02-106-2114</div></Col>
       </Row>
     )
   }

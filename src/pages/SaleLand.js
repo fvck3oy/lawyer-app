@@ -4,7 +4,6 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Map from '../components/ShowMap/ShowMap'
 import PictureSaleLands from '../components/PictureSaleLands/PictureSaleLands';
-import LineContact from '../components/LineContact/LineContact';
 import axios from 'axios'
 import url from '../url_config'
 
@@ -76,8 +75,6 @@ export default class SaleLand extends Component {
                          เป็นต้นไป และเริ่มทำการประมูลตั้งแต่เวลา 10.00 - 16.00 น. ณ ห้องประชุมพิมานมาศ อาคารจอดรถ ชั้น 11 ธนาคารอาคารสงเคราะห์ สำนักงานใหญ่(ทรัพย์ลำดับที่ 24)</div>
             </Col>
           </Row>
-
-          <LineContact />
         </Container>
       </div>
     )

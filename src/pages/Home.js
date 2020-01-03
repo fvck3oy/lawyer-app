@@ -14,7 +14,6 @@ import image4 from '../images/image4.png'
 import { Container, Row, Col } from 'reactstrap'
 import './Home.css'
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
-import LineContact from '../components/LineContact/LineContact';
 // const styles = {
 //     editor: {
 //         border: '1px solid gray',
@@ -130,9 +129,6 @@ export default class Home extends Component {
                     <Row>
                         <CardLands />
                     </Row>
-
-                    <LineContact />
-
                 </Container>
             </div >
         )

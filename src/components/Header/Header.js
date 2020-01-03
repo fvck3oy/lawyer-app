@@ -136,7 +136,7 @@ export default class Header extends Component {
         return (
             <div>
                 <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
-                    <NavbarBrand href="/"><img src={logo} className="img-fluid" style={{ maxWidth: '50px' }} alt="logo" /></NavbarBrand>
+                    <NavbarBrand href="/"><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -186,19 +186,9 @@ export default class Header extends Component {
                                 </DropdownMenu>
                             </Dropdown>
 
-                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter4} onMouseLeave={this.onMouseLeave4} isOpen={this.state.dropdownOpen4} toggle={this.toggle4}>
-                                <DropdownToggle nav>
-                                    ขายที่ดิน
-                                    </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        ที่ดิน 1
-                                        </DropdownItem>
-                                    <DropdownItem>
-                                        ที่ดิน 2
-                                        </DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                              <NavItem>
+                                <NavLink href="/allSaleLand">ขายที่ดิน</NavLink>
+                            </NavItem>
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}
 

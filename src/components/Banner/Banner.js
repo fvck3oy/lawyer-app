@@ -48,13 +48,13 @@ export default class Banner extends Component {
                     buttonsDisabled={true}
 
                 >
-                    {/* <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
-                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
-                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div> */}
+                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src="https://www.labovick.com/wp-content/uploads/2019/04/good-lawyers-i-need-a-lawyer.jpg" alt="" className="img-fluid" /></div>
+                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src="https://www.mesotheliomahelp.org/wp-content/uploads/2018/03/Veterans-Lawyer.jpg" alt="" className="img-fluid" /></div>
+                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src="https://fedbarblog.files.wordpress.com/2019/08/1553714785508_bigstock_male_lawyer_or_judge_working_w_271058272-1.jpg" alt="" className="img-fluid" /></div>
 
-                    {this.state.data.map((e, index) => {
+                    {/* {this.state.data.map((e, index) => {
                         return (<div style={{ maxHeight: '600px' }} key={index} className="d-flex align-items-center justify-content-center item"><img src={`${urlImage}${e.url}`} alt="" className="img-fluid" /></div>)
-                    })}
+                    })} */}
 
                 </AliceCarousel>
             </div>
