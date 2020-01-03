@@ -2,7 +2,6 @@
   "name": "lawyer-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fvck3oy.github.io/lawyer-app/",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.0",
     "antd": "^3.26.0",
@@ -23,8 +22,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

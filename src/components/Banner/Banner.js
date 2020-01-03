@@ -27,13 +27,13 @@ export default class Banner extends Component {
     }
 
     getImage = async () => {
-
         await axios.get(`${url}/banners`).then(res => {
             const { data } = res
             this.setState({ data });
+            this.forceUpdate()
             console.log("DataImage : ", data);
-            
         })
+
     }
 
     render() {
@@ -48,13 +48,13 @@ export default class Banner extends Component {
                     buttonsDisabled={true}
 
                 >
-                <div style={{ maxHeight: '600px' }}  className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
-                <div style={{ maxHeight: '600px' }}  className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
-                <div style={{ maxHeight: '600px' }}  className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
-                
-                    {/* { this.state.data.map(e => {
-                        return (<div style={{ maxHeight: '600px' }} key={e.id} className="d-flex align-items-center justify-content-center item"><img src={`${urlImage}${e.url}`} alt="" className="img-fluid" /></div>)
-                    })} */}
+                    {/* <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
+                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div>
+                    <div style={{ maxHeight: '600px' }} className="d-flex align-items-center justify-content-center item"><img src={pic} alt="" className="img-fluid" /></div> */}
+
+                    {this.state.data.map((e, index) => {
+                        return (<div style={{ maxHeight: '600px' }} key={index} className="d-flex align-items-center justify-content-center item"><img src={`${urlImage}${e.url}`} alt="" className="img-fluid" /></div>)
+                    })}
 
                 </AliceCarousel>
             </div>
