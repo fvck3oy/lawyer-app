@@ -30,7 +30,7 @@ export default class App extends Component {
   render() {
     const { user } = this.state;
     return (
-      <Router basename={process.env.PUBLIC_URL} history={history}>
+      <Router history={history}>
         <Header user={user} />
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
