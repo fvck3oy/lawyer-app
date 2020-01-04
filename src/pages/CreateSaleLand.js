@@ -191,7 +191,7 @@ class CreateSaleLands extends Component {
       },
     };
     const { previewVisible, previewImage, fileList } = this.state;
-    const urlImage = "http://localhost:3001/"
+    const urlImage = "http://167.71.193.2:3001/"
     const uploadButton = (
       <div>
         <Icon type="plus" />

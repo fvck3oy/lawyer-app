@@ -150,14 +150,12 @@ export default class Header extends Component {
                                     เกี่ยวกับองค์กร
                                     </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem href="/me">องค์กรที่ 1
-                                        </DropdownItem>
-                                    <DropdownItem>
-                                        องค์กรที่ 2
-                                        </DropdownItem>
+                                    <DropdownItem href="/aboutCompany/vision">
+                                        วิสัยทัศน์
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
-
+ 
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
                                 <DropdownToggle nav>
                                     ปรึกษา
@@ -176,7 +174,7 @@ export default class Header extends Component {
                                 <NavLink href="/allArticle">บทความ/ข่าว</NavLink>
                             </NavItem>
 
-                              <NavItem>
+                            <NavItem>
                                 <NavLink href="/allSaleLand">ขายที่ดิน</NavLink>
                             </NavItem>
                             <NavItem>

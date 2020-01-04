@@ -37,7 +37,7 @@ export default class Banner extends Component {
     }
 
     render() {
-        const urlImage = "http://localhost:3001/"
+        const urlImage = "http://167.71.193.2:3001/"
         return (
             <div className="app" id="app">
                 <AliceCarousel
