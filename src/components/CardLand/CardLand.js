@@ -48,8 +48,7 @@ export default class CardLand extends Component {
         const urlImage = "http://167.71.193.2:3001/"
         const urlSaleLand = "saleLand/"
         return (
-            <Container>
-
+            <Container className="pt-5">
                 <Carousel responsive={responsive} autoPlay={true}
                     autoPlaySpeed={2000} infinite={true} arrows={false} >
                     {

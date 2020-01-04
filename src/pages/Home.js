@@ -94,7 +94,7 @@ export default class Home extends Component {
                         </Col>
                     </Row> */}
                     <Row>
-                        <Col md={3} className="mt-2 mb-2">
+                        <Col md={3} sm={12} className="mt-2 mb-2">
                             <div className="home-menu mt-2">
                                 <a href="http://deka.supremecourt.or.th/" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mb-2">
@@ -122,7 +122,7 @@ export default class Home extends Component {
                                 </a>
                             </div>
                         </Col>
-                        <Col md={9} >
+                        <Col md={9} sm={12} >
                             <CardNews />
                         </Col>
                     </Row>

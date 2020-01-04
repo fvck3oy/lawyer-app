@@ -12,7 +12,7 @@ export default class CardNews extends Component {
         return (
             <Container>
                 <Row>
-                    <Col md={4} className="mb-2 mt-2">
+                    <Col md={4} sm={4} className="mb-2 mt-2">
                         <Card className="mt-2 mb-2" style={{ height:'100%'}}>
                             <CardImg top src={news} alt="news"/>
                             <CardBody>
@@ -23,7 +23,7 @@ export default class CardNews extends Component {
                         </Card>
                     </Col>
 
-                    <Col md={4} className="mb-2 mt-2">
+                    <Col md={4} sm={4} className="mb-2 mt-2">
                         <Card className="mt-2 mb-2" style={{ height:'100%'}}>
                             <CardImg top src={news} alt="news"/>
                             <CardBody>
@@ -34,7 +34,7 @@ export default class CardNews extends Component {
                         </Card>
                     </Col>
 
-                    <Col md={4} className="mb-2 mt-2">
+                    <Col md={4} sm={4} className="mb-2 mt-2">
                         <Card className="mt-2 mb-2" style={{ height:'100%'}}>
                             <CardImg top src={news} alt="news"/>
                             <CardBody>
