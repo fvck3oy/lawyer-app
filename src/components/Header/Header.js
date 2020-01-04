@@ -136,20 +136,20 @@ export default class Header extends Component {
         return (
             <div>
                 <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
-                    <NavbarBrand href="/"><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
+                    <NavbarBrand href="/" style={{ color:'#fff'}}><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
 
                             <NavItem>
-                                <NavLink href="/">หน้าแรก</NavLink>
+                                <NavLink href="/" className="nav-color">หน้าแรก</NavLink>
                             </NavItem>
 
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter1} onMouseLeave={this.onMouseLeave1} isOpen={this.state.dropdownOpen1} toggle={this.toggle1}>
-                                <DropdownToggle nav>
+                                <DropdownToggle nav className="nav-color">
                                     เกี่ยวกับองค์กร
                                     </DropdownToggle>
-                                <DropdownMenu right>
+                                <DropdownMenu right  className="">
                                     <DropdownItem href="/aboutCompany/vision">
                                         วิสัยทัศน์
                                     </DropdownItem>
@@ -157,10 +157,10 @@ export default class Header extends Component {
                             </Dropdown>
  
                             <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
-                                <DropdownToggle nav>
+                                <DropdownToggle nav className="nav-color">
                                     ปรึกษา
                                     </DropdownToggle>
-                                <DropdownMenu right>
+                                <DropdownMenu right className="">
                                     <DropdownItem>
                                         ปรึกษา 1
                                         </DropdownItem>
@@ -171,11 +171,11 @@ export default class Header extends Component {
                             </Dropdown>
 
                             <NavItem>
-                                <NavLink href="/allArticle">บทความ/ข่าว</NavLink>
+                                <NavLink href="/allArticle" className="nav-color">บทความ/ข่าว</NavLink>
                             </NavItem>
 
                             <NavItem>
-                                <NavLink href="/allSaleLand">ขายที่ดิน</NavLink>
+                                <NavLink href="/allSaleLand" className="nav-color">ขายที่ดิน</NavLink>
                             </NavItem>
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}

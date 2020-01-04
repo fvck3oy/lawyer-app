@@ -43,13 +43,14 @@ export default class App extends Component {
           <Route exact path="/forgotpass" component={withRouter(Forgotpass)} />
           <Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route exact path="/test" component={withRouter(TestMap)} />
           <Route exact path="/aboutCompany/vision" component={withRouter(AboutCompanyVision)} />
 
           <Route exact path="/allSaleLand" component={withRouter(AllSaleLand)} />
           <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />
           <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
           <Route exact path="/admin" component={withRouter(Admin)} />
+          
+          <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>
         <Footer />
       </Router>
