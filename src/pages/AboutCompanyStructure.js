@@ -32,7 +32,7 @@ export default class AboutCompanyStructure extends Component {
                 <img src={lawandasset} className="img-fluid logo-company" style={{ maxHeight: '200px' }} />
               </div>
               <div className="p-3 text-company">
-                บริษัท  ลอว์  แอนด์  แอสเซท  จำกัด
+                <a href="/aboutCompany/lawAndAsset">บริษัท  ลอว์  แอนด์  แอสเซท  จำกัด</a>
               </div>
             </div>
           </Col>
