@@ -6,7 +6,7 @@ export default class AboutCompanyLawAndAsset extends Component {
   render() {
     return (
       <Container className="pt-5 pb-5">
-      <Row>
+        <Row>
           <Col md={{ size: 8, offset: 2 }}>
             <div className="p-4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <div className="p-3 ">
@@ -17,7 +17,7 @@ export default class AboutCompanyLawAndAsset extends Component {
         </Row>
         <Row>
           <Col md={{ size: 10, offset: 1 }}>
-            <div style={{ textAlign:'center'}}><h4>บริษัทลอว์ แอนด์ แอสเซท จำกัด</h4></div>
+            <div style={{ textAlign: 'center' }}><h4>บริษัท ลอว์ แอนด์ แอสเซท จำกัด</h4></div>
             <div className="p-4 law-asset-text">
               <p style={{ textIndent: '10%' }}>
                 บริษัท ลอว์  แอนด์ แอสเซท  จำกัด มีวัตถุประสงค์ดำเนินงานด้านกฎหมาย อาทิเช่น การเร่งรัดหนี้สินทางโทรศัพท์
@@ -35,7 +35,7 @@ export default class AboutCompanyLawAndAsset extends Component {
               <div>
                 <ol>
                   <h5>คณะที่ปรึกษา จำนวน 7 คน</h5>
-                <li>
+                  <li>
                     ที่ปรึกษาด้านธุรกิจพาณิชย์ การตลาด การเงิน บัญชี และ การปรับปรุงโครงสร้างหนี้ จำนวน 1 คน
                 </li>
                   <li>
@@ -55,23 +55,23 @@ export default class AboutCompanyLawAndAsset extends Component {
 
               <div>
                 <ol>
-                <h5>ฝ่ายกฎหมาย จำนวน 12 คน</h5>
-                <li>
-                  เจ้าหน้าที่ฝ่ายบังคับคดี จำนวน 7 คน
+                  <h5>ฝ่ายกฎหมาย จำนวน 12 คน</h5>
+                  <li>
+                    เจ้าหน้าที่ฝ่ายบังคับคดี จำนวน 7 คน
                 </li>
-                <li>
-                  เจ้าหน้าที่บัญชีและการเงิน 1 คน
+                  <li>
+                    เจ้าหน้าที่บัญชีและการเงิน 1 คน
                 </li>
-                <li>
-                  เจ้าหน้าที่ธุรการ จำนวน 6 คน
+                  <li>
+                    เจ้าหน้าที่ธุรการ จำนวน 6 คน
                 </li>
-                <li>
-                  ผู้จัดการส่วนงานคดี จำนวน 2 คน
+                  <li>
+                    ผู้จัดการส่วนงานคดี จำนวน 2 คน
                 </li>
-                <li>
-                  พนักงานรับ - ส่งเอกสาร จำนวน 1 คน
+                  <li>
+                    พนักงานรับ - ส่งเอกสาร จำนวน 1 คน
                 </li>
-              </ol>
+                </ol>
               </div>
             </div>
           </Col>
