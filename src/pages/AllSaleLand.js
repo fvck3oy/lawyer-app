@@ -28,7 +28,7 @@ export default class AllSaleLand extends Component {
     return (
       <Container className="">
         <Row>
-          <Col md={{ size: 8, offset: 2 }}>
+          <Col lg={{ size: 8, offset: 2 }} md={{ size: 10, offset: 1 }} sm={{ size:12}}>
             <div className="p-5">
           <h3>ขายที่ดิน (ทั้งหมด)</h3>
               {/* <div className="card-all-sale-land mt-5 mb-5 p-3">
@@ -60,10 +60,10 @@ export default class AllSaleLand extends Component {
                     <div key={e.id} className="card-all-sale-land mt-5 mb-5 p-3">
                       <Link to={`${urlSaleLand}${e.id}`}>
                         <Row>
-                          <Col md={4}>
-                            <div><img src={`${urlImage}${e.image}`} className="img-fluid" alt="test" style={{ height: '100%', width: '100%' }} /></div>
+                          <Col md={6}>
+                            <div class=""><img src={`${urlImage}${e.image}`} className="img-fluid" alt="test" style={{ height: '100%', width: '100%' }} /></div>
                           </Col>
-                          <Col md={8}>
+                          <Col md={6}>
                             <div className="d-flex card-all-sale-land-text">
                               <div>
                                 <h5>{e.title}</h5>

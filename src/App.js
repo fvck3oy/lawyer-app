@@ -18,6 +18,7 @@ import PrivateRoute from './components/privateRoute'
 import CreateSaleLand from './pages/CreateSaleLand';
 import AllSaleLand from './pages/AllSaleLand';
 import AboutCompanyVision from './pages/AboutCompanyVision';
+import AboutCompanyStructure from './pages/AboutCompanyStructure';
 
 import Admin from './pages/Admin';
 
@@ -44,6 +45,7 @@ export default class App extends Component {
           <Route exact path="/resetpassword/:token" component={withRouter(ResetPassword)} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route exact path="/aboutCompany/vision" component={withRouter(AboutCompanyVision)} />
+          <Route exact path="/aboutCompany/structure" component={withRouter(AboutCompanyStructure)} />
 
           <Route exact path="/allSaleLand" component={withRouter(AllSaleLand)} />
           <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />

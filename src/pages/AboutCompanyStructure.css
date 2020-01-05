@@ -1,0 +1,12 @@
+@media (max-width: 576px) {
+  .logo-company{
+    height: 100px;
+  }
+  .text-company{
+    font-size: 14px;
+  }
+ }
+
+ .text-company{
+   font-size: 18px;
+ }

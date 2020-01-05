@@ -153,6 +153,9 @@ export default class Header extends Component {
                                     <DropdownItem href="/aboutCompany/vision">
                                         วิสัยทัศน์
                                     </DropdownItem>
+                                    <DropdownItem href="/aboutCompany/structure">
+                                        โครงสร้างองค์กร
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
  
