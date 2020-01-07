@@ -22,6 +22,7 @@ import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
 
 import Admin from './pages/Admin';
+import Consultant from './pages/Consultant';
 
 
 export default class App extends Component {
@@ -48,6 +49,7 @@ export default class App extends Component {
           <Route exact path="/aboutCompany/vision" component={withRouter(AboutCompanyVision)} />
           <Route exact path="/aboutCompany/structure" component={withRouter(AboutCompanyStructure)} />
           <Route exact path="/aboutCompany/lawAndAsset" component={withRouter(AboutCompanyLawAndAsset)} />
+          <Route exact path="/consultant" component={withRouter(Consultant)} />
 
           <Route exact path="/allSaleLand" component={withRouter(AllSaleLand)} />
           <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />

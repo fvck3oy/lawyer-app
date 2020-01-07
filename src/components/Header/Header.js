@@ -162,7 +162,7 @@ export default class Header extends Component {
                                 </DropdownMenu>
                             </Dropdown>
  
-                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
+                            {/* <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
                                 <DropdownToggle nav className="nav-color">
                                     ปรึกษา
                                     </DropdownToggle>
@@ -174,7 +174,10 @@ export default class Header extends Component {
                                         ปรึกษา 2
                                         </DropdownItem>
                                 </DropdownMenu>
-                            </Dropdown>
+                            </Dropdown> */}
+                            <NavItem>
+                                <NavLink href="/consultant" className="nav-color">ปรึกษา</NavLink>
+                            </NavItem>
 
                             <NavItem>
                                 <NavLink href="/allArticle" className="nav-color">บทความ/ข่าว</NavLink>
