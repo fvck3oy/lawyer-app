@@ -10,10 +10,10 @@ export default class AllSaleLand extends Component {
     data: []
   }
   componentDidMount = () => {
-    this.getImage()
+    this.getData()
   }
 
-  getImage = async () => {
+  getData = async () => {
 
     await axios.get(`${url}/lands`).then(res => {
       const { data } = res

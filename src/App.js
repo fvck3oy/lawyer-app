@@ -17,12 +17,14 @@ import Profile from './components/Profile'
 import PrivateRoute from './components/privateRoute'
 import CreateSaleLand from './pages/CreateSaleLand';
 import AllSaleLand from './pages/AllSaleLand';
+import AllArticle from './pages/AllArticle';
 import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
 
 import Admin from './pages/Admin';
 import Consultant from './pages/Consultant';
+import CreateArticle from './pages/CreateArticle';
 
 
 export default class App extends Component {
@@ -51,9 +53,11 @@ export default class App extends Component {
           <Route exact path="/aboutCompany/lawAndAsset" component={withRouter(AboutCompanyLawAndAsset)} />
           <Route exact path="/consultant" component={withRouter(Consultant)} />
 
+          <Route exact path="/allArticle" component={withRouter(AllArticle)} />
           <Route exact path="/allSaleLand" component={withRouter(AllSaleLand)} />
           <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />
           <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
+          <Route exact path="/createArticle" component={withRouter(CreateArticle)} />
           <Route exact path="/admin" component={withRouter(Admin)} />
           
           <Route exact path="/test" component={withRouter(TestMap)} />

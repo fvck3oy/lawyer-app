@@ -20,55 +20,94 @@ import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios, { post } from 'axios'
 import url from '../../src/url_config'
-import { compose, withProps, lifecycle } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
+
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+const styles = {
+  editor: {
+    border: '1px solid gray',
+    minHeight: '6em'
+  }
+};
 
 const { TextArea } = Input;
-const AddMarker = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD7znYiqytpFwvWR0wIfDHWBGH7BZQ1PWU&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
-  }),
-  lifecycle({
-    componentWillMount() {
-      const refs = {}
+const { Option } = Select;
 
-      this.setState({
-        position: null,
-        onMarkerMounted: ref => {
-          refs.marker = ref;
-        },
+class CreateArticle extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmDirty: false,
+      previewVisible: false,
+      previewImage: "",
+      fileList: [],
+      data: [],
+      file: null,
+      editorState: EditorState.createEmpty()
+    }
+    this.onChange = (editorState) => {
+      const contentState = editorState.getCurrentContent();
+      console.log('content state', convertToRaw(contentState));
+      this.setState({ editorState });
+      console.log("State : ", this.state.editorState);
+    }
+    this.setEditor = (editor) => {
+      this.editor = editor;
+    }
+    this.focusEditor = () => {
+      if (this.editor) {
+        this.editor.focus();
+      }
+    }
+  }
+  componentDidMount() {
+    this.focusEditor();
+  }
 
-        onPositionChanged: () => {
-          const position = refs.marker.getPosition();
-          console.log("Position : ", position.toString());
-        }
-      })
-    },
-  }),
-  withScriptjs,
-  withGoogleMap
-)((props) =>
-  <GoogleMap defaultZoom={15} defaultCenter={{ lat: props.lat, lng: props.lng }}>
-    <Marker position={{ lat: props.lat, lng: props.lng }} draggable={true} ref={props.onMarkerMounted} onPositionChanged={props.onPositionChanged} />
-  </GoogleMap>
-)
+  onItalicClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
+  }
 
-class CreateSaleLands extends Component {
-  state = {
-    confirmDirty: false,
-    lat: 13.7278956,
-    lng: 100.52412349999997,
-    data: [],
-    isMarkerShown: true,
-    previewVisible: false,
-    previewImage: "",
-    fileList: [],
-    file: null,
-    idLand: null
+  handleKeyCommand = (command) => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not-handled';
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
+  onBoldClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'))
+  }
+
+  onItalicClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
+  }
+
+  handleConfirmBlur = e => {
+    const { value } = e.target;
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   };
+
+  handleCancel = () => this.setState({ previewVisible: false });
+
+  handlePreview = file => {
+    this.setState({
+      previewImage: file.thumbUrl,
+      previewVisible: true
+    });
+  };
+
+  handleUpload = ({ fileList }) => {
+
+    console.log('fileList', fileList);
+    this.setState({ fileList });
+
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -77,10 +116,8 @@ class CreateSaleLands extends Component {
       this.props.form.validateFieldsAndScroll(async (err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
-          values.lat = this.state.lat
-          values.lng = this.state.lng
           values.user_type = 'register'
-          await axios.post(`${url}/lands/create`, values).then(res => {
+          await axios.post(`${url}/blogs/create`, values).then(res => {
             const { data } = res
             this.setState({ idLand: data.id })
           })
@@ -102,31 +139,10 @@ class CreateSaleLands extends Component {
     }
   };
 
-  handleConfirmBlur = e => {
-    const { value } = e.target;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  };
-
-  componentDidMount() {
-    this.delayedShowMarker()
-  }
-
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({ isMarkerShown: true })
-    }, 3000)
-  }
-
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
-  }
-
   upload = () => {
-    const urlUpload = `${url}/lands/uploadImage`
+    const urlUpload = `${url}/blogs/uploadImage`
     const formData = new FormData()
     formData.append("imageData", this.state.fileList[0].originFileObj);
-    // formData.append('imageData', file)
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -136,30 +152,14 @@ class CreateSaleLands extends Component {
   }
 
   savePath = async (data) => {
-    await axios.put(`${url}/lands/savePathImage`, data).then(res => {
+    await axios.put(`${url}/blogs/savePathImage`, data).then(res => {
       console.log("saved : ", res)
     })
-    this.props.history.push(`/`)
+    this.props.history.push(`/admin`)
   }
 
-  handleCancel = () => this.setState({ previewVisible: false });
-
-  handlePreview = file => {
-    this.setState({
-      previewImage: file.thumbUrl,
-      previewVisible: true
-    });
-  };
-
-  handleUpload = ({ fileList }) => {
-
-    console.log('fileList', fileList);
-    this.setState({ fileList });
-
-  }
 
   render() {
-
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -197,12 +197,11 @@ class CreateSaleLands extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
-
     return (
       <Container>
         <Row className="p-5">
           <Col>
-            <h1>สร้างการประกาศขายที่ดิน</h1>
+            <h1>สร้างบทความ</h1>
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
               <Form.Item
                 label={
@@ -213,7 +212,7 @@ class CreateSaleLands extends Component {
               >
                 {getFieldDecorator('title', {
                   rules: [{ required: true, message: 'Please input your title!', whitespace: true }],
-                })(<Input placeholder="หัวข้อเกี่ยวกับการขาย" />)}
+                })(<Input placeholder="หัวข้อของบทความ" />)}
               </Form.Item>
 
               <Form.Item
@@ -225,25 +224,40 @@ class CreateSaleLands extends Component {
               >
                 {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
-                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" />)}
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับบทความ" style={{ height: '300px' }} />)}
+              </Form.Item>
+
+              {/* <Row>
+                <Col>
+                  <button onClick={this.onUnderlineClick}>U</button>
+                  <button onClick={this.onBoldClick}><b>B</b></button>
+                  <button onClick={this.onItalicClick}><em>I</em></button>
+                  <div style={styles.editor} onClick={this.focusEditor}>
+                    <Editor
+                      handleKeyCommand={this.handleKeyCommand}
+                      ref={this.setEditor}
+                      editorState={this.state.editorState}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                </Col>
+              </Row> */}
+              <Form.Item label="ประเภท" hasFeedback>
+                {getFieldDecorator('type', {
+                  rules: [{ required: true, message: 'กรุณาเลือกประเภทของบทความ !' }],
+                })(
+                  <Select placeholder="กรุณาเลือกประเภทของบทความ !">
+                    <Option value="1">ข่าว</Option>
+                    <Option value="2">บทความ</Option>
+                    <Option value="3">กิจกรรม</Option>
+                  </Select>,
+                )}
               </Form.Item>
 
               <Form.Item
                 label={
                   <span>
-                    ราคา &nbsp;
-              </span>
-                }
-              >
-                {getFieldDecorator('price', {
-                  rules: [{ required: true, message: 'Please input your price!!' }],
-                })(<InputNumber placeholder="ราคา" />)}
-              </Form.Item>
-
-              <Form.Item
-                label={
-                  <span>
-                    กรุณาเลือกภาพหน้าปกของคุณ&nbsp;
+                    กรุณาเลือกภาพหัวข้อของคุณ&nbsp;
               </span>
                 }
               >
@@ -268,27 +282,6 @@ class CreateSaleLands extends Component {
                   </Modal>
                 </div>
               </Form.Item>
-
-
-              <Form.Item
-                label={
-                  <span>
-                    กรุณาเลือกจุดที่ต้องการ&nbsp;
-              </span>
-                }
-              >
-                <div className="">
-                  <AddMarker
-                    isMarkerShown={this.state.isMarkerShown}
-                    onMarkerClick={this.handleMarkerClick}
-                    lat={this.state.lat}
-                    lng={this.state.lng}
-                  />
-                </div>
-              </Form.Item>
-
-
-
               <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit">
                   Create
@@ -298,8 +291,8 @@ class CreateSaleLands extends Component {
             </Form>
           </Col>
         </Row>
-      </Container>
-    );
+      </Container >
+    )
   }
 }
-export default Form.create()(CreateSaleLands);
+export default Form.create()(CreateArticle);
