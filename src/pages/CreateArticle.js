@@ -121,14 +121,14 @@ class CreateArticle extends Component {
             const { data } = res
             this.setState({ idLand: data.id })
           })
-           this.upload(this.state.fileList).then(res => {
+          this.upload(this.state.fileList).then(res => {
             const data = {
               id: this.state.idLand,
               url: res.data.file.filename
             }
             this.savePath(data)
           })
-          
+
         }
       });
 

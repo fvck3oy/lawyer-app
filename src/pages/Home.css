@@ -8,14 +8,15 @@
   cursor: pointer;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
   /* border:solid 1px #f90;  */
 }
 
 
 .each-menu:hover {
   
-  color: #f90;
-
+  color: #fff;
+  background-color:#f90;
 }
 
 .menu-image{

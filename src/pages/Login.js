@@ -65,6 +65,7 @@ class Login extends Component {
         <Row className="p-5" style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
           <Col>
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
+            <div style={{textAlign:'center', fontSize:'48px', padding:'10px'  }}>เข้าสู่ระบบ</div>
               <Form.Item>
                 {getFieldDecorator('email', {
                   rules: [

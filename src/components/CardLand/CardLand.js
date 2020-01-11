@@ -44,11 +44,15 @@ export default class CardLand extends Component {
         })
     }
 
+    formatNumber=(num)=> {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      }
+
     render() {
         const urlImage = "http://167.71.193.2:3001/"
         const urlSaleLand = "saleLand/"
         return (
-            <Container className="pt-5">
+            <Container className="pt-2">
                 <Carousel responsive={responsive} autoPlay={true}
                     autoPlaySpeed={2000} infinite={true} arrows={false} >
                     {
@@ -60,7 +64,7 @@ export default class CardLand extends Component {
                                         <CardBody style={{ height: '150px' }}>
                                             <CardTitle>{e.title}</CardTitle>
                                             <CardSubtitle>{e.detail}</CardSubtitle>
-                                            <CardText>ราคา {e.price} บาท</CardText>
+                                            <CardText>ราคา {this.formatNumber(e.price)} บาท</CardText>
                                         </CardBody>
                                     </Card>
                                 </Link>

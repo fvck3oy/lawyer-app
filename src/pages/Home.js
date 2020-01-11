@@ -13,7 +13,7 @@ import image4 from '../images/image4.png'
 
 import { Container, Row, Col } from 'reactstrap'
 import './Home.css'
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+// import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
 // const styles = {
 //     editor: {
 //         border: '1px solid gray',
@@ -125,6 +125,10 @@ export default class Home extends Component {
                         <Col md={9} sm={12} >
                             <CardNews />
                         </Col>
+                    </Row>
+
+                    <Row>
+                        <Col><div style={{ textAlign:'center', fontSize:'36px', padding:'20px'}}>ประกาศขาย</div></Col>
                     </Row>
                     <Row>
                         <CardLands />

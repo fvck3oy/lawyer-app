@@ -1,0 +1,12 @@
+.ant-card-meta-description{
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+text-indent: 15px;
+}
+.read-more{
+  display: flex;
+  flex-direction: row-reverse
+/* justify-content: space-between; */
+}

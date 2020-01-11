@@ -35,6 +35,7 @@ export default class Banner extends Component {
             const { data } = res
             console.log("Dataaaaaaa => ", data);
             const urlImage = "http://167.71.193.2:3001/"
+            // const urlImage = "http://127.0.0.1:3001/"
             // this.setState({ data });
             data.map(e => {
                 let data2 = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom'
+import {  Router, Switch, Route, withRouter } from 'react-router-dom'
 
 import Home from './pages/Home'
 import SaleLand from './pages/SaleLand'
@@ -18,9 +18,11 @@ import PrivateRoute from './components/privateRoute'
 import CreateSaleLand from './pages/CreateSaleLand';
 import AllSaleLand from './pages/AllSaleLand';
 import AllArticle from './pages/AllArticle';
+import Article from './pages/Article'
 import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
+
 
 import Admin from './pages/Admin';
 import Consultant from './pages/Consultant';
@@ -58,6 +60,8 @@ export default class App extends Component {
           <Route exact path="/saleLand/:id" component={withRouter(SaleLand)} />
           <Route exact path="/createLand" component={withRouter(CreateSaleLand)} />
           <Route exact path="/createArticle" component={withRouter(CreateArticle)} />
+          <Route exact path="/article/:id" component={withRouter(Article)} />
+
           <Route exact path="/admin" component={withRouter(Admin)} />
           
           <Route exact path="/test" component={withRouter(TestMap)} />

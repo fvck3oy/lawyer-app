@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Upload, Icon, Modal, Row, Col, message, Button, Carousel } from 'antd';
+import { Upload, Icon, Modal, Row, Col, message, Button, Carousel, Card } from 'antd';
 import AliceCarousel from 'react-alice-carousel';
 import './ManageBanners.css'
 import axios, { post } from 'axios'
 import url from '../../url_config'
 
+const gridStyle = {
+  width: '25%',
+
+};
 
 const pic2 = 'https://i1.wp.com/annenglish.co.uk/wp-content/uploads/2017/11/NEW-Ideas-Mapping-Slider-1200-x-600px-1-2.png'
 const pic3 = 'https://i1.wp.com/annenglish.co.uk/wp-content/uploads/2017/11/NEW-Ideas-Mapping-Slider-1200-x-600px-1-2.png'
@@ -15,7 +19,8 @@ export default class ManageBanners extends Component {
     previewImage: "",
     fileList: [],
     data: [],
-    file: null
+    file: null,
+    visible: false
   };
 
   responsive = {
@@ -42,8 +47,10 @@ export default class ManageBanners extends Component {
     this.getImage()
   }
 
-  getImage = async () => {
-    await axios.get(`${url}/banners`).then(res => {
+
+  getImage = e => {
+    // e.preventDefault()
+    axios.get(`${url}/banners`).then(res => {
       const { data } = res
       this.setState({ data });
       console.log("DataImage : ", data);
@@ -57,8 +64,6 @@ export default class ManageBanners extends Component {
     this.setState({ fileList });
 
   }
-
-
 
   handleSubmit = event => {
 
@@ -99,9 +104,38 @@ export default class ManageBanners extends Component {
     }).then(await this.getImage())
   }
 
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.handleSubmit().then(
+      this.setState({
+        visible: false,
+      })
+    )
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  remove = async (id) => {
+    await axios.delete(`${url}/banners/${id}`).then(res => {
+      console.log("delete : ", res)
+    })
+  }
+
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
-    const urlImage = "http://167.71.193.2:3001/"
+    // const urlImage = "http://167.71.193.2:3001/"
+    const urlImage = "http://127.0.0.1:3001/"
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -111,42 +145,68 @@ export default class ManageBanners extends Component {
     return (
       <div className="container">
 
-        <Row>
-          <Col xs={{ span: 22, offset: 1 }} lg={{ span: 20, offset: 2 }}>
-            <Carousel autoplay>
-              {this.state.data.map(e => {
-                return (<div key={e.id} className="d-flex align-items-center justify-content-center item"><img src={`${urlImage}${e.url}`} alt={e.url} className="img-fluid" /></div>)
-              })}
-            </Carousel>
-          </Col>
-        </Row>
+        <div className="p-3">
+          <h2>ตัวอย่าง Banners</h2>
+          <Row>
+            <Col xs={{ span: 22, offset: 1 }} lg={{ span: 20, offset: 2 }}>
+              <Carousel autoplay>
+                {this.state.data.map(e => {
+                  return (<div key={e.id} className="d-flex align-items-center justify-content-center item"><img src={`${urlImage}${e.url}`} alt={e.url} className="img-fluid" /></div>)
+                })}
+              </Carousel>
+            </Col>
+          </Row>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'row-reverse', margin: '10px' }}>
+          <Button type="primary" onClick={this.showModal}>
+            เพิ่มรูปภาพ
+        </Button>
+        </div>
 
-        <Row className="mt-4 d-flex justify-content-center">
-          <Col>
-            <div>
-              <Upload
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={this.handlePreview}
-                onChange={this.handleUpload}
-                beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
-              >
-                {fileList.length >= 1 ? null : uploadButton}
-              </Upload>
-            </div>
-
-            <div>
-              <Button onClick={this.handleSubmit}>Submit</Button>
-            </div>
-          </Col>
+        <div>
           <Modal
-            visible={previewVisible}
-            footer={null}
+            title="เพิ่มรูปภาพ"
+            visible={this.state.visible}
+            onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
+            <Row className="mt-4 d-flex justify-content-center">
+              <Col>
+                <div>
+                  <Upload
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={this.handlePreview}
+                    onChange={this.handleUpload}
+                    beforeUpload={() => false}
+                  >
+                    {fileList.length >= 1 ? null : uploadButton}
+                  </Upload>
+                </div>
+              </Col>
+              <Modal
+                visible={previewVisible}
+                footer={null}
+                onCancel={this.handleCancel}
+              >
+                <img alt="example" style={{ width: "100%" }} src={previewImage} />
+              </Modal>
+            </Row>
           </Modal>
-        </Row>
+        </div>
+
+        <div className="pb-5">
+          <Card title="Banners List">
+            {this.state.data.map(e => {
+              return (<div key={e.id} className="">
+                <Card.Grid style={gridStyle}>
+                  <img src={`${urlImage}${e.url}`} alt={e.url} className="img-fluid" />
+                  <div onClick={() => this.remove(e.id)} style={{ color: 'red', cursor: 'pointer' }}>Remove</div>
+                </Card.Grid>
+              </div>)
+            })}
+          </Card>
+        </div>
       </div>
     );
   }
