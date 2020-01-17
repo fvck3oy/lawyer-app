@@ -11,57 +11,86 @@ const { Option } = Select;
 export default class AllArticle extends Component {
   state = {
     data: [],
-    text:'ทั้งหมด',
-    value:0,
-    current:1,
-    total:0
+    text: 'ทั้งหมด',
+    value: 0,
+    current: 1,
+    total: 0
   }
   componentDidMount = () => {
-    this.getData()
+    // this.getData(0,1)
+    this.getFilter(0, 1)
   }
 
-  getData = async () => {
-    await axios.get(`${url}/blogs/filter/0/0`).then(res => {
+  getData = async (value, page) => {
+    await axios.get(`${url}/blogs/filter/${value}/${page - 1}`).then(async res => {
       const { data } = res
-      this.setState({ data });
+      await this.setState({ data });
       console.log("DataImage : ", data);
-      this.setState({ total:data.length})
+      await this.setState({ total: data.length })
+      console.log("First Total : ", this.state.total);
+
 
     })
   }
-  getFilter = async (value,page_number) => {
-    await axios.get(`${url}/blogs/filter/${value}/${page_number}`).then(res => {
+  getFilter = async (value, page_number) => {
+    console.log("Log Filter : ", value)
+    console.log("Log Page : ", page_number);
+
+    await axios.get(`${url}/blogs/filter/${value}/${page_number - 1}`).then(async res => {
       const { data } = res
-      this.setState({ data });
+      await this.setState({ data: data.result });
       console.log("DataFilter : ", data);
 
+      let length = this.state.data.length
+      await this.setState({ total: data.total })
+      console.log("lenght : ",this.state.total)
+
+      // if ((lenght <= 15) && (page_number==2)){
+      //   await this.setState({
+      //     current: page_number,
+      //   });
+      // }else{
+      //   await this.setState({ total: lenght })
+      //   await this.setState({
+      //     current: 1,
+      //   });
+      // }
     })
   }
 
-  filter = (value, event) => {
-    this.getFilter(value)
-    if(value == 0){
-      this.setState({ value:0 })
-      this.setState({ text:'ทั้งหมด'})
-    }else if(value == 1){
-      this.setState({ value:1})
-      this.setState({ text:'ข่าว'})
+  filter = async (value, event) => {
+    console.log("filter income : ", value);
+
+    // this.onPageChange(1)
+    if (value == 0) {
+      await this.setState({ value: 0 })
+      this.setState({ text: 'ทั้งหมด' })
+      this.getFilter(this.state.value, 1)
+    } else if (value == 1) {
+      await this.setState({ value: 1 })
+      this.setState({ text: 'ข่าว' })
+      this.getFilter(this.state.value, 1)
     }
-    else if(value == 2){
-      this.setState({ value:2 })
-      this.setState({ text:'บทความ'})
+    else if (value == 2) {
+      await this.setState({ value: 2 })
+      this.setState({ text: 'บทความ' })
+      this.getFilter(this.state.value, 1)
     }
-    else{
-      this.setState({ value:3 })
-      this.setState({ text:'กิจกรรม'})
+    else {
+      await this.setState({ value: 3 })
+      this.setState({ text: 'กิจกรรม' })
+      this.getFilter(this.state.value, 1)
     }
-    console.log("filter : ", value);
+    console.log("Filter : ", this.state.value);
   }
 
-  onPageChange=(value)=>{
-    console.log('PageChange : ', value);
-    this.getFilter(this.state.value,value-1)
-  }
+  onChange = async page => {
+    console.log("Page Change : ", page);
+    await this.setState({
+      current: page,
+    });
+    this.getFilter(this.state.value, this.state.current)
+  };
 
   render() {
     const urlImage = "http://167.71.193.2:3001/"
@@ -79,11 +108,11 @@ export default class AllArticle extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
                     <div>
                       <Form >
-                        <Select onSelect={(value, event) => this.filter(value, event)} placeholder="กรุณาเลือกประเภทของบทความ !" defaultValue="0">
-                          <Option value="0">ทั้งหมด</Option>
-                          <Option value="1">ข่าว</Option>
-                          <Option value="2">บทความ</Option>
-                          <Option value="3">กิจกรรม</Option>
+                        <Select onSelect={(value, event) => this.filter(value, event)} placeholder="กรุณาเลือกประเภทของบทความ !" defaultValue={0}>
+                          <Option value={0}>ทั้งหมด</Option>
+                          <Option value={1}>ข่าว</Option>
+                          <Option value={2}>บทความ</Option>
+                          <Option value={3}>กิจกรรม</Option>
                         </Select>
                       </Form>
                     </div>
@@ -95,13 +124,16 @@ export default class AllArticle extends Component {
 
                 {
                   this.state.data.map(e => {
-                    if (e.type == 1) {
-                      e.type = "ข่าว"
-                    } else if (e.type == 2) {
-                      e.type = "บทความ"
-                    } else {
-                      e.type = "กิจกรรม"
-                    }
+                    console.log("type : ", typeof(e.type));
+                    
+                    // if (e.type === 1) {
+                    //   e.type = "ข่าว"
+                    // } else if (e.type === 2) {
+                    //   e.type = "บทความ"
+                    // } else {
+                    //   e.type = "กิจกรรม"
+                    // }
+                    
                     return (
                       <Col md={4} key={e.id}>
                         <div className="mt-2 mb-2">
@@ -118,6 +150,7 @@ export default class AllArticle extends Component {
                               <div className="read-more">
                                 <div className="p-2">
                                   <Tag color="#f90">
+                                    {e.id}.
                                     {e.type}
                                   </Tag>
                                   <Tag color="#f90"><Moment format="DD/MM/YYYY">{e.created}</Moment></Tag>
@@ -135,7 +168,7 @@ export default class AllArticle extends Component {
                 }
 
               </Row>
-              <Pagination defaultCurrent={1} defaultPageSize={10} total={this.state.total} onChange={this.onPageChange}/>
+              <Pagination current={this.state.current} pageSize={15} onChange={this.onChange} total={this.state.total} />
             </div>
 
           </Col>
