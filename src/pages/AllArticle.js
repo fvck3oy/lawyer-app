@@ -21,17 +21,18 @@ export default class AllArticle extends Component {
     this.getFilter(0, 1)
   }
 
-  getData = async (value, page) => {
-    await axios.get(`${url}/blogs/filter/${value}/${page - 1}`).then(async res => {
-      const { data } = res
-      await this.setState({ data });
-      console.log("DataImage : ", data);
-      await this.setState({ total: data.length })
-      console.log("First Total : ", this.state.total);
+  // getData = async (value, page) => {
+  //   await axios.get(`${url}/blogs/filter/${value}/${page - 1}`).then(async res => {
+  //     const { data } = res
+  //     await this.setState({ data });
+  //     console.log("DataImage : ", data);
+  //     await this.setState({ total: data.length })
+  //     console.log("First Total : ", this.state.total);
 
 
-    })
-  }
+  //   })
+  // }
+  
   getFilter = async (value, page_number) => {
     console.log("Log Filter : ", value)
     console.log("Log Page : ", page_number);
@@ -40,8 +41,6 @@ export default class AllArticle extends Component {
       const { data } = res
       await this.setState({ data: data.result });
       console.log("DataFilter : ", data);
-
-      let length = this.state.data.length
       await this.setState({ total: data.total })
       console.log("lenght : ",this.state.total)
 

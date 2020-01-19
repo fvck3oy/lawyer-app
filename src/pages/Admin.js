@@ -38,11 +38,10 @@ export default class Admin extends Component {
                   Manage Articles
                 </Menu.Item>
 
-                <Menu.Item key="4">
-                  <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                    Navigation Four - Link
-                  </a>
+                <Menu.Item key="ภ" onClick={() => this.menuOnClick(4)}>
+                  Manage Users
                 </Menu.Item>
+
               </Menu>
             </div>
           </Col>
@@ -51,9 +50,9 @@ export default class Admin extends Component {
           {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
           <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
             <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-              {this.state.menu == 1 && <ManageBanners />}
-              {this.state.menu == 2 && <ManageLands />}
-              {this.state.menu == 3 && <ManageArticles />}
+              {this.state.menu === 1 && <ManageBanners />}
+              {this.state.menu === 2 && <ManageLands />}
+              {this.state.menu === 3 && <ManageArticles />}
             </div>
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
