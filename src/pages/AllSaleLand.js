@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Form, FormGroup, Label } from 'reactstrap'
-import { Button, Card, Tag, Input, Pagination, Typography } from 'antd'
+import { Button, Card, Tag, Input, Pagination, Typography, Icon } from 'antd'
 import axios from 'axios'
 import url from '../url_config'
 import { Link } from 'react-router-dom'
@@ -22,6 +22,8 @@ export default class AllSaleLand extends Component {
       current: 1,
       start_price: 0,
       end_price: 0,
+      find: '',
+      check: true
     };
   }
 
@@ -32,6 +34,7 @@ export default class AllSaleLand extends Component {
 
 
   getFirst = async (page_number) => {
+    this.setState({ check: true })
     await axios.get(`${url}/lands/filter/0`).then(async res => {
       const { data } = res
       this.setState({ data: data.result });
@@ -46,13 +49,11 @@ export default class AllSaleLand extends Component {
   getData = async (page_number, start_price, end_price) => {
     console.log("Start : ", start_price);
     console.log("End : ", end_price);
-
     await axios.get(`${url}/lands/filter/${page_number - 1}/price/${start_price}/${end_price}`).then(async res => {
       const { data } = res
       this.setState({ data: data.result });
       console.log("Data : ", data);
       await this.setState({ total: data.total })
-     
     })
   }
 
@@ -65,7 +66,15 @@ export default class AllSaleLand extends Component {
     await this.setState({
       current: page,
     });
-    await this.getData(this.state.current, this.state.start_price, this.state.end_price)
+    if (this.state.check === true) {
+      await this.getData(this.state.current, this.state.start_price, this.state.end_price)
+    }
+    else {
+      this.findData(this.state.find, this.state.current)
+      await this.setState({
+        current: page,
+      });
+    }
 
   };
 
@@ -73,17 +82,35 @@ export default class AllSaleLand extends Component {
     const { name, value } = e.target
     this.setState({ [name]: value })
     console.log({ [name]: value })
-    if(e.target.value === ""){
-      this.setState({ [name]: 0  })
+    if (e.target.value === "") {
+      this.setState({ [name]: 0 })
     }
+
   }
 
-  searchPrice=async ()=> {
-      console.log("search ");
-      await this.setState({
-        current: 1,
-      });
-      await this.getData(this.state.current, this.state.start_price, this.state.end_price)
+  findData = async (find, page) => {
+    console.log("FindData : ", find);
+    console.log("Find Page : ", page);
+    this.setState({ check: false })
+    this.setState({ find: find })
+
+    await axios.get(`${url}/lands/find/${find}/${page - 1}`).then(async res => {
+      const { data } = res
+      this.setState({ data: data.result });
+      console.log("Find Data : ", data);
+      await this.setState({ total: data.total })
+
+    })
+  }
+
+  searchPrice = async () => {
+    console.log("search ");
+    await this.setState({
+      current: 1,
+    });
+    await this.setState({ check: true })
+    await this.getData(this.state.current, this.state.start_price, this.state.end_price)
+
   }
 
   render() {
@@ -106,7 +133,7 @@ export default class AllSaleLand extends Component {
                 </Col>
                 <Col md={6}>
                   <div className="">
-                    <Search placeholder="ค้นหา" onSearch={value => console.log(value)} enterButton />
+                    <Search placeholder="ค้นหา" onSearch={value => this.findData(value, 1)} style={{ backgroundColor: '#f90 !important' }} />
                   </div>
                 </Col>
               </Row>
@@ -115,7 +142,7 @@ export default class AllSaleLand extends Component {
 
               <Row className="pt-4 pb-4">
                 <Col md={4}>
-                  <div >
+                  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
                     <Iframe url="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%25E0%25B8%259A%25E0%25B8%25A3%25E0%25B8%25B4%25E0%25B8%25A9%25E0%25B8%25B1%25E0%25B8%2597-%25E0%25B8%25A5%25E0%25B8%25AD%25E0%25B8%25A7%25E0%25B9%258C-%25E0%25B9%2581%25E0%25B8%25AD%25E0%25B8%2599%25E0%25B8%2594%25E0%25B9%258C-%25E0%25B9%2581%25E0%25B8%25AD%25E0%25B8%25AA%25E0%25B9%2580%25E0%25B8%258B%25E0%25B8%2597-%25E0%25B8%2588%25E0%25B8%25B3%25E0%25B8%2581%25E0%25B8%25B1%25E0%25B8%2594-219129021946485%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=794785114267927"
                       // position="absolute"
                       width="100%"
@@ -129,41 +156,39 @@ export default class AllSaleLand extends Component {
 
                 <Col md={8}>
 
-                  <div className="p-3" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+                  <div className="p-3" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
                     <Row>
                       <Col md={12}>
-                        <Form>
-                          <Label style={{ fontSize: '18px' }}>ค้นหาตามช่วงราคา </Label>
-                          <Row form>
-                            <Col md={4}>
-                              <FormGroup>
-                                <Input type="number" name="start_price" onChange={this.handleInputChange} placeholder="1,000,000" />
-                              </FormGroup>
-                            </Col>
-                            <Col md={4}>
-                              <FormGroup>
-                                <Input type="number" name="end_price" onChange={this.handleInputChange} placeholder="2,000,000" />
-                              </FormGroup>
-                            </Col>
-                            <Col md={4}>
-                              {(( parseInt(this.state.start_price) <= parseInt(this.state.end_price)) && parseInt(this.state.end_price) >= parseInt(this.state.start_price)) && <FormGroup>
-                                <Button onClick={this.searchPrice} outline="true" color="primary">ค้นหา</Button>
-                              </FormGroup>}
+                        <div className="p-4" style={{ backgroundColor: '#f90' }}>
+                          <Form>
+                            <Label style={{ fontSize: '24px', color: '#fff' }}><Icon type="search" style={{ fontSize: '30px', marginRight: '10px' }} />ค้นหาตามช่วงราคา </Label>
+                            <Row form>
+                              <Col md={4}>
+                                <FormGroup>
+                                  <Input type="number" name="start_price" onChange={this.handleInputChange} placeholder="1,000,000" />
+                                </FormGroup>
+                              </Col>
+                              <Col md={4}>
+                                <FormGroup>
+                                  <Input type="number" name="end_price" onChange={this.handleInputChange} placeholder="2,000,000" />
+                                </FormGroup>
+                              </Col>
+                              <Col md={4}>
+                                {((parseInt(this.state.start_price) <= parseInt(this.state.end_price)) && parseInt(this.state.end_price) >= parseInt(this.state.start_price)) && <FormGroup>
+                                  <Button onClick={this.searchPrice} outline="true" color="primary">ค้นหา</Button>
+                                </FormGroup>}
 
-                              {(parseInt(this.state.end_price) < parseInt(this.state.start_price)) && <FormGroup>
-                                <Button outline="true" disabled>ค้นหา</Button>
-                              </FormGroup>}
+                                {(parseInt(this.state.end_price) < parseInt(this.state.start_price)) && <FormGroup>
+                                  <Button outline="true" disabled>ค้นหา</Button>
+                                </FormGroup>}
+                              </Col>
 
-                              {/* {(this.state.start_price==0 && this.state.end_price ==0 ) && <FormGroup>
-                                <Button onClick={this.getFirst} outline="true" color="primary">ทั้งหมด</Button>
-                              </FormGroup>} */}
-                            </Col>
-
-                          </Row>
-                          <FormGroup>
-                                <Button onClick={this.getFirst} outline="true" color="primary">ค้นหาทั้งหมด</Button>
-                              </FormGroup>
-                        </Form>
+                            </Row>
+                            <FormGroup>
+                              <Button onClick={this.getFirst} outline="true" color="primary">ค้นหาทั้งหมด</Button>
+                            </FormGroup>
+                          </Form>
+                        </div>
                       </Col>
                     </Row>
 
@@ -203,6 +228,7 @@ export default class AllSaleLand extends Component {
                                 description={e.detail}
                               />
                               <div className="">
+                                {e.id}
                                 <div className="p-2">
 
                                   <div color="#f90">
@@ -229,64 +255,3 @@ export default class AllSaleLand extends Component {
     )
   }
 }
-
-// <Container className="">
-      //   <Row>
-      //     <Col lg={{ size: 8, offset: 2 }} md={{ size: 10, offset: 1 }} sm={{ size:12}}>
-      //       <div className="p-5">
-      //     <h3>ขายที่ดิน (ทั้งหมด)</h3>
-      //         {/* <div className="card-all-sale-land mt-5 mb-5 p-3">
-      //         <Link to="/allSaleLand">
-      //             <Row>
-      //               <Col md={4}>
-      //                 <div><img src="https://www.posttoday.com/media/content/2019/01/13/5A26EAFFE18E41C4983ECB5237BB1598.jpg" className="img-fluid" alt="test" style={{ maxHeight: '250px', width: '100%' }} /></div>
-      //               </Col>
-      //               <Col md={8}>
-      //                 <div className="d-flex card-all-sale-land-text">
-      //                   <div>
-      //                     <h5>ขายที่ดินจังหวัดตรัง</h5>
-      //                   </div>
-      //                   <div>
-      //                     <h6>ขายที่ดิน 30 ไร่ อำเภอสิเกา จังหวัดตรัง</h6>
-      //                   </div>
-      //                   <div>
-      //                     <h6>ราคา 1,000,000 บาท</h6>
-      //                   </div>
-      //                 </div>
-      //               </Col>
-      //             </Row>
-      //           </Link>
-      //         </div> */}
-
-      //         {
-      //           this.state.data.map(e => {
-      //             return (
-      //               <div key={e.id} className="card-all-sale-land mt-5 mb-5 p-3">
-      //                 <Link to={`${urlSaleLand}${e.id}`}>
-      //                   <Row>
-      //                     <Col md={6}>
-      //                       <div class=""><img src={`${urlImage}${e.image}`} className="img-fluid" alt="test" style={{ height: '100%', width: '100%' }} /></div>
-      //                     </Col>
-      //                     <Col md={6}>
-      //                       <div className="d-flex card-all-sale-land-text">
-      //                         <div>
-      //                           <h5>{e.title}</h5>
-      //                         </div>
-      //                         <div>
-      //                           <h6>{e.detail}</h6>
-      //                         </div>
-      //                         <div>
-      //                           <h6>ราคา {e.price} บาท</h6>
-      //                         </div>
-      //                       </div>
-      //                     </Col>
-      //                   </Row>
-      //                 </Link>
-      //               </div>
-      //             )
-      //           })
-      //         }
-      //       </div>
-      //     </Col>
-      //   </Row>
-      // </Container>
