@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { Table, Input, Button, Popconfirm, Form, Tag, Icon, notification } from 'antd';
 import axios, { post } from 'axios'
@@ -88,7 +89,7 @@ class EditableCell extends React.Component {
   }
 }
 
-export default class ManageLands extends React.Component {
+export default class ManageUsers extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [
@@ -100,27 +101,27 @@ export default class ManageLands extends React.Component {
           <a><Tag color="geekblue">{text}</Tag></a>,
       },
       {
-        title: 'Title',
-        dataIndex: 'title',
-        key: 'title',
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
       },
       {
-        title: 'Price',
-        dataIndex: 'price',
-        key: 'price',
-        // editable: true,
+        title: 'Level',
+        dataIndex: 'level',
+        key: 'level',
+        editable: true,
         render: text =>
-          <a><Tag color="red">{text.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} บาท</Tag></a>,
+          <a><Tag color="orange">{text}</Tag> <Icon type="edit" style={{ color: 'red' }} /></a>,
       },
       {
-        title: 'User',
-        dataIndex: 'user',
-        key: 'user',
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
       },
       {
-        title: 'View',
-        dataIndex: 'view',
-        key: 'view',
+        title: 'Tel',
+        dataIndex: 'tel',
+        key: 'tel',
       },
       {
         title: '',
@@ -156,21 +157,22 @@ export default class ManageLands extends React.Component {
     dataSource: [],
   }
   componentDidMount = () => {
-    this.getLands()
+    this.getUsers()
   }
 
-  getLands = e => {
-    axios.get(`${url}/lands`).then(async res => {
+
+  getUsers = e => {
+    axios.get(`${url}/users/allUsers`).then(async res => {
       const { data } = res
       console.log(res);
       await this.setState({
         dataSource: data.map(e => {
           return {
             key: e.id,
-            title: e.title,
-            price: e.price,
-            user: e.user,
-            view:e.view,
+            name: e.firstname + ' ' + e.lastname,
+            level: e.level_post,
+            email: e.email,
+            tel: '0' + e.tel,
           }
         })
       });
@@ -179,86 +181,86 @@ export default class ManageLands extends React.Component {
   }
 
   
-  // updateLevel = data => {
-  //   console.log("Data income : ", data);
-  //   let body = {
-  //     key: data.key,
-  //     level: data.level
-  //   }
-  //   axios.put(`${url}/users/updateLevel`, body).then( res => {
-  //     const { data } = res
-  //     console.log('updated level : ', res);
-  //     if (res.data.message === true){
-  //       console.log('ok');
-  //       this.openNotificationWithIcon('success',data.data.userName,data.data.userLevel)
-  //     }else{
-  //       console.log('else');
-  //       this.openNotificationWithIcon('error')
-  //     }
-  //     //   await this.setState({
-  //     //     dataSource: data.map(e => {
-  //     //       return {
-  //     //         key: e.id,
-  //     //         name: e.firstname + ' ' + e.lastname,
-  //     //         level: e.level_post,
-  //     //         email: e.email,
-  //     //         tel: '0' + e.tel,
-  //     //       }
-  //     //     })
-  //     //   });
-  //     //   console.log("DataUsers : ", this.state.dataSource);
-  //     // })
-  //   })
-  // }
-//   openNotificationWithIcon = (type,userName,userLevel) => {
-//     console.log(type);
+  updateLevel = data => {
+    console.log("Data income : ", data);
+    let body = {
+      key: data.key,
+      level: data.level
+    }
+    axios.put(`${url}/users/updateLevel`, body).then( res => {
+      const { data } = res
+      console.log('updated level : ', res);
+      if (res.data.message === true){
+        console.log('ok');
+        this.openNotificationWithIcon('success',data.data.userName,data.data.userLevel)
+      }else{
+        console.log('else');
+        this.openNotificationWithIcon('error')
+      }
+      //   await this.setState({
+      //     dataSource: data.map(e => {
+      //       return {
+      //         key: e.id,
+      //         name: e.firstname + ' ' + e.lastname,
+      //         level: e.level_post,
+      //         email: e.email,
+      //         tel: '0' + e.tel,
+      //       }
+      //     })
+      //   });
+      //   console.log("DataUsers : ", this.state.dataSource);
+      // })
+    })
+  }
+  openNotificationWithIcon = (type,userName,userLevel) => {
+    console.log(type);
     
-//    if (type == 'success'){
-//      notification[type]({
-//        message: 'Deleted !',
-//        description:
-//          `Deleted`,
-//      });
-//    }else{
-//     notification[type]({
-//       message: 'Error',
-//       description:
-//         'Error can not delete.',
-//     });
-//    }
+   if (type == 'success'){
+     notification[type]({
+       message: 'Updated !',
+       description:
+         `Update level user ( ${userName} ) to level ${userLevel}`,
+     });
+   }else{
+    notification[type]({
+      message: 'Error',
+      description:
+        'Error can not update.',
+    });
+   }
 
-// };
+};
 
   deleteUser = data => {
     console.log("Delete Id : ", data);
-    axios.delete(`${url}/lands/${data}`).then( res => {
+    axios.delete(`${url}/users/${data}`).then( res => {
       const { data } = res
       console.log('delete : ', res);
 
       if (res.data.message === true){
         console.log('ok');
-        this.deleteOpenNotificationWithIcon('success')
+        this.deleteOpenNotificationWithIcon('success',data.data.userName)
       }else{
         console.log('else');
         this.deleteOpenNotificationWithIcon('error')
       }
     })
   }
-  
+
   deleteOpenNotificationWithIcon = (type,userName) => {
-    if (type == 'success') {
-      notification[type]({
-        message: 'Deleted !',
-        description:
-          `Deleted`,
-      });
-    } else {
-      notification[type]({
-        message: 'Error',
-        description:
-          'Error can not delete.',
-      });
-    }
+   if (type == 'success'){
+     notification[type]({
+       message: 'Deleted !',
+       description:
+         `Deleted user ( ${userName} )`,
+     });
+   }else{
+    notification[type]({
+      message: 'Error',
+      description:
+        'Error can not delete.',
+    });
+   }
 
 };
 

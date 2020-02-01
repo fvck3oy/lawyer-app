@@ -227,16 +227,17 @@ export default class AllSaleLand extends Component {
                                 title={e.title}
                                 description={e.detail}
                               />
-                              <div className="">
-                                {e.id}
-                                <div className="p-2">
-
                                   <div color="#f90">
                                     ราคา {this.formatNumber(e.price)} บาท
                                   </div>
-                                  {/* <div color="#f90">created at <Moment format="DD/MM/YYYY">{e.created}</Moment></div> */}
+                                  <div className="">
+                                <div className="p-2">
+                                  <Tag color="#f90">เข้าชมแล้ว {e.view}</Tag>
+                                  <Tag color="#f90"><Moment format="DD/MM/YYYY">{e.created}</Moment></Tag>
                                 </div>
-
+                                {/* <div className="p-2">
+                                <Link to={`${urlSaleLand}${e.id}`}> อ่านต่อ. . . </Link>
+                              </div> */}
                               </div>
                             </Card>
                           </Link>

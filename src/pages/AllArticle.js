@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Button, Card, Tag, Select, Form, Pagination } from 'antd'
+import { Button, Card, Tag, Select, Form, Pagination,Icon } from 'antd'
 import axios from 'axios'
 import url from '../url_config'
 import { Link } from 'react-router-dom'
@@ -148,10 +148,7 @@ export default class AllArticle extends Component {
                               />
                               <div className="read-more">
                                 <div className="p-2">
-                                  <Tag color="#f90">
-                                    {e.id}.
-                                    {e.type}
-                                  </Tag>
+                                  <Tag color="#f90">อ่านแล้ว {e.view}</Tag>
                                   <Tag color="#f90"><Moment format="DD/MM/YYYY">{e.created}</Moment></Tag>
                                 </div>
                                 {/* <div className="p-2">
