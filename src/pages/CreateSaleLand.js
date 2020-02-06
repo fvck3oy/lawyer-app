@@ -23,6 +23,8 @@ import url from '../../src/url_config'
 import { compose, withProps, lifecycle } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
 
+import auth from "../service/index"
+
 const { TextArea } = Input;
 const AddMarker = compose(
   withProps({
@@ -41,9 +43,18 @@ const AddMarker = compose(
           refs.marker = ref;
         },
 
-        onPositionChanged: () => {
+        onPositionChanged: async () => {
           const position = refs.marker.getPosition();
           console.log("Position : ", position.toString());
+          const latlong = position.toString().replace('(', '').split(',');
+          console.log("LatLng : ", latlong);
+
+          const latitude = parseFloat(latlong[0]);
+          const longitude = parseFloat(latlong[1]);
+          await this.setState({ lat: latitude })
+          await this.setState({ lng: longitude })
+          this.props.setLatLng(latitude, longitude)
+
         }
       })
     },
@@ -69,29 +80,49 @@ class CreateSaleLands extends Component {
     file: null,
     idLand: null
   };
+  setLatLng = async (lat, lng) => {
+    console.log('set Lat : ', lat);
+    console.log('set Lng : ', lng);
+    await this.setState({ lat: lat })
+    await this.setState({ lng: lng })
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
     try {
-
       this.props.form.validateFieldsAndScroll(async (err, values) => {
+        let user = auth.getToken()
+        let userDecoded = auth.decodeToken(user)
+        let userId = userDecoded.id
+
         if (!err) {
-          console.log('Received values of form: ', values);
+          console.log('value Lat : ', this.state.lat);
+          console.log('value Lng : ', this.state.lng);
+          values.user = userId
           values.lat = this.state.lat
           values.lng = this.state.lng
           values.user_type = 'register'
+
+          console.log('Received values of form: ', values);
           await axios.post(`${url}/lands/create`, values).then(res => {
             const { data } = res
             this.setState({ idLand: data.id })
           })
-           this.upload(this.state.fileList).then(res => {
-            const data = {
-              id: this.state.idLand,
-              url: res.data.file.filename
-            }
-            this.savePath(data)
-          })
-          
+
+          if (this.state.fileList.length > 0) {
+            this.upload(this.state.fileList).then(res => {
+              const data = {
+                id: this.state.idLand,
+                url: res.data.file.filename
+              }
+              this.savePath(data)
+            })
+          }
+          else {
+            console.log("fileList : ", this.state.fileList)
+            alert("No Image")
+          }
         }
       });
 
@@ -225,7 +256,7 @@ class CreateSaleLands extends Component {
               >
                 {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
-                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" />)}
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height:'150px'}} />)}
               </Form.Item>
 
               <Form.Item
@@ -238,6 +269,18 @@ class CreateSaleLands extends Component {
                 {getFieldDecorator('price', {
                   rules: [{ required: true, message: 'Please input your price!!' }],
                 })(<InputNumber placeholder="ราคา" />)}
+              </Form.Item>
+
+              <Form.Item
+                label={
+                  <span>
+                    พื้นที่&nbsp;
+              </span>
+                }
+              >
+                {getFieldDecorator('area', {
+                  rules: [{ required: true, message: 'Please input your Area!', whitespace: true }],
+                })(<TextArea placeholder="จำนวน 15 ไร่" style={{ height:'50px'}} />)}
               </Form.Item>
 
               <Form.Item
@@ -283,12 +326,10 @@ class CreateSaleLands extends Component {
                     onMarkerClick={this.handleMarkerClick}
                     lat={this.state.lat}
                     lng={this.state.lng}
+                    setLatLng={this.setLatLng}
                   />
                 </div>
               </Form.Item>
-
-
-
               <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit">
                   Create

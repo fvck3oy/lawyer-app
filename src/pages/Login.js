@@ -5,6 +5,8 @@ import axios from 'axios'
 import './Login.css'
 import url from '../url_config'
 import { useAuth0 } from "../react-auth0-spa";
+import {  Router, Switch, Route, withRouter } from 'react-router-dom'
+
 const LoginFB = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
@@ -20,12 +22,18 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        axios.post(`${url}/users/login`, values).then(res => {
+        axios.post(`${url}/users/login`, values).then(async res => {
           const { data } = res
-          console.log("res ", data);
-          this.props.onUserChanged(res);
-          localStorage.setItem('token', data.token)
-          // this.props.history.push(`/`)
+          console.log("Data ", data);
+          if (data.message == 'Invalid password') {
+            alert(`${data.message}`)
+          } else {
+            console.log('else token : ', data.token);
+            
+            await localStorage.setItem('token', data.token)
+            await this.props.onUserChanged(data.token);
+            this.props.history.push(`/`)
+          }
         })
       }
     });
@@ -65,7 +73,7 @@ class Login extends Component {
         <Row className="p-5" style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
           <Col>
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
-            <div style={{textAlign:'center', fontSize:'48px', padding:'10px'  }}>เข้าสู่ระบบ</div>
+              <div style={{ textAlign: 'center', fontSize: '48px', padding: '10px' }}>เข้าสู่ระบบ</div>
               <Form.Item>
                 {getFieldDecorator('email', {
                   rules: [
@@ -122,4 +130,4 @@ class Login extends Component {
     )
   }
 }
-export default Form.create({ name: 'login' })(Login);
+export default withRouter(Form.create({ name: 'login' })(Login));

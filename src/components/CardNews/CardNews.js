@@ -14,7 +14,7 @@ export default class CardNews extends Component {
             <Container className="pb-5">
                 <Row>
                     <Col md={4} sm={4} className="mb-2 mt-2">
-                        <Link to="/">
+                        <Link to="/allArticle">
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>
@@ -27,7 +27,7 @@ export default class CardNews extends Component {
                     </Col>
 
                     <Col md={4} sm={4} className="mb-2 mt-2">
-                        <Link to="/">
+                        <Link to="/allArticle">
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>
@@ -40,7 +40,7 @@ export default class CardNews extends Component {
                     </Col>
 
                     <Col md={4} sm={4} className="mb-2 mt-2">
-                        <Link to="/">
+                        <Link to="/allArticle">
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>

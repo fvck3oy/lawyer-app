@@ -8,7 +8,7 @@ import './AllSaleLand.css'
 import Iframe from 'react-iframe'
 
 import Moment from 'react-moment'
-
+import auth from "../service/index"
 const { Meta } = Card;
 const { Search } = Input;
 const { Text } = Typography;
@@ -113,7 +113,22 @@ export default class AllSaleLand extends Component {
 
   }
 
+  createLand = e => {
+    let user = auth.getToken()
+    console.log("userCheck : ", user);
+    if (user != null) {
+      let userDecoded = auth.decodeToken(user)
+      let userId = userDecoded.id
+      let userFirstName = userDecoded.firstname
+      let userLastName = userDecoded.lastname
+      this.props.history.push(`/createLand`)
+    } else {
+      alert("Please Login !")
+      this.props.history.push(`/login`)
+    }
+  }
   render() {
+    // const urlImage = "http://127.0.0.1:3001/"
     const urlImage = "http://167.71.193.2:3001/"
     const urlSaleLand = "saleLand/"
 
@@ -185,9 +200,14 @@ export default class AllSaleLand extends Component {
 
                             </Row>
                             <FormGroup>
-                              <Button onClick={this.getFirst} outline="true" color="primary">ค้นหาทั้งหมด</Button>
+                              <Button onClick={this.getFirst} className="mr-3" outline="true" color="sucess">ค้นหาทั้งหมด</Button>
+
+
+                              <Button outline="true" onClick={this.createLand} icon="check" color="primary">สร้างประกาศ</Button>
+
                             </FormGroup>
                           </Form>
+
                         </div>
                       </Col>
                     </Row>
@@ -227,10 +247,10 @@ export default class AllSaleLand extends Component {
                                 title={e.title}
                                 description={e.detail}
                               />
-                                  <div color="#f90">
-                                    ราคา {this.formatNumber(e.price)} บาท
+                              <div color="#f90">
+                                ราคา {this.formatNumber(e.price)} บาท
                                   </div>
-                                  <div className="">
+                              <div className="">
                                 <div className="p-2">
                                   <Tag color="#f90">เข้าชมแล้ว {e.view}</Tag>
                                   <Tag color="#f90"><Moment format="DD/MM/YYYY">{e.created}</Moment></Tag>

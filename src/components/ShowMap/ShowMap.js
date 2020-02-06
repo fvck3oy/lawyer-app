@@ -23,27 +23,26 @@ const MapComponent = compose(
         onPositionChanged: () => {
           const position = refs.marker.getPosition();
           console.log("Position : ", position.toString());
-        }
+        },
+       
       })
     },
   }),
   withScriptjs,
   withGoogleMap
 )((props) =>
-  <GoogleMap defaultZoom={18} defaultCenter={{ lat: 7.5593851, lng: 99.61100650000003 }}>
-    {props.isMarkerShown && <Marker position={{ lat: 7.5593851, lng: 99.61100650000003 }} draggable={false} ref={props.onMarkerMounted} />}
+  <GoogleMap defaultZoom={15} defaultCenter={{ lat: props.lat, lng:props.lng}}>
+    <Marker position={{ lat: props.lat, lng:props.lng}} draggable={false} ref={props.onMarkerMounted} onPositionChanged={props.onPositionChanged}/>
   </GoogleMap>
 )
 
 export default class Map extends Component {
   state = {
-    isMarkerShown: false,
+    isMarkerShown: true,
   }
 
   componentDidMount() {
     this.delayedShowMarker()
-    console.log("props => " ,this.props);
-    
   }
 
   delayedShowMarker = () => {
@@ -60,10 +59,10 @@ export default class Map extends Component {
   render() {
     return (
       <MapComponent
-        // isMarkerShown={this.state.isMarkerShown}
-        // lat={this.props.lat}
-        // lng={this.props.lng}
-      // onMarkerClick={this.handleMarkerClick}
+        isMarkerShown={this.state.isMarkerShown}
+        onMarkerClick={this.handleMarkerClick}
+        lat={this.props.lat}
+        lng={this.props.lng}
       />
     )
   }

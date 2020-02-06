@@ -27,8 +27,8 @@ export default class Article extends Component {
     })
   }
   render() {
-    const urlImage = "http://167.71.193.2:3001/"
     // const urlImage = "http://127.0.0.1:3001/"
+    const urlImage = "http://167.71.193.2:3001/"
     return (
       <Container className="pt-5 pb-5">
         <Row>

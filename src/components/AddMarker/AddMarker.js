@@ -23,7 +23,12 @@ const AddMarker = compose(
 
         onPositionChanged: () => {
           const position = refs.marker.getPosition();
-          console.log("Position : ", position.toString());
+          console.log("Position: ", position.toString());
+          var latlong =  position.toString().split(',');
+          var latitude = parseFloat(latlong[0]);
+          var longitude = parseFloat(latlong[1]);
+          console.log("Lat : ", latitude)
+          console.log("Lng : ", longitude)
         }
       })
     },
@@ -38,8 +43,8 @@ const AddMarker = compose(
   //   {props.isMarkerShown && <Marker position={{ lat: 7.890030, lng: 98.398180 }} onClick={props.onMarkerClick} />}
   // </GoogleMap>
 
-  <GoogleMap defaultZoom={18} defaultCenter={{ lat: 7.890030, lng: 98.398180 }}>
-    <Marker position={{ lat: 7.890030, lng: 98.398180 }} draggable={true} ref={props.onMarkerMounted} onPositionChanged={props.onPositionChanged} />
+  <GoogleMap defaultZoom={18} defaultCenter={{ lat: props.latitude , lng: props.longitude }}>
+    <Marker position={{ lat:  props.latitude , lng: props.longitude}} draggable={true} ref={props.onMarkerMounted} onPositionChanged={props.onPositionChanged} />
   </GoogleMap>
 )
 

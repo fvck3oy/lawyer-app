@@ -111,32 +111,45 @@ export default class Header extends Component {
         this.setState({ dropdownOpen4: false });
     }
 
-    logOut = () => {
-        auth.clearToken()
-        this.props.history.push('/')
+    logOut = async (e) => {
+        await auth.clearToken()
+        await this.setState({ user: null })
+        await this.props.history.push('/')
     }
 
-    // componentWillReceiveProps = nextProps => {
-    //     if (nextProps.user !== null) {
-    //         console.log("nestProps : ", nextProps);
-    //         // this.setState({ user: nextProps.user.data.token });
-    //         // console.log("user : ",this.state.user);
-    //         let user = auth.getToken()
-    //         let userDecoded = auth.decodeToken(user)
-    //         let userId = userDecoded.id
-    //         let userFirstName = userDecoded.firstname
-    //         let userLastName = userDecoded.lastname
+    componentDidMount = e => {
+        let user = auth.getToken()
+        console.log("User : ", user);
+        if (user != null) {
+            let userDecoded = auth.decodeToken(user)
+            let userId = userDecoded.id
+            let userFirstName = userDecoded.firstname
+            let userLastName = userDecoded.lastname
+            this.setState({ user: userFirstName })
+        }
+    }
 
-    //         this.setState({ user: userFirstName })
-    //     }
-    // };
+    componentWillReceiveProps = nextProps => {
+        if (nextProps.user !== null) {
+            console.log("nestProps : ", nextProps);
+            // this.setState({ user: nextProps.user.data.token });
+            // console.log("user : ",this.state.user);
+            let user = auth.getToken()
+            let userDecoded = auth.decodeToken(user)
+            let userId = userDecoded.id
+            let userFirstName = userDecoded.firstname
+            let userLastName = userDecoded.lastname
+
+            this.setState({ user: userFirstName })
+        }
+    };
 
     render() {
 
         return (
             <div>
                 <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
-                    <NavbarBrand href="/" style={{ color:'#fff'}}><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
+                    <NavbarBrand href="/" style={{ color: '#fff' }}><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -149,7 +162,7 @@ export default class Header extends Component {
                                 <DropdownToggle nav className="nav-color">
                                     เกี่ยวกับองค์กร
                                     </DropdownToggle>
-                                <DropdownMenu right  className="">
+                                <DropdownMenu right className="">
                                     <DropdownItem href="/aboutCompany/vision">
                                         วิสัยทัศน์
                                     </DropdownItem>
@@ -161,7 +174,7 @@ export default class Header extends Component {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
- 
+
                             {/* <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
                                 <DropdownToggle nav className="nav-color">
                                     ปรึกษา
@@ -186,18 +199,20 @@ export default class Header extends Component {
                             <NavItem>
                                 <NavLink href="/allSaleLand" className="nav-color">ขายที่ดิน</NavLink>
                             </NavItem>
+                            {this.state.user &&
+                                (<NavItem>
+                                    <NavLink className="nav-color">สวัสดีคุณ “{this.state.user}” </NavLink>
+                                </NavItem>)}
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}
-
-                                {/* <LoginFB/> */}
-                                {/* {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
-
-                                {/* {!this.state.user && (
-                                    <NavLink href="/login">Login</NavLink>
+                                {/* <LoginFB/>
+                                {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+                                {!this.state.user && (
+                                    <NavLink className="nav-color" href="/login">Login</NavLink>
                                 )}
-                                 {this.state.user && (
-                                    <NavLink href="/">LogOut</NavLink>
-                                )} */}
+                                {this.state.user && (
+                                    <NavLink className="nav-color" href="/" onClick={this.logOut}>LogOut</NavLink>
+                                )}
                             </NavItem>
                         </Nav>
                     </Collapse>

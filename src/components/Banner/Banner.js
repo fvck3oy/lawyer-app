@@ -57,7 +57,7 @@ export default class Banner extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <UncontrolledCarousel items={this.state.items} className="" />
             </div>
             // <div className="app" id="app">

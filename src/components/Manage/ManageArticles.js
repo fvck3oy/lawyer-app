@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Table, Input, Button, Popconfirm, Form, Tag, Icon, notification, Modal } from 'antd';
 import axios, { post } from 'axios'
 import url from '../../url_config'
-
+import { Link } from 'react-router-dom'
 const EditableContext = React.createContext();
 
 const EditableRow = ({ form, index, ...props }) => (
@@ -342,6 +342,13 @@ export default class ManageArticles extends React.Component {
         {/* <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Add a row
         </Button> */}
+        <div style={{ display: 'flex', flexDirection: 'row-reverse', margin: '10px' }}>
+          <Link to="/createArticle">
+            <Button type="primary" style={{ marginBottom: 16 }}>
+              Create Article
+        </Button>
+          </Link></div>
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}

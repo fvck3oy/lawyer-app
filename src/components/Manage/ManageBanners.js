@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, Modal, Row, Col, message, Button, Carousel, Card } from 'antd';
+import { Upload, Icon, Modal, Row, Col, message, Button, Carousel, Card ,notification} from 'antd';
 import AliceCarousel from 'react-alice-carousel';
 import './ManageBanners.css'
 import axios, { post } from 'axios'
@@ -101,7 +101,11 @@ export default class ManageBanners extends Component {
   savePath = async (data) => {
     await axios.put(`${url}/banners/savePathImage`, data).then(res => {
       console.log("saved : ", res)
-    }).then(await this.getImage())
+      this.setState({fileList:[]})
+    }).then(
+      await this.getImage
+    )
+
   }
 
   showModal = () => {
@@ -110,13 +114,13 @@ export default class ManageBanners extends Component {
     });
   };
 
-  handleOk = e => {
+  handleOk =async e => {
     console.log(e);
-    this.handleSubmit().then(
-      this.setState({
+    await this.handleSubmit(e)
+    await this.setState({
         visible: false,
       })
-    )
+    
   };
 
   handleCancel = e => {
@@ -129,13 +133,40 @@ export default class ManageBanners extends Component {
   remove = async (id) => {
     await axios.delete(`${url}/banners/${id}`).then(res => {
       console.log("delete : ", res)
-    })
+      if (res.data) {
+        console.log('ok');
+        this.openNotificationWithIcon('success')
+      } else {
+        console.log('else');
+        this.openNotificationWithIcon('error')
+      }
+    }).then(
+      await this.getImage
+    )
   }
+  openNotificationWithIcon = (type) => {
+    console.log(type);
+
+   if (type == 'success'){
+     notification[type]({
+       message: `Removed !`,
+       description:
+         `Remove Banner`,
+     });
+   }else{
+    notification[type]({
+      message: 'Error',
+      description:
+        'Error can not Update.',
+    });
+   }
+
+};
 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
-    const urlImage = "http://167.71.193.2:3001/"
     // const urlImage = "http://127.0.0.1:3001/"
+    const urlImage = "http://167.71.193.2:3001/"
     const uploadButton = (
       <div>
         <Icon type="plus" />

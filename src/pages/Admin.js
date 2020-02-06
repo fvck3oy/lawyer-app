@@ -7,12 +7,27 @@ import ManageLands from '../components/Manage/ManageLands';
 import ManageArticles from '../components/Manage/ManageArticles';
 import ManageUsers from '../components/Manage/ManageUsers';
 import { Container, Row, Col } from 'reactstrap'
+import auth from "../service/index"
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 export default class Admin extends Component {
   state = {
     menu: 1
+  }
+  componentDidMount = e => {
+    let user = auth.getToken()
+    console.log("User : ", user);
+    let userDecoded = auth.decodeToken(user)
+    let userId = userDecoded.id
+    let userFirstName = userDecoded.firstname
+    let userLastName = userDecoded.lastname
+    let userRole = userDecoded.role
+
+    if (userRole != 'admin' || user == null) {
+      this.props.history.push(`/`)
+    }
   }
 
   menuOnClick = (menu) => {
@@ -54,7 +69,7 @@ export default class Admin extends Component {
               {this.state.menu === 1 && <ManageBanners />}
               {this.state.menu === 2 && <ManageLands />}
               {this.state.menu === 3 && <ManageArticles />}
-              {this.state.menu === 4 && <ManageUsers/>}
+              {this.state.menu === 4 && <ManageUsers />}
             </div>
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
