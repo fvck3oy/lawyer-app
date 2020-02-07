@@ -19,6 +19,8 @@ import CreateSaleLand from './pages/CreateSaleLand';
 import AllSaleLand from './pages/AllSaleLand';
 import AllArticle from './pages/AllArticle';
 import Article from './pages/Article'
+import MyPage from './pages/MyPage'
+import EditSaleLand from './pages/EditSaleLand'
 import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
@@ -63,6 +65,8 @@ export default class App extends Component {
           <Route exact path="/article/:id" component={withRouter(Article)} />
 
           <Route exact path="/admin" component={withRouter(Admin)} />
+          <Route exact path="/myPage" component={withRouter(MyPage)} />
+          <Route exact path="/editSaleLand/:id" component={withRouter(EditSaleLand)} />
           
           <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>

@@ -48,6 +48,7 @@ export default class SaleLand extends Component {
     await this.saleLand()
   }
 
+ 
 
   saleLand = async () => {
 

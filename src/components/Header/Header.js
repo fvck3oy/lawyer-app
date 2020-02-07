@@ -201,7 +201,7 @@ export default class Header extends Component {
                             </NavItem>
                             {this.state.user &&
                                 (<NavItem>
-                                    <NavLink className="nav-color">สวัสดีคุณ “{this.state.user}” </NavLink>
+                                    <NavLink className="nav-color" href="/myPage">สวัสดีคุณ “{this.state.user}” </NavLink>
                                 </NavItem>)}
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}

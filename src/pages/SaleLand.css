@@ -1,1 +1,5 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
+
+.image-gallery-content .image-gallery-slide .image-gallery-image{
+  max-height: 350px;
+}
