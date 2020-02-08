@@ -52,7 +52,9 @@ export default class MyPage extends Component {
 
   render() {
     // const urlImage = "http://127.0.0.1:3001/"
+
     const urlImage = "http://167.71.193.2:3001/"
+
     const urlSaleLand = "saleLand/"
     const urlEditSaleLand = "editSaleLand/"
     return (
