@@ -112,6 +112,7 @@ class EditSaleLand extends Component {
 
             // this.setState({ idLand: data })
           })
+          this.props.history.push(`/myPage`)
 
           // if (this.state.fileList.length > 0) {
           //   this.upload(this.state.fileList).then(res => {
