@@ -20,7 +20,8 @@ import {
   InputNumber,
   Modal,
   Upload,
-  message
+  message,
+  notification
 } from 'antd';
 import { Container } from 'reactstrap'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
@@ -111,8 +112,15 @@ class EditSaleLand extends Component {
             console.log("Res => ", res.data);
 
             // this.setState({ idLand: data })
+            if (res.data) {
+              console.log('ok');
+              this.openNotificationWithIcon('success')
+              this.props.history.push(`/myPage`)
+            } else {
+              console.log('else');
+              this.openNotificationWithIcon('error')
+            }
           })
-          this.props.history.push(`/myPage`)
 
           // if (this.state.fileList.length > 0) {
           //   this.upload(this.state.fileList).then(res => {
@@ -136,7 +144,24 @@ class EditSaleLand extends Component {
       message.error('Please choose you Banner');
     }
   };
+  openNotificationWithIcon = (type) => {
+    console.log(type);
 
+   if (type == 'success'){
+     notification[type]({
+       message: `Updated !`,
+       description:
+         `updated !`,
+     });
+   }else{
+    notification[type]({
+      message: 'Error !',
+      description:
+        'Error can not Update.',
+    });
+   }
+
+};
 
   handleConfirmBlur = e => {
     const { value } = e.target;
