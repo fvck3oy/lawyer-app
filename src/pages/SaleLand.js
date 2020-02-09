@@ -48,7 +48,7 @@ export default class SaleLand extends Component {
     await this.saleLand()
   }
 
- 
+
 
   saleLand = async () => {
 
@@ -70,19 +70,19 @@ export default class SaleLand extends Component {
       //   return {   
       //       original:urlImage+e.image,
       //       thumbnail:urlImage+e.image}
-      let each = {
-        original: urlImage + data.image,
-        thumbnail: urlImage + data.image
-      }
-      images.push(each)
+      data.dataImage.map(e => {
+     
+        let data = {
+          original: urlImage + e.image,
+          thumbnail: urlImage + e.image
+        }
+        images.push(data)
+      })
+    
+
       console.log("new : ", images);
       this.setState({ images: images })
 
-      // await this.setState({images: data.map(e=>{
-      //   return {   
-      //       original:urlImage+e.image,
-      //       thumbnail:urlImage+e.image}
-      // })})
 
     })
   }

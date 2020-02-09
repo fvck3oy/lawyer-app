@@ -21,12 +21,18 @@ import {
   Modal,
   Upload,
   message,
-  notification
+  notification,
+  Card
 } from 'antd';
 import { Container } from 'reactstrap'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
 
 const { TextArea } = Input;
+const gridStyle = {
+  width: '25%',
+
+};
+
 const AddMarker = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD7znYiqytpFwvWR0wIfDHWBGH7BZQ1PWU&v=3.exp&libraries=geometry,drawing,places",
@@ -74,6 +80,7 @@ class EditSaleLand extends Component {
     lat: 13.7278956,
     lng: 100.52412349999997,
     data: [],
+    dataImage: [],
     isMarkerShown: true,
     previewVisible: false,
     previewImage: "",
@@ -81,7 +88,11 @@ class EditSaleLand extends Component {
     file: null,
     idLand: null,
     username: '',
-    check: false
+    check: false,
+    image: '',
+    fix: false,
+    fileListImage: [],
+    images: []
   };
   setLatLng = async (lat, lng) => {
     console.log('set Lat : ', lat);
@@ -122,19 +133,19 @@ class EditSaleLand extends Component {
             }
           })
 
-          // if (this.state.fileList.length > 0) {
-          //   this.upload(this.state.fileList).then(res => {
-          //     const data = {
-          //       id: this.state.idLand,
-          //       url: res.data.file.filename
-          //     }
-          //     this.savePath(data)
-          //   })
-          // }
-          // else {
-          //   console.log("fileList : ", this.state.fileList)
-          //   alert("No Image")
-          // }
+          if (this.state.fileList.length > 0) {
+            this.upload(this.state.fileList).then(res => {
+              const data = {
+                id: this.props.match.params.id,
+                url: res.data.file.filename
+              }
+              this.savePath(data)
+            })
+          }
+          else {
+            console.log("fileList : ", this.state.fileList)
+            // alert("No Image")
+          }
         }
       });
 
@@ -147,21 +158,21 @@ class EditSaleLand extends Component {
   openNotificationWithIcon = (type) => {
     console.log(type);
 
-   if (type == 'success'){
-     notification[type]({
-       message: `Updated !`,
-       description:
-         `updated !`,
-     });
-   }else{
-    notification[type]({
-      message: 'Error !',
-      description:
-        'Error can not Update.',
-    });
-   }
+    if (type == 'success') {
+      notification[type]({
+        message: `Updated !`,
+        description:
+          `updated !`,
+      });
+    } else {
+      notification[type]({
+        message: 'Error !',
+        description:
+          'Error can not Update.',
+      });
+    }
 
-};
+  };
 
   handleConfirmBlur = e => {
     const { value } = e.target;
@@ -178,6 +189,8 @@ class EditSaleLand extends Component {
 
       this.delayedShowMarker()
       this.saleLand(userId)
+
+      // this.getImage()
       // this.mySaleLand(userId)
       // this.setState({ user: userFirstName + ' ' + userLastName })
     } else {
@@ -188,6 +201,7 @@ class EditSaleLand extends Component {
     await axios.get(`${url}/lands/${this.props.match.params.id}`).then(async res => {
       const { data } = res
       await this.setState({ data });
+
       console.log("Data : ", this.state.data);
       await this.setState({ username: this.state.data.dataUser })
       console.log("Data : ", this.state.username);
@@ -207,12 +221,17 @@ class EditSaleLand extends Component {
       // const urlImage = "http://127.0.0.1:3001/"
       const urlImage = "http://167.71.193.2:3001/"
 
-      let each = {
-        original: urlImage + data.image,
-        thumbnail: urlImage + data.image
-      }
-      images.push(each)
+      data.dataImage.map(e => {
+
+        let data = {
+          id: e.id,
+          image: urlImage + e.image,
+        }
+        images.push(data)
+      })
+      this.setState({ image: urlImage + data.image })
       this.setState({ images: images })
+      console.log("Images : ", this.state.images);
 
       this.props.form.setFieldsValue({
         title: data.title,
@@ -223,6 +242,124 @@ class EditSaleLand extends Component {
     })
   }
 
+  getImage = e => {
+    // e.preventDefault()
+    axios.get(`${url}/lands/${this.props.match.params.id}`).then(res => {
+      const { data } = res
+      this.setState({ data });
+      console.log("DataImage : ", data);
+      let images = []
+      // const urlImage = "http://127.0.0.1:3001/"
+      const urlImage = "http://167.71.193.2:3001/"
+      data.dataImage.map(e => {
+        let data = {
+          id: e.id,
+          image: urlImage + e.image,
+        }
+        images.push(data)
+      })
+      // this.setState({ image: urlImage + data.image })
+      this.setState({ images: images })
+    })
+  }
+  handleUploadImage = ({ fileList }) => {
+
+    console.log('fileList', fileList);
+    this.setState({ fileListImage: fileList });
+
+  }
+
+  handleSubmitImage = event => {
+
+    try {
+      event.preventDefault();
+
+      this.uploadImage(this.state.fileListImage).then(res => {
+        const data = {
+          id: this.props.match.params.id,
+          url: res.data.file.filename,
+          type:1
+        }
+        this.savePathImage(data)
+      })
+
+    } catch (error) {
+      console.log("Catch : ", error);
+
+      message.error('Please choose you Banner');
+    }
+
+  };
+
+  uploadImage = () => {
+    const urlUpload = `${url}/images/uploadImage`
+    const formData = new FormData()
+    formData.append("imageData", this.state.fileListImage[0].originFileObj);
+    // formData.append('imageData', file)
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    return post(urlUpload, formData, config)
+  }
+
+  savePathImage = async (data) => {
+    await axios.put(`${url}/images/savePathImage`, data).then(res => {
+      console.log("saved : ", res)
+      this.setState({ fileListImage: [] })
+    }).then(
+      await this.getImage
+    )
+
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOkImage = async e => {
+    console.log(e);
+    await this.handleSubmitImage(e)
+    await this.setState({
+      visible: false,
+    })
+
+  };
+
+  handleCancelImage = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+
+  handlePreviewImage = file => {
+    this.setState({
+      previewImage: file.thumbUrl,
+      previewVisible: true
+    });
+  };
+  removeImage = async (id) => {
+    console.log("id => ", id);
+
+    await axios.delete(`${url}/images/delLand/${id}`).then(res => {
+      console.log("delete : ", res)
+      if (res.data) {
+        console.log('ok');
+        this.openNotificationWithIcon('success')
+      } else {
+        console.log('else');
+        this.openNotificationWithIcon('error')
+      }
+    }).then(
+      await this.getImage
+    )
+
+  }
   delayedShowMarker = () => {
     setTimeout(() => {
       this.setState({ isMarkerShown: true })
@@ -246,7 +383,7 @@ class EditSaleLand extends Component {
     await axios.put(`${url}/lands/savePathImage`, data).then(res => {
       console.log("saved : ", res)
     })
-    this.props.history.push(`/`)
+    // this.props.history.push(`/`)
   }
 
   handleCancel = () => this.setState({ previewVisible: false });
@@ -261,6 +398,10 @@ class EditSaleLand extends Component {
   handleUpload = ({ fileList }) => {
     console.log('fileList', fileList);
     this.setState({ fileList });
+  }
+  fix = (e) => {
+
+    this.setState({ fix: !this.state.fix });
   }
 
   render() {
@@ -293,7 +434,8 @@ class EditSaleLand extends Component {
         }
       },
     };
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible, previewImage, fileList,fileListImage } = this.state;
+    // const urlImage = "http://127.0.0.1:3001/"
     const urlImage = "http://167.71.193.2:3001/"
     const uploadButton = (
       <div>
@@ -355,34 +497,100 @@ class EditSaleLand extends Component {
                 })(<TextArea placeholder="จำนวน 15 ไร่" style={{ height: '50px' }} />)}
               </Form.Item>
 
-              {/* <Form.Item
+              <Form.Item
                 label={
                   <span>
                     กรุณาเลือกภาพหน้าปกของคุณ&nbsp;
           </span>
                 }
-              >
-                <div className="">
-                  <div>
-                    <Upload
-                      listType="picture-card"
-                      fileList={fileList}
-                      onPreview={this.handlePreview}
-                      onChange={this.handleUpload}
-                      beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
-                    >
-                      {fileList.length >= 1 ? null : uploadButton}
-                    </Upload>
+              ><div >
+
+                  <div style={{ width: '300px' }}><img src={this.state.image} alt={this.state.image} className="img-fluid" /></div>
+                  <div style={{ color: 'red', cursor: 'pointer' }}><div onClick={this.fix} >แก้ไข</div>
+
+                    {this.state.fix &&
+                      <div>
+                        <div>
+                          <Upload
+                            listType="picture-card"
+                            fileList={fileList}
+                            onPreview={this.handlePreview}
+                            onChange={this.handleUpload}
+                            beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
+                          >
+                            {fileList.length >= 1 ? null : uploadButton}
+                          </Upload>
+                        </div>
+                        <Modal
+                          visible={previewVisible}
+                          footer={null}
+                          onCancel={this.handleCancel}
+                        >
+                          <img alt="example" style={{ width: "100%" }} src={previewImage} />
+                        </Modal>
+                      </div>}
                   </div>
-                  <Modal
-                    visible={previewVisible}
-                    footer={null}
-                    onCancel={this.handleCancel}
-                  >
-                    <img alt="example" style={{ width: "100%" }} src={previewImage} />
-                  </Modal>
+
                 </div>
-              </Form.Item> */}
+              </Form.Item>
+
+              <Form.Item
+                label={
+                  <span>
+                    ภาพรายละเอียด&nbsp;
+          </span>
+                }
+              >
+                <div className="pb-5">
+                <div style={{ display: 'flex', flexDirection: 'row-reverse', margin: '10px' }}>
+          <Button type="primary" onClick={this.showModal}>
+            เพิ่มรูปภาพ
+        </Button>
+        </div>
+        <div>
+          <Modal
+            title="เพิ่มรูปภาพ"
+            visible={this.state.visible}
+            onOk={this.handleOkImage}
+            onCancel={this.handleCancelImage}
+          >
+            <Row className="mt-4 d-flex justify-content-center">
+              <Col>
+                <div>
+                  <Upload
+                    listType="picture-card"
+                    fileList={fileListImage}
+                    onPreview={this.handlePreviewImage}
+                    onChange={this.handleUploadImage}
+                    beforeUpload={() => false}
+                  >
+                    {fileListImage.length >= 1 ? null : uploadButton}
+                  </Upload>
+                </div>
+              </Col>
+              <Modal
+                visible={previewVisible}
+                footer={null}
+                onCancel={this.handleCancelImage}
+              >
+                <img alt="example" style={{ width: "100%" }} src={previewImage} />
+              </Modal>
+            </Row>
+          </Modal>
+        </div>
+                  <Card>
+                    {this.state.images.map(e => {
+                      return (<div key={e.id} className="" >
+                        <Card.Grid style={gridStyle} style={{ height:'150px'}}>
+                          <img src={`${e.image}`} alt={e.image} className="img-fluid" />
+                          <div onClick={() => this.removeImage(e.id)} style={{ color: 'red', cursor: 'pointer' }}>Remove</div>
+                        </Card.Grid>
+                      </div>)
+                    })}
+                  </Card>
+                </div>
+
+              </Form.Item>
 
 
               <Form.Item
@@ -413,7 +621,7 @@ class EditSaleLand extends Component {
             </Form>
           </Col>
         </Row>
-      </Container>
+      </Container >
     );
   }
 }

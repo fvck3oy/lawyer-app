@@ -131,12 +131,21 @@ export default class ManageLands extends React.Component {
       },
       {
         title: '',
-        dataIndex: '',
+        dataIndex: 'public',
         render: (text, record) =>
-          this.state.dataSource.length >= 1 ? (
+          this.state.dataSource.length >= 1 ? (<div>
+             {text==1&&<Popconfirm title="Confirm to UnPublic?" onConfirm={() => this.handleUnPublic(record.key)}>
+             <Icon type="close" style={{ color: 'green',marginRight:'5px',cursor:'pointer' }}/>
+             </Popconfirm>}
+
+             {text==0&&<Popconfirm title="Confirm to Public?" onConfirm={() => this.handlePublic(record.key)}>
+             <Icon type="check" style={{ color: 'green',marginRight:'5px',cursor:'pointer' }}/>
+             </Popconfirm>}
+            
             <Popconfirm title="Confirm to delete?" onConfirm={() => this.handleDelete(record.key)}>
               <Icon type="delete" style={{ color: 'red' }} />
             </Popconfirm>
+            </div>
           ) : null,
       },
     ];
@@ -167,7 +176,7 @@ export default class ManageLands extends React.Component {
   }
 
   getLands = e => {
-    axios.get(`${url}/lands`).then(async res => {
+    axios.get(`${url}/lands/bof`).then(async res => {
       const { data } = res
       console.log(res);
       await this.setState({
@@ -179,6 +188,7 @@ export default class ManageLands extends React.Component {
             user: e.user,
             level: e.level,
             view: e.view,
+            public: e.public,
 
           }
         })
@@ -236,6 +246,42 @@ export default class ManageLands extends React.Component {
      }
 
   };
+  toPublic = data => {
+    console.log("Public Id : ", data);
+    data= {
+      id:data
+    }
+    axios.put(`${url}/lands/public`,data).then(res => {
+      const { data } = res
+      console.log('toPublic : ', res);
+
+      if (res.data.message === true) {
+        console.log('ok');
+        this.deleteOpenNotificationWithIcon('success')
+      } else {
+        console.log('else');
+        this.deleteOpenNotificationWithIcon('error')
+      }
+    }).then(this.getLands )
+  }
+  toUnPublic = data => {
+    console.log("Public Id : ", data);
+    data= {
+      id:data
+    }
+    axios.put(`${url}/lands/unPublic`,data).then(res => {
+      const { data } = res
+      console.log('toUnPublic : ', res);
+
+      if (res.data.message === true) {
+        console.log('ok');
+        this.deleteOpenNotificationWithIcon('success')
+      } else {
+        console.log('else');
+        this.deleteOpenNotificationWithIcon('error')
+      }
+    }).then(this.getLands)
+  }
 
   deleteUser = data => {
     console.log("Delete Id : ", data);
@@ -276,6 +322,17 @@ export default class ManageLands extends React.Component {
     const dataSource = [...this.state.dataSource];
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
+
+  handlePublic = key => {
+    console.log("Key Pub : ", key);
+    this.toPublic(key)
+    // const dataSource = [...this.state.dataSource];
+    // this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+  };
+  handleUnPublic =key=>{
+    console.log("Key UnPub : ", key);
+    this.toUnPublic(key)
+  }
 
   // handleAdd = () => {
   //   const { count, dataSource } = this.state;

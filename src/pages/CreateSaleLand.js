@@ -77,6 +77,11 @@ class CreateSaleLands extends Component {
     previewVisible: false,
     previewImage: "",
     fileList: [],
+
+    previewVisible2: false,
+    previewImage2: "",
+    fileList2: [],
+
     file: null,
     idLand: null
   };
@@ -123,6 +128,25 @@ class CreateSaleLands extends Component {
             console.log("fileList : ", this.state.fileList)
             alert("No Image")
           }
+          if (this.state.fileList2.length > 0) {
+
+            this.state.fileList2.forEach(e => {
+              console.log("e : ", e)
+              this.upload2(e).then(res => {
+                const data = {
+                  id: this.state.idLand,
+                  url: res.data.file.filename,
+                  type:1
+                }
+                this.savePath2(data)
+              })
+            })
+          }
+          else {
+            console.log("fileList2 : ", this.state.fileList2)
+            alert("No Image Detail")
+          }
+          this.props.history.push(`/myPage`)
         }
       });
 
@@ -166,14 +190,35 @@ class CreateSaleLands extends Component {
     return post(urlUpload, formData, config)
   }
 
+  upload2 = (each) => {
+    const urlUpload = `${url}/images/uploadImage`
+    const formData = new FormData()
+    formData.append("imageData", each.originFileObj);
+    // formData.append('imageData', file)
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    return post(urlUpload, formData, config)
+  }
+
   savePath = async (data) => {
     await axios.put(`${url}/lands/savePathImage`, data).then(res => {
       console.log("saved : ", res)
     })
-    this.props.history.push(`/`)
+    // this.props.history.push(`/`)
+  }
+  savePath2 = async (data) => {
+    await axios.put(`${url}/images/savePathImage`, data).then(res => {
+      console.log("saved : ", res)
+    })
+    // this.props.history.push(`/`)
   }
 
   handleCancel = () => this.setState({ previewVisible: false });
+
+  handleCancel2 = () => this.setState({ previewVisible2: false });
 
   handlePreview = file => {
     this.setState({
@@ -182,10 +227,24 @@ class CreateSaleLands extends Component {
     });
   };
 
+  handlePreview2 = file => {
+    this.setState({
+      previewImage2: file.thumbUrl,
+      previewVisible2: true
+    });
+  };
+
   handleUpload = ({ fileList }) => {
 
     console.log('fileList', fileList);
     this.setState({ fileList });
+
+  }
+
+  handleUpload2 = ({ fileList }) => {
+
+    console.log('fileList2', fileList);
+    this.setState({ fileList2: fileList });
 
   }
 
@@ -221,8 +280,16 @@ class CreateSaleLands extends Component {
       },
     };
     const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible2, previewImage2, fileList2 } = this.state;
     const urlImage = "http://167.71.193.2:3001/"
     const uploadButton = (
+      <div>
+        <Icon type="plus" />
+        <div className="ant-upload-text">Upload</div>
+      </div>
+    );
+
+    const uploadButton2 = (
       <div>
         <Icon type="plus" />
         <div className="ant-upload-text">Upload</div>
@@ -256,7 +323,7 @@ class CreateSaleLands extends Component {
               >
                 {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
-                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height:'150px'}} />)}
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)}
               </Form.Item>
 
               <Form.Item
@@ -280,7 +347,7 @@ class CreateSaleLands extends Component {
               >
                 {getFieldDecorator('area', {
                   rules: [{ required: true, message: 'Please input your Area!', whitespace: true }],
-                })(<TextArea placeholder="จำนวน 15 ไร่" style={{ height:'50px'}} />)}
+                })(<TextArea placeholder="จำนวน 15 ไร่" style={{ height: '50px' }} />)}
               </Form.Item>
 
               <Form.Item
@@ -308,6 +375,35 @@ class CreateSaleLands extends Component {
                     onCancel={this.handleCancel}
                   >
                     <img alt="example" style={{ width: "100%" }} src={previewImage} />
+                  </Modal>
+                </div>
+              </Form.Item>
+
+              <Form.Item
+                label={
+                  <span>
+                    กรุณาเลือกภาพรายละเอียด&nbsp;
+              </span>
+                }
+              >
+                <div className="">
+                  <div>
+                    <Upload
+                      listType="picture-card"
+                      fileList={fileList2}
+                      onPreview={this.handlePreview2}
+                      onChange={this.handleUpload2}
+                      beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
+                    >
+                      {uploadButton2}
+                    </Upload>
+                  </div>
+                  <Modal
+                    visible={previewVisible2}
+                    footer={null}
+                    onCancel={this.handleCancel2}
+                  >
+                    <img alt="example" style={{ width: "100%" }} src={previewImage2} />
                   </Modal>
                 </div>
               </Form.Item>

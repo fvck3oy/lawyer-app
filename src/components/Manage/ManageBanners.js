@@ -230,7 +230,7 @@ export default class ManageBanners extends Component {
           <Card title="Banners List">
             {this.state.data.map(e => {
               return (<div key={e.id} className="">
-                <Card.Grid style={gridStyle}>
+                <Card.Grid style={gridStyle} style={{ height:'150px'}}>
                   <img src={`${urlImage}${e.url}`} alt={e.url} className="img-fluid" />
                   <div onClick={() => this.remove(e.id)} style={{ color: 'red', cursor: 'pointer' }}>Remove</div>
                 </Card.Grid>
