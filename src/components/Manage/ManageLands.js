@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Table, Input, Button, Popconfirm, Form, Tag, Icon, notification } from 'antd';
 import axios, { post } from 'axios'
 import url from '../../url_config'
+import { Link } from 'react-router-dom'
 
 const EditableContext = React.createContext();
 
@@ -134,18 +135,23 @@ export default class ManageLands extends React.Component {
         dataIndex: 'public',
         render: (text, record) =>
           this.state.dataSource.length >= 1 ? (<div>
-             {text==1&&<Popconfirm title="Confirm to UnPublic?" onConfirm={() => this.handleUnPublic(record.key)}>
-             <Icon type="close" style={{ color: 'green',marginRight:'5px',cursor:'pointer' }}/>
-             </Popconfirm>}
+            {text == 1 && <Popconfirm title="Confirm to UnPublic?" onConfirm={() => this.handleUnPublic(record.key)}>
+              <Icon type="close" style={{ color: 'green', marginRight: '5px', cursor: 'pointer' }} />
+            </Popconfirm>}
 
-             {text==0&&<Popconfirm title="Confirm to Public?" onConfirm={() => this.handlePublic(record.key)}>
-             <Icon type="check" style={{ color: 'green',marginRight:'5px',cursor:'pointer' }}/>
-             </Popconfirm>}
-            
+            {text == 0 && <Popconfirm title="Confirm to Public?" onConfirm={() => this.handlePublic(record.key)}>
+              <Icon type="check" style={{ color: 'green', marginRight: '5px', cursor: 'pointer' }} />
+            </Popconfirm>}
+
+            <Link to={`/saleLand/${record.key}`}>
+              <Icon type="search" style={{ color: 'blue', marginRight: '5px', cursor: 'pointer' }} />
+            </Link>
+
+
             <Popconfirm title="Confirm to delete?" onConfirm={() => this.handleDelete(record.key)}>
               <Icon type="delete" style={{ color: 'red' }} />
             </Popconfirm>
-            </div>
+          </div>
           ) : null,
       },
     ];
@@ -228,30 +234,30 @@ export default class ManageLands extends React.Component {
       }
     })
   }
-    openNotificationWithIcon = (type,landId,landLevel) => {
-      console.log(type);
+  openNotificationWithIcon = (type, landId, landLevel) => {
+    console.log(type);
 
-     if (type == 'success'){
-       notification[type]({
-         message: `Update id ${landId} !`,
-         description:
-           `Update Level to ${landLevel}`,
-       });
-     }else{
+    if (type == 'success') {
+      notification[type]({
+        message: `Update id ${landId} !`,
+        description:
+          `Update Level to ${landLevel}`,
+      });
+    } else {
       notification[type]({
         message: 'Error',
         description:
           'Error can not Update.',
       });
-     }
+    }
 
   };
   toPublic = data => {
     console.log("Public Id : ", data);
-    data= {
-      id:data
+    data = {
+      id: data
     }
-    axios.put(`${url}/lands/public`,data).then(res => {
+    axios.put(`${url}/lands/public`, data).then(res => {
       const { data } = res
       console.log('toPublic : ', res);
 
@@ -262,14 +268,14 @@ export default class ManageLands extends React.Component {
         console.log('else');
         this.deleteOpenNotificationWithIcon('error')
       }
-    }).then(this.getLands )
+    }).then(this.getLands)
   }
   toUnPublic = data => {
     console.log("Public Id : ", data);
-    data= {
-      id:data
+    data = {
+      id: data
     }
-    axios.put(`${url}/lands/unPublic`,data).then(res => {
+    axios.put(`${url}/lands/unPublic`, data).then(res => {
       const { data } = res
       console.log('toUnPublic : ', res);
 
@@ -297,6 +303,13 @@ export default class ManageLands extends React.Component {
         this.deleteOpenNotificationWithIcon('error')
       }
     })
+  }
+
+  handleGoto = e => {
+    // this.props.history.push(`/createLand`)
+    console.log("E : ", e);
+
+    this.props.history.push(`/saleLand/${e}`)
   }
 
   deleteOpenNotificationWithIcon = (type, userName) => {
@@ -329,7 +342,7 @@ export default class ManageLands extends React.Component {
     // const dataSource = [...this.state.dataSource];
     // this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
-  handleUnPublic =key=>{
+  handleUnPublic = key => {
     console.log("Key UnPub : ", key);
     this.toUnPublic(key)
   }

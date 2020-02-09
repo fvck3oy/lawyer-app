@@ -52,7 +52,8 @@ export default class Header extends Component {
         isOpen4: false,
         dropdownOpen4: false,
 
-        user: null
+        user: null,
+        userRole: ''
 
     }
     toggle = () => {
@@ -125,7 +126,11 @@ export default class Header extends Component {
             let userId = userDecoded.id
             let userFirstName = userDecoded.firstname
             let userLastName = userDecoded.lastname
+            let userRole = userDecoded.role
+            console.log("userROle : ", userRole);
+
             this.setState({ user: userFirstName })
+            this.setState({ userRole: userRole })
         }
     }
 
@@ -139,8 +144,9 @@ export default class Header extends Component {
             let userId = userDecoded.id
             let userFirstName = userDecoded.firstname
             let userLastName = userDecoded.lastname
-
+            let userRole = userDecoded.role
             this.setState({ user: userFirstName })
+            this.setState({ uesrRole: userRole })
         }
     };
 
@@ -201,7 +207,11 @@ export default class Header extends Component {
                             </NavItem>
                             {this.state.user &&
                                 (<NavItem>
-                                    <NavLink className="nav-color" href="/myPage">สวัสดีคุณ “{this.state.user}” </NavLink>
+                                    <NavLink className="nav-color" href="/myPage">สวัสดีคุณ “{this.state.user}”</NavLink>
+                                </NavItem>)}
+                            {this.state.userRole === 'admin' &&
+                                (<NavItem>
+                                    <NavLink className="nav-color" href="/admin">ADMIN</NavLink>
                                 </NavItem>)}
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}
