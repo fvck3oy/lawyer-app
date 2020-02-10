@@ -263,13 +263,30 @@ export default class ManageLands extends React.Component {
 
       if (res.data.message === true) {
         console.log('ok');
-        this.deleteOpenNotificationWithIcon('success')
+        this.toPublicNoti('success')
       } else {
         console.log('else');
-        this.deleteOpenNotificationWithIcon('error')
+        this.toPublicNoti('error')
       }
     }).then(this.getLands)
   }
+  toPublicNoti = (type) => {
+    console.log(type);
+
+    if (type == 'success') {
+      notification[type]({
+        message: `Update!`,
+        description:
+          `Updated to Public`,
+      });
+    } else {
+      notification[type]({
+        message: 'Error',
+        description:
+          'Error can not Update.',
+      });
+    }
+  };
   toUnPublic = data => {
     console.log("Public Id : ", data);
     data = {
@@ -281,13 +298,30 @@ export default class ManageLands extends React.Component {
 
       if (res.data.message === true) {
         console.log('ok');
-        this.deleteOpenNotificationWithIcon('success')
+        this.toUnPublicNoti('success')
       } else {
         console.log('else');
-        this.deleteOpenNotificationWithIcon('error')
+        this.toUnPublicNoti('error')
       }
     }).then(this.getLands)
   }
+  toUnPublicNoti = (type) => {
+    console.log(type);
+
+    if (type == 'success') {
+      notification[type]({
+        message: `Update!`,
+        description:
+          `Updated to UnPublic`,
+      });
+    } else {
+      notification[type]({
+        message: 'Error',
+        description:
+          'Error can not Update.',
+      });
+    }
+  };
 
   deleteUser = data => {
     console.log("Delete Id : ", data);

@@ -25,7 +25,7 @@ class Login extends Component {
         axios.post(`${url}/users/login`, values).then(async res => {
           const { data } = res
           console.log("Data ", data);
-          if (data.message == 'Invalid password') {
+          if (data.message === 'Invalid password' || data.message ==='Email not found' || data.message ===' Email or Password Invalid') {
             alert(`${data.message}`)
           } else {
             console.log('else token : ', data.token);

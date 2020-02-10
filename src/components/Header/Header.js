@@ -118,7 +118,7 @@ export default class Header extends Component {
         await this.props.history.push('/')
     }
 
-    componentDidMount = e => {
+    componentDidMount = async e => {
         let user = auth.getToken()
         console.log("User : ", user);
         if (user != null) {
@@ -129,12 +129,15 @@ export default class Header extends Component {
             let userRole = userDecoded.role
             console.log("userROle : ", userRole);
 
-            this.setState({ user: userFirstName })
-            this.setState({ userRole: userRole })
+            await this.setState({ user: userFirstName })
+            if (userRole === 'admin') {
+                await this.setState({ userRole: userRole })
+            }
+
         }
     }
 
-    componentWillReceiveProps = nextProps => {
+    componentWillReceiveProps = async nextProps => {
         if (nextProps.user !== null) {
             console.log("nestProps : ", nextProps);
             // this.setState({ user: nextProps.user.data.token });
@@ -145,8 +148,11 @@ export default class Header extends Component {
             let userFirstName = userDecoded.firstname
             let userLastName = userDecoded.lastname
             let userRole = userDecoded.role
-            this.setState({ user: userFirstName })
-            this.setState({ uesrRole: userRole })
+
+            await this.setState({ user: userFirstName })
+            if (userRole === 'admin') {
+                await this.setState({ userRole: userRole })
+            }
         }
     };
 
@@ -209,7 +215,7 @@ export default class Header extends Component {
                                 (<NavItem>
                                     <NavLink className="nav-color" href="/myPage">สวัสดีคุณ “{this.state.user}”</NavLink>
                                 </NavItem>)}
-                            {this.state.userRole === 'admin' &&
+                            {this.state.user && this.state.userRole === 'admin' &&
                                 (<NavItem>
                                     <NavLink className="nav-color" href="/admin">ADMIN</NavLink>
                                 </NavItem>)}

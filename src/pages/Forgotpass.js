@@ -2,12 +2,21 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox, } from 'antd';
 import { Container, Row, Col } from 'reactstrap'
 import './Login.css'
+import axios from 'axios'
+import url from '../url_config'
 class Forgotpass extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        axios.post(`${url}/users/forgotpass`, values).then(async res => {
+          const { data } = res
+          console.log("Data ", data);
+          alert("Please Check Your Email !")
+          this.props.history.push(`/`)
+
+        })
       }
     });
   };
@@ -48,7 +57,7 @@ class Forgotpass extends Component {
       <Container style={{ height: "100vh" }} >
         <Row className="p-5" style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
           <Col>
-          <div className="mt-5 mb-5" style={{ textAlign:'center'}}><h5>Please input your E-mail for reset password !</h5></div>
+            <div className="mt-5 mb-5" style={{ textAlign: 'center' }}><h5>Please input your E-mail for reset password !</h5></div>
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
               <Form.Item>
                 {getFieldDecorator('email', {
@@ -65,7 +74,7 @@ class Forgotpass extends Component {
                 })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="email" />)}
               </Form.Item>
-              
+
               <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit" className="login-form-button">
                   Sent

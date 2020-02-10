@@ -14,6 +14,8 @@ import {
 } from 'antd';
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import url from '../url_config'
 class ResetPassword extends Component {
   state = {
     confirmDirty: false,
@@ -23,6 +25,19 @@ class ResetPassword extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        values.resetToken = this.props.match.params.token
+        axios.post(`${url}/users/resetpass`, values).then(async res => {
+          const { data } = res
+          console.log("Data ", data);
+          
+            // this.props.history.push(`/`)
+            if (res.data.message ==='Password changed!'){
+              this.props.history.push(`/login`)
+            }else{
+              alert(`${res.data.message}`)
+            }
+          
+        })
       }
     });
   };
@@ -89,7 +104,7 @@ class ResetPassword extends Component {
           <Col>
             <h1>Register</h1>
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-              <Form.Item label="Password" hasFeedback>
+              <Form.Item label="Reset Your Password" hasFeedback>
                 {getFieldDecorator('password', {
                   rules: [
                     {
