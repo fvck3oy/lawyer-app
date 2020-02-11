@@ -184,6 +184,9 @@ export default class Header extends Component {
                                     <DropdownItem href="/aboutCompany/lawAndAsset">
                                         บริษัทลอว์ แอนด์ แอสเซท จำกัด
                                     </DropdownItem>
+                                    <DropdownItem href="/aboutCompany/chamnan">
+                                        บริษัท ชำนาญ อินเตอร์เนชั่นแนล ลอว์  จำกัด
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
 
@@ -201,7 +204,7 @@ export default class Header extends Component {
                                 </DropdownMenu>
                             </Dropdown> */}
                             <NavItem>
-                                <NavLink href="/consultant" className="nav-color">ปรึกษา</NavLink>
+                                <NavLink href="/consultant" className="nav-color">ให้บริการและคำปรึกษา</NavLink>
                             </NavItem>
 
                             <NavItem>

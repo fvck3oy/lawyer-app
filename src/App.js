@@ -24,6 +24,7 @@ import EditSaleLand from './pages/EditSaleLand'
 import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
+import AboutCompanyChamnan from './pages/AboutCompanyChamnan';
 
 
 import Admin from './pages/Admin';
@@ -55,6 +56,7 @@ export default class App extends Component {
           <Route exact path="/aboutCompany/vision" component={withRouter(AboutCompanyVision)} />
           <Route exact path="/aboutCompany/structure" component={withRouter(AboutCompanyStructure)} />
           <Route exact path="/aboutCompany/lawAndAsset" component={withRouter(AboutCompanyLawAndAsset)} />
+          <Route exact path="/aboutCompany/chamnan" component={withRouter(AboutCompanyChamnan)} />
           <Route exact path="/consultant" component={withRouter(Consultant)} />
 
           <Route exact path="/allArticle" component={withRouter(AllArticle)} />

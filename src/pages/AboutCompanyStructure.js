@@ -44,7 +44,7 @@ export default class AboutCompanyStructure extends Component {
                 <img src={chamnaninter} className="img-fluid logo-company" style={{ maxHeight: '200px' }} />
               </div>
               <div className="p-3 text-company">
-                บริษัท ชำนาญ  อินเตอร์เนชั่นแนล ลอว์  จำกัด
+              <a href="/aboutCompany/chamnan"> บริษัท ชำนาญ  อินเตอร์เนชั่นแนล ลอว์  จำกัด</a>
               </div>
             </div>
           </Col>
