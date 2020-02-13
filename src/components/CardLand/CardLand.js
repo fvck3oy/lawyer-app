@@ -73,7 +73,7 @@ export default class CardLand extends Component {
                                         cover={<img alt="example" src={`${urlImage}${e.image}`} width="100%" height="200px" />}>
                                         <Meta
                                             title={e.title}
-                                            description={e.detail}
+                                            // description={e.detail}
                                         />
                                         <div color="#f90">ราคา {this.formatNumber(e.price)} บาท</div>
                                         <div className="">

@@ -24,7 +24,15 @@ import { compose, withProps, lifecycle } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
 
 import auth from "../service/index"
-
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+import { stateToHTML } from "draft-js-export-html";
+import './CreateSaleLand.css'
+const styles = {
+  editor: {
+    border: '1px solid gray',
+    minHeight: '6em'
+  }
+};
 const { TextArea } = Input;
 const AddMarker = compose(
   withProps({
@@ -83,7 +91,31 @@ class CreateSaleLands extends Component {
     fileList2: [],
 
     file: null,
-    idLand: null
+    idLand: null,
+
+    editorState: EditorState.createEmpty(),
+    detailEditor:''
+  };
+
+  onChange = (editorState) => {
+    const contentState = editorState.getCurrentContent();
+    // .getPlainText()
+    // console.log("contentState : ",contentState);
+    // console.log('content state : ', JSON.stringify((convertToRaw(contentState))));
+    // this.setState({ detailEditor:JSON.stringify((convertToRaw(contentState)))})
+
+    this.setState({ editorState });
+    this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent())})
+    this.setState({ detailEditor : stateToHTML(editorState.getCurrentContent()) })
+    console.log("State : ", this.state.detailEditor);
+  }
+  setEditor = (editor) => {
+    this.editor = editor;
+  };
+  focusEditor = () => {
+    if (this.editor) {
+      this.editor.focus();
+    }
   };
   setLatLng = async (lat, lng) => {
     console.log('set Lat : ', lat);
@@ -108,6 +140,7 @@ class CreateSaleLands extends Component {
           values.lat = this.state.lat
           values.lng = this.state.lng
           values.user_type = 'register'
+          values.detail = this.state.detailEditor
 
           console.log('Received values of form: ', values);
           await axios.post(`${url}/lands/create`, values).then(res => {
@@ -136,7 +169,7 @@ class CreateSaleLands extends Component {
                 const data = {
                   id: this.state.idLand,
                   url: res.data.file.filename,
-                  type:1
+                  type: 1
                 }
                 this.savePath2(data)
               })
@@ -163,7 +196,33 @@ class CreateSaleLands extends Component {
   };
 
   componentDidMount() {
+    this.focusEditor();
     this.delayedShowMarker()
+  }
+
+  onItalicClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
+  }
+
+  handleKeyCommand = (command) => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not-handled';
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
+  onBoldClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'))
+  }
+
+  onItalicClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
   }
 
   delayedShowMarker = () => {
@@ -321,9 +380,23 @@ class CreateSaleLands extends Component {
               </span>
                 }
               >
-                {getFieldDecorator('detail', {
+                {/* {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
-                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)}
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)} */}
+                <Button type="button"  onClick={this.onUnderlineClick}>U</Button>
+                <Button type="button"  onClick={this.onBoldClick}><b>B</b></Button>
+                <Button type="button"  onClick={this.onItalicClick}><em>I</em></Button>
+                <div style={styles.editor} onClick={this.focusEditor}>
+                  <Editor
+                  // style={{ color:'red'}}
+                  //   className="RichEditor-editor"
+                    handleKeyCommand={this.handleKeyCommand}
+                    ref={this.setEditor}
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    placeholder=""
+                  />
+                </div>
               </Form.Item>
 
               <Form.Item

@@ -69,7 +69,8 @@ export default class Article extends Component {
           <Col md={{ size: 8, offset: 2 }}>
             <div className="p-4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <div className="p-3 text-company" style={{ textIndent: '12%' }}>
-                <h5>{this.state.data.detail}</h5>
+                {/* <h5>{this.state.data.detail}</h5> */}
+                <div dangerouslySetInnerHTML={{__html: this.state.data.detail}} />
               </div>
             </div>
           </Col>

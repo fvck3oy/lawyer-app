@@ -245,7 +245,7 @@ export default class AllSaleLand extends Component {
                             >
                               <Meta
                                 title={e.title}
-                                description={e.detail}
+                                // description={e.detail}
                               />
                               <div color="#f90">
                                 ราคา {this.formatNumber(e.price)} บาท

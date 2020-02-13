@@ -10,6 +10,14 @@ import axios from 'axios'
 import url from '../url_config'
 import './SaleLand.css'
 import Moment from 'react-moment'
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js'
+import { thisExpression } from '@babel/types';
+const styles = {
+  editor: {
+    border: '1px solid gray',
+    minHeight: '6em'
+  }
+};
 const images = [
   {
     original: 'https://picsum.photos/id/1018/1000/600/',
@@ -37,7 +45,8 @@ export default class SaleLand extends Component {
     check: false,
     username: '',
     price: 0,
-    images: []
+    images: [],
+    dataDetail: ''
   }
   // handleMarkerClick = () => {
   //   this.setState({ isMarkerShown: false })
@@ -62,6 +71,14 @@ export default class SaleLand extends Component {
       await this.setState({ lng: data.lng })
       await this.setState({ check: true })
 
+
+      // console.log("data : ", JSON.parse(this.state.data.detail));
+      // const contentState = convertFromRaw(JSON.parse(this.state.data.detail));
+      // const editorState = EditorState.createWithContent(contentState);
+      // console.log("editorState : ", contentState);
+      // this.setState({dataDetail:contentState})
+
+
       await this.setState({ price: this.formatNumber(data.price) })
       let images = []
       // const urlImage = "http://127.0.0.1:3001/"
@@ -71,14 +88,14 @@ export default class SaleLand extends Component {
       //       original:urlImage+e.image,
       //       thumbnail:urlImage+e.image}
       data.dataImage.map(e => {
-     
+
         let data = {
           original: urlImage + e.image,
           thumbnail: urlImage + e.image
         }
         images.push(data)
       })
-    
+
 
       console.log("new : ", images);
       this.setState({ images: images })
@@ -86,6 +103,7 @@ export default class SaleLand extends Component {
 
     })
   }
+
 
   formatNumber = (num) => {
     console.log("num : ", num);
@@ -95,6 +113,9 @@ export default class SaleLand extends Component {
 
   render() {
     const { data, username } = this.state
+
+    // const contentState = convertFromRaw(JSON.parse(this.state.data.detail));
+    // const editorState = EditorState.createWithContent(contentState);
     return (
       <div>
         <Container style={{ marginBottom: '50px', fontSize: '18px', padding: '20px' }}>
@@ -133,7 +154,20 @@ export default class SaleLand extends Component {
           </Row>
           <Row><Col><div className="mt-4 mb-4"> <Icon type="home" /> {data.title}</div></Col></Row>
 
-          <Row><Col><div className="mt-2 mb-4 ml-5">{data.detail}</div></Col></Row>
+          <Row><Col>
+
+            <div className="mt-2 mb-4 ml-5" >
+
+              <div dangerouslySetInnerHTML={{__html: data.detail}} />
+            </div>
+
+            {/* <div style={styles.editor} onClick={this.focusEditor}> */}
+            {/* <Editor
+                editorState={this.state.dataDetail} readOnly={true}
+              /> */}
+            {/* </div> */}
+
+          </Col></Row>
 
           <Row><Col><div className="mt-4 mb-4">
 

@@ -20,7 +20,7 @@ import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios, { post } from 'axios'
 import url from '../../src/url_config'
-
+import { stateToHTML } from "draft-js-export-html";
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
 const styles = {
   editor: {
@@ -42,22 +42,11 @@ class CreateArticle extends Component {
       fileList: [],
       data: [],
       file: null,
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
+
+      detailEditor: ''
     }
-    this.onChange = (editorState) => {
-      const contentState = editorState.getCurrentContent();
-      console.log('content state', convertToRaw(contentState));
-      this.setState({ editorState });
-      console.log("State : ", this.state.editorState);
-    }
-    this.setEditor = (editor) => {
-      this.editor = editor;
-    }
-    this.focusEditor = () => {
-      if (this.editor) {
-        this.editor.focus();
-      }
-    }
+  
   }
   componentDidMount() {
     this.focusEditor();
@@ -75,6 +64,28 @@ class CreateArticle extends Component {
     }
     return 'not-handled';
   }
+  onChange = (editorState) => {
+    const contentState = editorState.getCurrentContent();
+    // .getPlainText()
+    // console.log("contentState : ",contentState);
+    // console.log('content state : ', JSON.stringify((convertToRaw(contentState))));
+    // this.setState({ detailEditor:JSON.stringify((convertToRaw(contentState)))})
+
+    this.setState({ editorState });
+    this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent())})
+    this.setState({ detailEditor : stateToHTML(editorState.getCurrentContent()) })
+    console.log("State : ", this.state.editorContentHtml);
+  }
+
+
+  setEditor = (editor) => {
+    this.editor = editor;
+  };
+  focusEditor = () => {
+    if (this.editor) {
+      this.editor.focus();
+    }
+  };
 
   onUnderlineClick = () => {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
@@ -117,6 +128,7 @@ class CreateArticle extends Component {
         if (!err) {
           console.log('Received values of form: ', values);
           values.user_type = 'register'
+          values.detail = this.state.detailEditor
           await axios.post(`${url}/blogs/create`, values).then(res => {
             const { data } = res
             this.setState({ idLand: data.id })
@@ -222,9 +234,21 @@ class CreateArticle extends Component {
               </span>
                 }
               >
-                {getFieldDecorator('detail', {
+                {/* {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
-                })(<TextArea placeholder="รายละเอียดเกี่ยวกับบทความ" style={{ height: '300px' }} />)}
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)} */}
+                <Button type="button" onClick={this.onUnderlineClick}>U</Button>
+                <Button type="button" onClick={this.onBoldClick}><b>B</b></Button>
+                <Button type="button" onClick={this.onItalicClick}><em>I</em></Button>
+                <div style={styles.editor} onClick={this.focusEditor}>
+                  <Editor
+                    handleKeyCommand={this.handleKeyCommand}
+                    ref={this.setEditor}
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    placeholder=""
+                  />
+                </div>
               </Form.Item>
 
               {/* <Row>

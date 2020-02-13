@@ -145,7 +145,7 @@ export default class AllArticle extends Component {
                             >
                               <Meta
                                 title={e.title}
-                                description={e.detail}
+                                // description={e.detail}
                               />
                               <div className="read-more">
                                 <div className="p-2">
