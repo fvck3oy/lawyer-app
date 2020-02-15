@@ -144,8 +144,13 @@ export default class ManageArticles extends React.Component {
                 </Modal>
               </div> */}
               <div>
- <Link to={`/article/${record.key}`}>
+            <Link to={`/article/${record.key}`}>
               <Icon type="search" style={{ color: 'blue', marginRight: '5px', cursor: 'pointer' }} />
+            </Link>
+            </div>
+            <div>
+            <Link to={`/editArticle/${record.key}`}>
+              <Icon type="edit" style={{ color: 'red', marginRight: '5px', cursor: 'pointer' }} />
             </Link>
             </div>
               <div>
