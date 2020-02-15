@@ -27,6 +27,15 @@ import {
 import { Container } from 'reactstrap'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, SearchBox } from "react-google-maps"
 
+import { Editor, EditorState, RichUtils, convertToRaw,ContentState } from 'draft-js'
+import DraftPasteProcessor from "draft-js/lib/DraftPasteProcessor"
+import { stateToHTML } from "draft-js-export-html";
+const styles = {
+  editor: {
+    border: '1px solid gray',
+    minHeight: '6em'
+  }
+};
 const { TextArea } = Input;
 const gridStyle = {
   width: '25%',
@@ -92,8 +101,33 @@ class EditSaleLand extends Component {
     image: '',
     fix: false,
     fileListImage: [],
-    images: []
+    images: [],
+    editorState: EditorState.createEmpty(),
+    detailEditor: ''
   };
+
+  onChange = (editorState) => {
+    const contentState = editorState.getCurrentContent();
+    // .getPlainText()
+    // console.log("contentState : ",contentState);
+    // console.log('content state : ', JSON.stringify((convertToRaw(contentState))));
+    // this.setState({ detailEditor:JSON.stringify((convertToRaw(contentState)))})
+
+    this.setState({ editorState });
+    this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent()) })
+    this.setState({ detailEditor: stateToHTML(editorState.getCurrentContent()) })
+    console.log("State : ", this.state.detailEditor);
+  }
+  setEditor = (editor) => {
+    this.editor = editor;
+  };
+  focusEditor = () => {
+    if (this.editor) {
+      this.editor.focus();
+    }
+  };
+
+
   setLatLng = async (lat, lng) => {
     console.log('set Lat : ', lat);
     console.log('set Lng : ', lng);
@@ -115,6 +149,7 @@ class EditSaleLand extends Component {
           values.user = userId
           values.lat = this.state.lat
           values.lng = this.state.lng
+          values.detail = this.state.detailEditor
           // values.user_type = 'register'
 
           console.log('Received values of form: ', values);
@@ -207,6 +242,7 @@ class EditSaleLand extends Component {
       console.log("Data : ", this.state.username);
       // await this.setState({ lat: data.lat })
       // await this.setState({ lng: data.lng })
+
       await this.setLatLng(data.lat, data.lng)
       await this.setState({ check: true })
       if (this.state.username.id !== userId) {
@@ -233,9 +269,18 @@ class EditSaleLand extends Component {
       this.setState({ images: images })
       console.log("Images : ", this.state.images);
 
+      let editorState
+      const detail = data.detail.split("\n").join("<br/>")
+      const processedHTML = DraftPasteProcessor.processHTML(detail)
+      const contentState = ContentState.createFromBlockArray(processedHTML)
+      editorState = EditorState.createWithContent(contentState)
+      editorState = EditorState.moveFocusToEnd(editorState)
+      this.setState({ editorState : editorState})
+
+
       this.props.form.setFieldsValue({
         title: data.title,
-        detail: data.detail,
+        // detail: data.detail,
         price: data.price,
         area: data.area
       })
@@ -278,7 +323,7 @@ class EditSaleLand extends Component {
         const data = {
           id: this.props.match.params.id,
           url: res.data.file.filename,
-          type:1
+          type: 1
         }
         this.savePathImage(data)
       })
@@ -434,7 +479,7 @@ class EditSaleLand extends Component {
         }
       },
     };
-    const { previewVisible, previewImage, fileList,fileListImage } = this.state;
+    const { previewVisible, previewImage, fileList, fileListImage } = this.state;
     // const urlImage = "http://127.0.0.1:3001/"
     const urlImage = "http://167.71.193.2:3001/"
     const uploadButton = (
@@ -461,7 +506,7 @@ class EditSaleLand extends Component {
                 })(<Input placeholder="หัวข้อเกี่ยวกับการขาย" />)}
               </Form.Item>
 
-              <Form.Item
+              {/* <Form.Item
                 label={
                   <span>
                     รายละเอียด&nbsp;
@@ -471,6 +516,31 @@ class EditSaleLand extends Component {
                 {getFieldDecorator('detail', {
                   rules: [{ required: true, message: 'Please input your detail!', whitespace: true, }],
                 }, )(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)}
+              </Form.Item> */}
+              <Form.Item
+                label={
+                  <span>
+                    รายละเอียด&nbsp;
+              </span>
+                }
+              >
+                {/* {getFieldDecorator('detail', {
+                  rules: [{ required: true, message: 'Please input your detail!', whitespace: true }],
+                })(<TextArea placeholder="รายละเอียดเกี่ยวกับที่ดิน" style={{ height: '150px' }} />)} */}
+                <Button type="button" onClick={this.onUnderlineClick}>U</Button>
+                <Button type="button" onClick={this.onBoldClick}><b>B</b></Button>
+                <Button type="button" onClick={this.onItalicClick}><em>I</em></Button>
+                <div style={styles.editor} onClick={this.focusEditor}>
+                  <Editor
+                    // style={{ color:'red'}}
+                    //   className="RichEditor-editor"
+                    handleKeyCommand={this.handleKeyCommand}
+                    ref={this.setEditor}
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    placeholder=""
+                  />
+                </div>
               </Form.Item>
 
               <Form.Item
@@ -542,46 +612,46 @@ class EditSaleLand extends Component {
                 }
               >
                 <div className="pb-5">
-                <div style={{ display: 'flex', flexDirection: 'row-reverse', margin: '10px' }}>
-          <Button type="primary" onClick={this.showModal}>
-            เพิ่มรูปภาพ
+                  <div style={{ display: 'flex', flexDirection: 'row-reverse', margin: '10px' }}>
+                    <Button type="primary" onClick={this.showModal}>
+                      เพิ่มรูปภาพ
         </Button>
-        </div>
-        <div>
-          <Modal
-            title="เพิ่มรูปภาพ"
-            visible={this.state.visible}
-            onOk={this.handleOkImage}
-            onCancel={this.handleCancelImage}
-          >
-            <Row className="mt-4 d-flex justify-content-center">
-              <Col>
-                <div>
-                  <Upload
-                    listType="picture-card"
-                    fileList={fileListImage}
-                    onPreview={this.handlePreviewImage}
-                    onChange={this.handleUploadImage}
-                    beforeUpload={() => false}
-                  >
-                    {fileListImage.length >= 1 ? null : uploadButton}
-                  </Upload>
-                </div>
-              </Col>
-              <Modal
-                visible={previewVisible}
-                footer={null}
-                onCancel={this.handleCancelImage}
-              >
-                <img alt="example" style={{ width: "100%" }} src={previewImage} />
-              </Modal>
-            </Row>
-          </Modal>
-        </div>
+                  </div>
+                  <div>
+                    <Modal
+                      title="เพิ่มรูปภาพ"
+                      visible={this.state.visible}
+                      onOk={this.handleOkImage}
+                      onCancel={this.handleCancelImage}
+                    >
+                      <Row className="mt-4 d-flex justify-content-center">
+                        <Col>
+                          <div>
+                            <Upload
+                              listType="picture-card"
+                              fileList={fileListImage}
+                              onPreview={this.handlePreviewImage}
+                              onChange={this.handleUploadImage}
+                              beforeUpload={() => false}
+                            >
+                              {fileListImage.length >= 1 ? null : uploadButton}
+                            </Upload>
+                          </div>
+                        </Col>
+                        <Modal
+                          visible={previewVisible}
+                          footer={null}
+                          onCancel={this.handleCancelImage}
+                        >
+                          <img alt="example" style={{ width: "100%" }} src={previewImage} />
+                        </Modal>
+                      </Row>
+                    </Modal>
+                  </div>
                   <Card>
                     {this.state.images.map(e => {
                       return (<div key={e.id} className="" >
-                        <Card.Grid style={gridStyle} style={{ height:'150px'}}>
+                        <Card.Grid style={gridStyle} style={{ }}>
                           <img src={`${e.image}`} alt={e.image} className="img-fluid" />
                           <div onClick={() => this.removeImage(e.id)} style={{ color: 'red', cursor: 'pointer' }}>Remove</div>
                         </Card.Grid>

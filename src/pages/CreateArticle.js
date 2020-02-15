@@ -42,6 +42,7 @@ class CreateArticle extends Component {
       fileList: [],
       data: [],
       file: null,
+      idBlog: null,
       editorState: EditorState.createEmpty(),
 
       detailEditor: ''
@@ -131,14 +132,26 @@ class CreateArticle extends Component {
           values.detail = this.state.detailEditor
           await axios.post(`${url}/blogs/create`, values).then(res => {
             const { data } = res
-            this.setState({ idLand: data.id })
+            this.setState({ idBlog: data.id })
           })
-          this.upload(this.state.fileList).then(res => {
-            const data = {
-              id: this.state.idLand,
-              url: res.data.file.filename
-            }
-            this.savePath(data)
+          // this.upload(this.state.fileList).then(res => {
+            
+          //   const data = {
+          //     id: this.state.idBlog,
+          //     url: res.data.file.filename
+          //   }
+          //   this.savePath(data)
+          // })
+          this.state.fileList.forEach(e => {
+            console.log("e : ", e)
+            this.upload(e).then(res => {
+              const data = {
+                id: this.state.idBlog,
+                url: res.data.file.filename,
+                type: 2
+              }
+              this.savePath(data)
+            })
           })
 
         }
@@ -151,10 +164,10 @@ class CreateArticle extends Component {
     }
   };
 
-  upload = () => {
-    const urlUpload = `${url}/blogs/uploadImage`
+  upload = (each) => {
+    const urlUpload = `${url}/images/uploadImage`
     const formData = new FormData()
-    formData.append("imageData", this.state.fileList[0].originFileObj);
+    formData.append("imageData", each.originFileObj);
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -164,7 +177,7 @@ class CreateArticle extends Component {
   }
 
   savePath = async (data) => {
-    await axios.put(`${url}/blogs/savePathImage`, data).then(res => {
+    await axios.put(`${url}/images/savePathImage`, data).then(res => {
       console.log("saved : ", res)
     })
     this.props.history.push(`/admin`)
@@ -294,7 +307,7 @@ class CreateArticle extends Component {
                       onChange={this.handleUpload}
                       beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
                     >
-                      {fileList.length >= 1 ? null : uploadButton}
+                      {uploadButton}
                     </Upload>
                   </div>
                   <Modal

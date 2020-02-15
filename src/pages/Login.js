@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap'
 import axios from 'axios'
 import './Login.css'
 import url from '../url_config'
+import auth from '../service/index'
 import { useAuth0 } from "../react-auth0-spa";
 import {  Router, Switch, Route, withRouter } from 'react-router-dom'
 
@@ -29,10 +30,14 @@ class Login extends Component {
             alert(`${data.message}`)
           } else {
             console.log('else token : ', data.token);
-            
-            await localStorage.setItem('token', data.token)
-            await this.props.onUserChanged(data.token);
-            this.props.history.push(`/`)
+            if(data.token != undefined){
+              await localStorage.setItem('token', data.token)
+              await this.props.onUserChanged(data.token);
+              this.props.history.push(`/`)
+            }else{
+              alert(`${data.token}`)
+              await auth.clearToken()
+            }
           }
         })
       }

@@ -63,43 +63,52 @@ export default class SaleLand extends Component {
 
     await axios.get(`${url}/lands/${this.props.match.params.id}`).then(async res => {
       const { data } = res
-      await this.setState({ data });
-      console.log("Data : ", this.state.data);
-      await this.setState({ username: this.state.data.dataUser })
-      console.log("Data : ", this.state.username);
-      await this.setState({ lat: data.lat })
-      await this.setState({ lng: data.lng })
-      await this.setState({ check: true })
+      console.log("res data : ", res.data)
+
+      if (Object.entries(res.data).length === 0 && res.data.constructor === Object) {
+        console.log("True");
+        this.props.history.push(`/allSaleLand`)
+      } else {
+        console.log("False");
 
 
-      // console.log("data : ", JSON.parse(this.state.data.detail));
-      // const contentState = convertFromRaw(JSON.parse(this.state.data.detail));
-      // const editorState = EditorState.createWithContent(contentState);
-      // console.log("editorState : ", contentState);
-      // this.setState({dataDetail:contentState})
+        await this.setState({ data });
+        console.log("Data : ", this.state.data);
+        await this.setState({ username: this.state.data.dataUser })
+        console.log("Data : ", this.state.username);
+        await this.setState({ lat: data.lat })
+        await this.setState({ lng: data.lng })
+        await this.setState({ check: true })
 
 
-      await this.setState({ price: this.formatNumber(data.price) })
-      let images = []
-      // const urlImage = "http://127.0.0.1:3001/"
-      const urlImage = "http://167.71.193.2:3001/"
-      // let newew = this.state.data.map(e=>{
-      //   return {   
-      //       original:urlImage+e.image,
-      //       thumbnail:urlImage+e.image}
-      data.dataImage.map(e => {
-
-        let data = {
-          original: urlImage + e.image,
-          thumbnail: urlImage + e.image
-        }
-        images.push(data)
-      })
+        // console.log("data : ", JSON.parse(this.state.data.detail));
+        // const contentState = convertFromRaw(JSON.parse(this.state.data.detail));
+        // const editorState = EditorState.createWithContent(contentState);
+        // console.log("editorState : ", contentState);
+        // this.setState({dataDetail:contentState})
 
 
-      console.log("new : ", images);
-      this.setState({ images: images })
+        await this.setState({ price: this.formatNumber(data.price) })
+        let images = []
+        // const urlImage = "http://127.0.0.1:3001/"
+        const urlImage = "http://167.71.193.2:3001/"
+        // let newew = this.state.data.map(e=>{
+        //   return {   
+        //       original:urlImage+e.image,
+        //       thumbnail:urlImage+e.image}
+        data.dataImage.map(e => {
 
+          let data = {
+            original: urlImage + e.image,
+            thumbnail: urlImage + e.image
+          }
+          images.push(data)
+        })
+
+
+        console.log("new : ", images);
+        this.setState({ images: images })
+      }
 
     })
   }
@@ -158,7 +167,7 @@ export default class SaleLand extends Component {
 
             <div className="mt-2 mb-4 ml-5" >
 
-              <div dangerouslySetInnerHTML={{__html: data.detail}} />
+              <div dangerouslySetInnerHTML={{ __html: data.detail }} />
             </div>
 
             {/* <div style={styles.editor} onClick={this.focusEditor}> */}

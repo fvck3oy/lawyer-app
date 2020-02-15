@@ -20,7 +20,9 @@ import AllSaleLand from './pages/AllSaleLand';
 import AllArticle from './pages/AllArticle';
 import Article from './pages/Article'
 import MyPage from './pages/MyPage'
+import Error404 from './pages/Error404'
 import EditSaleLand from './pages/EditSaleLand'
+import EditArticle from './pages/EditArticle'
 import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
@@ -69,7 +71,10 @@ export default class App extends Component {
           <Route exact path="/admin" component={withRouter(Admin)} />
           <Route exact path="/myPage" component={withRouter(MyPage)} />
           <Route exact path="/editSaleLand/:id" component={withRouter(EditSaleLand)} />
-          
+          <Route exact path="/editArticle/:id" component={withRouter(EditArticle)} />
+
+          <Route exact path="/*" component={withRouter(Error404)} />
+
           <Route exact path="/test" component={withRouter(TestMap)} />
         </Switch>
         <Footer />

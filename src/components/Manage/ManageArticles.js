@@ -143,7 +143,11 @@ export default class ManageArticles extends React.Component {
                   <p>Some contents...</p>
                 </Modal>
               </div> */}
-
+              <div>
+ <Link to={`/article/${record.key}`}>
+              <Icon type="search" style={{ color: 'blue', marginRight: '5px', cursor: 'pointer' }} />
+            </Link>
+            </div>
               <div>
                 <Popconfirm title="Confirm to delete?" onConfirm={() => this.handleDelete(record.key)}>
                   <Icon type="delete" style={{ color: 'red' }} />
@@ -249,7 +253,7 @@ export default class ManageArticles extends React.Component {
 
   deleteUser = data => {
     console.log("Delete Id : ", data);
-    axios.delete(`${url}/blogs/${data}`).then(res => {
+    axios.delete(`${url}/blogs/delBlog/${data}`).then(res => {
       const { data } = res
       console.log('delete : ', res);
 
