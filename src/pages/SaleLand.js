@@ -12,6 +12,8 @@ import './SaleLand.css'
 import Moment from 'react-moment'
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js'
 import { thisExpression } from '@babel/types';
+import line from '../images/line.jpg'
+import { Link } from 'react-router-dom'
 const styles = {
   editor: {
     border: '1px solid gray',
@@ -148,7 +150,7 @@ export default class SaleLand extends Component {
 
           <Row>
             <Col md={4}><div className="mt-3 mb-2 p-4">
-
+            <div className="mt-2 mb-3"> <h5>{data.title}</h5></div>
               <div className="mt-2 mb-3"><Icon type="pushpin" style={{ marginRight: '10px' }} /> เลขที่ประกาศ {this.state.data.id} </div>
               <div className="mt-2 mb-3"><Icon type="edit" style={{ marginRight: '10px' }} /> อัพเดทล่าสุดวันที่ <Moment format="DD/MM/YYYY">{this.state.data.update}</Moment></div>
               <div className="mt-2 mb-3"><Icon type="eye" style={{ marginRight: '10px' }} /> เข้าชมเเล้ว {this.state.data.view} </div>
@@ -156,12 +158,13 @@ export default class SaleLand extends Component {
               <div className="mt-2 mb-3"><Icon type="phone" style={{ marginRight: '10px' }} /> เบอร์โทร 0{username.tel} </div>
               <div className="mt-2 mb-3"><Icon type="star" style={{ marginRight: '10px' }} /> ราคา  {this.state.price}  บาท</div>
               <div className="mt-2 mb-3"><Icon type="table" style={{ marginRight: '10px' }} /> พื้นที่  {this.state.data.area} </div>
+              <div className="mt-2 mb-3 d-flex"><a  target="_blank" href="https://line.me/ti/p/QjJDbt9mIG"><img src={line} className="img-fluid"/></a></div>
 
             </div>
             </Col>
             <Col md={8}><div className="mt-4 mb-4 p-4"><ImageGallery items={this.state.images} showPlayButton={false} /></div></Col>
           </Row>
-          <Row><Col><div className="mt-4 mb-4"> <Icon type="home" /> {data.title}</div></Col></Row>
+          <Row><Col><div className="mt-4 mb-4"> <Icon type="home" /> รายละเอียด</div></Col></Row>
 
           <Row><Col>
 
