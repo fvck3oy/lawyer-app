@@ -6,16 +6,18 @@ import './Login.css'
 import url from '../url_config'
 import auth from '../service/index'
 import { useAuth0 } from "../react-auth0-spa";
-import {  Router, Switch, Route, withRouter } from 'react-router-dom'
+import { Router, Switch, Route, withRouter } from 'react-router-dom'
 
-const LoginFB = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  return (
-    <div>
-      <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
-    </div>
-  );
-};
+import FacebookLogin from 'react-facebook-login';
+
+// const LoginFB = () => {
+//   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+//   return (
+//     <div>
+//       <Button type="button" onClick={() => loginWithRedirect({})}>Log in with Facebook</Button>
+//     </div>
+//   );
+// };
 
 class Login extends Component {
   handleSubmit = e => {
@@ -26,15 +28,15 @@ class Login extends Component {
         axios.post(`${url}/users/login`, values).then(async res => {
           const { data } = res
           console.log("Data ", data);
-          if (data.message === 'Invalid password' || data.message ==='Email not found' || data.message ===' Email or Password Invalid') {
+          if (data.message === 'Invalid password' || data.message === 'Email not found' || data.message === ' Email or Password Invalid') {
             alert(`${data.message}`)
           } else {
             console.log('else token : ', data.token);
-            if(data.token != undefined){
+            if (data.token != undefined) {
               await localStorage.setItem('token', data.token)
               await this.props.onUserChanged(data.token);
               this.props.history.push(`/`)
-            }else{
+            } else {
               alert(`${data.token}`)
               await auth.clearToken()
             }
@@ -43,6 +45,32 @@ class Login extends Component {
       }
     });
   };
+  callbackFB = (cb) => {
+    console.log("CB : ", cb);
+    const firstname = cb.name.split(" ")
+    console.log("Split : ", firstname);
+
+    const dataLogin = {
+      "facebook": true,
+      "email": cb.email,
+      "facebook_id": cb.userID,
+      "firstname": firstname[0],
+      "lastname": firstname[1],
+    }
+
+    axios.post(`${url}/users/login`, dataLogin).then(async res => {
+      const { data } = res
+      console.log("Data ", data);
+      if (data.token != undefined) {
+        await localStorage.setItem('token', data.token)
+        await this.props.onUserChanged(data.token);
+        this.props.history.push(`/`)
+      } else {
+        alert(`${data.token}`)
+        await auth.clearToken()
+      }
+    })
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     // const { loginWithRedirect } = useAuth0();
@@ -116,6 +144,24 @@ class Login extends Component {
                 <Button type="primary" htmlType="submit" className="login-form-button">
                   Log in
                 </Button>
+
+                {/* <LoginFB/> */}
+                <div style={{ }}>
+                <FacebookLogin
+                  appId="794785114267927"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  callback={this.callbackFB}
+                  // cssClass="kep-login-facebook kep-login-facebook-[small]"
+                  icon="fa-facebook"
+                  size="small"
+                // render={renderProps => (
+                //   <Button  type="primary" onClick={renderProps.onClick}>Loginss with Facebook</Button>
+                // )}
+
+                />
+                </div>
+
                 Or <a href="/register">register now!</a>
               </Form.Item>
 
@@ -125,7 +171,7 @@ class Login extends Component {
         {/* <div>
           <button onClick={() => loginWithRedirect({})}>Log in with Facebook</button>
         </div> */}
-        {/* <LoginFB/> */}
+
 
         {/* <Row>
           <Col> */}

@@ -17,25 +17,25 @@ import logo from '../../images/logo.jpg'
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
 import auth from "../../service/index"
-// const LoginFB = () => {
-//   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-//   return (
-//     <div>
-//       {!isAuthenticated && (
-//          <NavLink href="/login">Login</NavLink>
-//       )}
+const LoginFB = () => {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    return (
+        <div>
+            {/* {!isAuthenticated && (
+                <NavLink href="/login">Login</NavLink>
+            )} */}
 
-//       {/* {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
-//       {isAuthenticated && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>}
-//       {/* {isAuthenticated && (
-//         <span>
-//           <Link to="/">Home</Link>&nbsp;
-//         <Link to="/profile">Profile</Link>
-//         </span>
-//       )} */}
-//     </div>
-//   );
-// }
+            {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+            {/* {isAuthenticated && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+            {/* {isAuthenticated && (
+        <span>
+          <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+        </span>
+      )} */}
+        </div>
+    );
+}
 
 
 export default class Header extends Component {
@@ -113,6 +113,9 @@ export default class Header extends Component {
     }
 
     logOut = async (e) => {
+        // const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+        // await logout
+        // cookie.remove('token', { path: '/' });
         await auth.clearToken()
         await this.setState({ user: null })
         await this.props.history.push('/')
@@ -157,7 +160,6 @@ export default class Header extends Component {
     };
 
     render() {
-
         return (
             <div>
                 <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
@@ -224,8 +226,16 @@ export default class Header extends Component {
                                 </NavItem>)}
                             <NavItem>
                                 {/* <NavLink href="/login">Login</NavLink> */}
-                                {/* <LoginFB/>
-                                {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+                                
+                                    {/* <LoginFB/> */}
+                                {/* {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+
+                                {/* {!isAuthenticated && (
+                                    <NavLink href="/login">Login</NavLink>
+                                )} */}
+
+                                {/* {this.state.user && isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+
                                 {!this.state.user && (
                                     <NavLink className="nav-color" href="/login">Login</NavLink>
                                 )}
