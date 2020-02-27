@@ -150,10 +150,10 @@ class Login extends Component {
                 <div style={{ }}>
                 <FacebookLogin
                   appId="794785114267927"
-                  autoLoad={true}
+                  autoLoad={false}
                   fields="name,email,picture"
                   callback={this.callbackFB}
-                  type="button"
+                  
                   // cssClass="kep-login-facebook kep-login-facebook-[small]"
                   icon="fa-facebook"
                   size="small"
@@ -167,6 +167,23 @@ class Login extends Component {
               </Form.Item>
 
             </Form>
+            {/* <Row><Col><div style={{ }}>
+                <FacebookLogin
+                  appId="794785114267927"
+                  autoLoad={false}
+                  fields="name,email,picture"
+                  callback={this.callbackFB}
+                  
+                  // cssClass="kep-login-facebook kep-login-facebook-[small]"
+                  icon="fa-facebook"
+                  size="small"
+                // render={renderProps => (
+                //   <Button  type="primary" onClick={renderProps.onClick}>Loginss with Facebook</Button>
+                // )}
+
+                />
+                </div>
+                Or <a href="/register">register now!</a></Col></Row> */}
           </Col>
         </Row>
         {/* <div>
