@@ -146,12 +146,14 @@ class Login extends Component {
                 </Button>
 
                 {/* <LoginFB/> */}
+
                 <div style={{ }}>
                 <FacebookLogin
                   appId="794785114267927"
                   autoLoad={true}
                   fields="name,email,picture"
                   callback={this.callbackFB}
+                  type="button"
                   // cssClass="kep-login-facebook kep-login-facebook-[small]"
                   icon="fa-facebook"
                   size="small"
@@ -161,7 +163,6 @@ class Login extends Component {
 
                 />
                 </div>
-
                 Or <a href="/register">register now!</a>
               </Form.Item>
 
