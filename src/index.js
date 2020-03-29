@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./react-auth0-spa";
-import "./i18n";
+// import "./i18n";
 import config from "./auth_config.json";
 import history from "./utils/history";
 import 'bootstrap/dist/css/bootstrap.min.css'
