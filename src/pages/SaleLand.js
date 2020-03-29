@@ -92,8 +92,8 @@ export default class SaleLand extends Component {
 
         await this.setState({ price: this.formatNumber(data.price) })
         let images = []
-        // const urlImage = "http://127.0.0.1:3001/"
-        const urlImage = "http://167.71.193.2:3001/"
+        // const urlImage = "http://127.0.0.1:3013/"
+        const urlImage = "https://www.chamnangroup.com/"
         // let newew = this.state.data.map(e=>{
         //   return {   
         //       original:urlImage+e.image,

@@ -87,8 +87,8 @@ class EditArticle extends Component {
       this.setState({ data });
       console.log("Data : ", data);
       let images = []
-      // const urlImage = "http://127.0.0.1:3001/"
-      const urlImage = "http://167.71.193.2:3001/"
+      // const urlImage = "http://127.0.0.1:3013/"
+      const urlImage = "https://www.chamnangroup.com/"
       
       data.dataImage.map(e => {
         let data = {
@@ -369,8 +369,8 @@ class EditArticle extends Component {
       this.setState({ data });
       console.log("DataImage : ", data);
       let images = []
-      const urlImage = "http://127.0.0.1:3001/"
-      // const urlImage = "http://167.71.193.2:3001/"
+      const urlImage = "http://127.0.0.1:3013/"
+      // const urlImage = "https://www.chamnangroup.com/"
       data.dataImage.map(e => {
         let data = {
           id: e.id,
@@ -434,7 +434,7 @@ class EditArticle extends Component {
       },
     };
     const { previewVisible, previewImage, fileList,fileListImage } = this.state;
-    const urlImage = "http://167.71.193.2:3001/"
+    const urlImage = "https://www.chamnangroup.com/"
     const uploadButton = (
       <div>
         <Icon type="plus" />

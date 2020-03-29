@@ -29,8 +29,8 @@ export default class Article extends Component {
         this.setState({ data });
         console.log("Data : ", data);
         let images = []
-        // const urlImage = "http://127.0.0.1:3001/"
-        const urlImage = "http://167.71.193.2:3001/"
+        // const urlImage = "http://127.0.0.1:3013/"
+        const urlImage = "https://www.chamnangroup.com/"
         data.dataImage.map(e => {
 
           let data = {
@@ -48,8 +48,8 @@ export default class Article extends Component {
     })
   }
   render() {
-    // const urlImage = "http://127.0.0.1:3001/"
-    const urlImage = "http://167.71.193.2:3001/"
+    // const urlImage = "http://127.0.0.1:3013/"
+    const urlImage = "https://www.chamnangroup.com/"
     return (
       <Container className="pt-5 pb-5">
         <Row>

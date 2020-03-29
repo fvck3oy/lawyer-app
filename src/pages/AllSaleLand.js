@@ -128,8 +128,8 @@ export default class AllSaleLand extends Component {
     }
   }
   render() {
-    // const urlImage = "http://127.0.0.1:3001/"
-    const urlImage = "http://167.71.193.2:3001/"
+    // const urlImage = "http://127.0.0.1:3013/"
+    const urlImage = "https://www.chamnangroup.com/"
     const urlSaleLand = "saleLand/"
 
 

@@ -340,7 +340,7 @@ class CreateSaleLands extends Component {
     };
     const { previewVisible, previewImage, fileList } = this.state;
     const { previewVisible2, previewImage2, fileList2 } = this.state;
-    const urlImage = "http://167.71.193.2:3001/"
+    const urlImage = "https://www.chamnangroup.com/"
     const uploadButton = (
       <div>
         <Icon type="plus" />
