@@ -6,6 +6,7 @@ import url from '../url_config'
 import { Link } from 'react-router-dom'
 import './AllArticle.css'
 import Moment from 'react-moment'
+import { Translation } from 'react-i18next';
 const { Meta } = Card;
 const { Option } = Select;
 export default class AllArticle extends Component {
@@ -96,23 +97,23 @@ export default class AllArticle extends Component {
 
     const urlImage = "https://www.chamnangroup.com/"
     const urlArticle = "article/"
-    return (
+    return (<Translation>{t=>
       <Container className="">
         <Row>
           {/* <Col lg={{ size: 8, offset: 2 }} md={{ size: 10, offset: 1 }} sm={{ size:12}}> */}
           <Col md={12}>
             <div className="p-5">
-              <h3>ข่าว / บทความ / กิจกรรม ({this.state.text})</h3>
+              <h3>{t('all_article_page.title')}</h3>
               <Row>
                 <Col md={12}>
                   <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
                     <div>
                       <Form >
                         <Select onSelect={(value, event) => this.filter(value, event)} placeholder="กรุณาเลือกประเภทของบทความ !" defaultValue={0}>
-                          <Option value={0}>ทั้งหมด</Option>
-                          <Option value={1}>ข่าว</Option>
-                          <Option value={2}>บทความ</Option>
-                          <Option value={3}>กิจกรรม</Option>
+                          <Option value={0}>{t('all_article_page.all')}</Option>
+                          <Option value={1}>{t('all_article_page.news')}</Option>
+                          <Option value={2}>{t('all_article_page.article')}</Option>
+                          <Option value={3}>{t('all_article_page.activity')}</Option>
                         </Select>
                       </Form>
                     </div>
@@ -170,7 +171,8 @@ export default class AllArticle extends Component {
 
           </Col>
         </Row>
-      </Container>
+      </Container>}
+      </Translation>
     )
   }
 }

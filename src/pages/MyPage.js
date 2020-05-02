@@ -6,6 +6,7 @@ import url from '../url_config'
 import auth from "../service/index"
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import { Translation } from 'react-i18next';
 const { Meta } = Card;
 const { Search } = Input;
 const { Text } = Typography;
@@ -225,11 +226,12 @@ class MyPage extends Component {
       </Select>,
     );
     return (
+      <Translation>{t=>
       <Container style={{}}>
         <Row>
           <Col>
             <div className="mt-5 mb-3">
-              <h3>ยินดีต้อนรับคุณ {this.state.profile.firstname} {this.state.profile.lastname} <Icon type="form" onClick={this.showModal} style={{ color: 'red' }} /></h3></div>
+              <h3>{t('my_page.welcome')} {this.state.profile.firstname} {this.state.profile.lastname} <Icon type="form" onClick={this.showModal} style={{ color: 'red' }} /></h3></div>
             <div>
               <Modal
                 title="Edit Profile"
@@ -295,7 +297,7 @@ class MyPage extends Component {
           </Col>
         </Row>
         <div className="p-5">
-          <h4>โพสต​์การขายที่ดินของคุณ</h4>
+          <h4>{t('my_page.aboutYou')}</h4>
           <Row >
             {
               this.state.check && this.state.dataLand.map(e => {
@@ -340,8 +342,8 @@ class MyPage extends Component {
             {
               !this.state.check && <div>
                 <Col md={12} >
-                  <div className="mt-2 mb-2" style={{ height: '600px', }}><h6>คุณยังไม่มีโพสต์การขาย</h6>
-                    <Link to='/createLand'><Icon type="plus-circle" /> คลิกเพื่อสร้าง
+                  <div className="mt-2 mb-2" style={{ height: '600px', }}><h6>{t('my_page.empty')}</h6>
+                    <Link to='/createLand'><Icon type="plus-circle" /> {t('my_page.click')}
                     </Link>
                   </div>
                 </Col>
@@ -349,7 +351,8 @@ class MyPage extends Component {
             }
           </Row>
         </div>
-      </Container>
+      </Container>}
+      </Translation>
     )
   }
 }

@@ -4,6 +4,7 @@ import news from '../../images/news.png'
 import activity from '../../images/activity.png'
 import article from '../../images/article.png'
 import { Link } from 'react-router-dom'
+import { Translation } from 'react-i18next';
 export default class CardNews extends Component {
     state = {
         loading: false
@@ -11,6 +12,7 @@ export default class CardNews extends Component {
     render() {
         const { loading } = this.state;
         return (
+            <Translation>{t=>
             <Container className="pb-5">
                 <Row>
                     <Col md={4} sm={4} className="mb-2 mt-2">
@@ -18,7 +20,7 @@ export default class CardNews extends Component {
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>
-                                    <CardTitle>ข่าว</CardTitle>
+                                    <CardTitle>{t('home_page.news')}</CardTitle>
                                     {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                     {/* <CardText>Some quick example text.</CardText> */}
                                 </CardBody>
@@ -31,7 +33,7 @@ export default class CardNews extends Component {
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>
-                                    <CardTitle>บทความ</CardTitle>
+                                    <CardTitle>{t('home_page.article')}</CardTitle>
                                     {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                     {/* <CardText>Some quick example text.</CardText> */}
                                 </CardBody>
@@ -44,7 +46,7 @@ export default class CardNews extends Component {
                             <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                 <CardImg top src={news} alt="news" />
                                 <CardBody>
-                                    <CardTitle>กิจกรรม</CardTitle>
+                                    <CardTitle>{t('home_page.activity')}</CardTitle>
                                     {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                     {/* <CardText>Some quick example text.</CardText> */}
                                 </CardBody>
@@ -52,7 +54,8 @@ export default class CardNews extends Component {
                         </Link>
                     </Col>
                 </Row>
-            </Container>
+            </Container>}
+            </Translation>
         )
     }
 }

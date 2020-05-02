@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap'
 import './Login.css'
 import axios from 'axios'
 import url from '../url_config'
+import { Translation } from 'react-i18next';
 class Forgotpass extends Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -54,10 +55,11 @@ class Forgotpass extends Component {
       },
     };
     return (
+      <Translation>{t=>
       <Container style={{ height: "100vh" }} >
         <Row className="p-5" style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
           <Col>
-            <div className="mt-5 mb-5" style={{ textAlign: 'center' }}><h5>Please input your E-mail for reset password !</h5></div>
+            <div className="mt-5 mb-5" style={{ textAlign: 'center' }}><h5>{t('forgot_page.please')}</h5></div>
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
               <Form.Item>
                 {getFieldDecorator('email', {
@@ -77,14 +79,15 @@ class Forgotpass extends Component {
 
               <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                  Sent
+                {t('forgot_page.sent')}
                 </Button>
-                Or <a href="/login">login !</a>
+                {t('forgot_page.or')} <a href="/login">{t('forgot_page.login')} !</a>
               </Form.Item>
             </Form>
           </Col>
         </Row>
-      </Container>
+      </Container>}
+      </Translation>
     )
   }
 }

@@ -10,6 +10,7 @@ import image2 from '../images/image2.png'
 import image3 from '../images/image3.png'
 import image4 from '../images/image4.png'
 
+import { Translation } from 'react-i18next';
 
 import { Container, Row, Col } from 'reactstrap'
 import './Home.css'
@@ -21,7 +22,7 @@ import './Home.css'
 //     }
 // };
 
-export default class Home extends Component {
+class Home extends Component {
     // constructor(props) {
     //     super(props);
     //     this.state = {
@@ -74,6 +75,7 @@ export default class Home extends Component {
 
     render() {
         return (
+            <Translation>{t=>
             <div>
                 {/* <Header /> */}
                 <Banner />
@@ -94,30 +96,31 @@ export default class Home extends Component {
                         </Col>
                     </Row> */}
                     <Row className="mt-5">
+                    
                         <Col md={3} sm={12}>
                             <div className="home-menu mt-2 mb-2">
                                 <a href="http://deka.supremecourt.or.th/" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mb-2">
                                         <img src={image1} className="mr-2 menu-image" alt="image1" />
-                                        ฎีกา
+                                        {t('home_page.menu.petition')}
                                 </div>
                                 </a>
 
                                 <a href="http://www.led.go.th" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2 mb-2">
-                                        <img src={image2} className="mr-2 menu-image" alt="image2" />กรมบังคับคดี
+                                        <img src={image2} className="mr-2 menu-image" alt="image2" />{t('home_page.menu.legalExecutionDepartment')}
                                     </div>
                                 </a>
 
                                 <a href="https://www.dol.go.th" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2 mb-2">
-                                        <img src={image3} className="mr-2 menu-image" alt="image3" />กรมที่ดิน
+                                        <img src={image3} className="mr-2 menu-image" alt="image3" />{t('home_page.menu.departmentOfLands')}
                                     </div>
                                 </a>
 
                                 <a href="https://www.dbd.go.th" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2">
-                                        <img src={image4} className="menu-image" alt="image4" />   กรมพัฒนาธุรกิจการค้า
+                                        <img src={image4} className="menu-image" alt="image4" />{t('home_page.menu.departmentOfBusinessDevelopment')}
                                 </div>
                                 </a>
                             </div>
@@ -128,13 +131,15 @@ export default class Home extends Component {
                     </Row>
 
                     <Row>
-                        <Col><div style={{ textAlign:'center', fontSize:'36px', padding:'20px'}}>ประกาศขาย</div></Col>
+                        <Col><div style={{ textAlign:'center', fontSize:'36px', padding:'20px'}}>{t('home_page.selling')}</div></Col>
                     </Row>
                     <Row>
                         <CardLands />
                     </Row>
                 </Container>
-            </div >
+            </div >}
+            </Translation>
         )
     }
 }
+export default (Home);

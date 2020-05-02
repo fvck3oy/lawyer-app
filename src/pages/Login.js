@@ -7,7 +7,7 @@ import url from '../url_config'
 import auth from '../service/index'
 import { useAuth0 } from "../react-auth0-spa";
 import { Router, Switch, Route, withRouter } from 'react-router-dom'
-
+import { Translation } from 'react-i18next';
 import FacebookLogin from 'react-facebook-login';
 
 // const LoginFB = () => {
@@ -102,11 +102,12 @@ class Login extends Component {
     };
 
     return (
+      <Translation>{t=>
       <Container style={{ height: "100vh" }} >
         <Row className="p-5" style={{ height: '100%', alignItems: 'center', justifyContent: 'center' }}>
           <Col>
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
-              <div style={{ textAlign: 'center', fontSize: '48px', padding: '10px' }}>เข้าสู่ระบบ</div>
+              <div style={{ textAlign: 'center', fontSize: '48px', padding: '10px' }}>{t('login_page.login')}</div>
               <Form.Item>
                 {getFieldDecorator('email', {
                   rules: [
@@ -139,10 +140,10 @@ class Login extends Component {
                   initialValue: true,
                 })(<Checkbox>Remember me</Checkbox>)}
                 <a className="login-form-forgot" href="/forgotpass">
-                  Forgot password
+                {t('login_page.forgot')}
                 </a>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                  Log in
+                {t('login_page.login')}
                 </Button>
 
                 {/* <LoginFB/> */}
@@ -163,7 +164,7 @@ class Login extends Component {
 
                 />
                 </div>
-                Or <a href="/register">register now!</a>
+                {t('login_page.or')} <a href="/register">{t('login_page.register')} !</a>
               </Form.Item>
 
             </Form>
@@ -196,6 +197,8 @@ class Login extends Component {
         {/* </Col>
         </Row> */}
       </Container>
+      }
+      </Translation>
     )
   }
 }

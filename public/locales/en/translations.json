@@ -1,0 +1,171 @@
+{
+  "title": "Welcome to react using react-i18next",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "inAbout": {
+      "vision": "Vision",
+      "structure": "Structure",
+      "lawAndAsset": "Law and Asset Co.,Ltd",
+      "chamnan": "Chamnan International Law Co.,Ltd",
+      "chamnanBusiness": "Chamnan Business Group (Thailand) Co.,Ltd"
+    },
+    "services": "Services and Advice",
+    "articles": "Article/News",
+    "landTrading": "Land Trading",
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "LogOut"
+  },
+  "home_page": {
+    "selling": "Selling",
+    "menu": {
+      "petition": "Petition",
+      "legalExecutionDepartment": "Legal Execution Department",
+      "departmentOfLands": "Department of Lands",
+      "departmentOfBusinessDevelopment": "Department of Business Development"
+    },
+    "news": "News",
+    "article": "Article",
+    "activity": "Activity"
+  },
+  "login_page": {
+    "login": "Login",
+    "forgot": "Forgot password",
+    "or": "Or",
+    "register": "Register"
+  },
+  "register_page": {
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "register": "Register"
+  },
+  "forgot_page": {
+    "please": "Please input your E-mail for reset password !",
+    "or": "Or",
+    "login": "Login",
+    "sent": "Sent"
+  },
+  "vision_page": {
+    "philosophy": "Philosophy",
+    "ar1": "The lives of humans are living the clockwise direction. Under the subconscious mind of each person, some people call 'life clock'. There must be greed, anger and delusion occurring within that society. Is the problems and obstacles of human life in society We have foreseen the problems and obstacles in society and we are a part of society. The organization's business services in solving social problems and obstacles must not cause or aggravate the problems and Additional obstacles to those people mentioned again If we do like that again Naturally Adding various problems to fellow human beings in society And it is considered that we, who are lawyers, are creating problems for society as well.",
+    "vision": "Vision",
+    "ar2": "As a service organization, it conducts business administration, provides consultancy, help and advice so that clients can see solutions to financial problems, liabilities, and property management under legal fair borders. And accurate in the spirit of the law And being sincere in the service of the organization.",
+    "goals": "Goals and missions",
+    "ar3": "The organization aims to provide services to clients By suggesting the best solution to various people Whether it's creditors or debtors To prevent problems that may occur in the future To help heal problems that have already occurred Giving creditors and debtors the opportunity to live a normal social life One prevention and solution Is one of the happiness of the organization We will develop and lead the organization with the mission to service goals. With personnel that must learn continuously In order to have knowledge and expertise In order to build trust and satisfaction with clients Which can check Periodic Performance Report With the strictness of every service process With fast, accurate Under the morality and honesty of the lawyer profession."
+  },
+  "structure_page": {
+    "structure": "Structure",
+    "chamnan": "Chamnan International Law Co.,Ltd",
+    "d1": "Providing services about civil and criminal cases for general customers, draft agreements with various department.",
+    "chamnanBusiness": "Chamnan Business Group (Thailand) Co.,Ltd",
+    "d2": "Providing business consulting services, organization system, management of organizations and real estate brokers.",
+    "lawAndAsset": "Law and Asset Co.,Ltd",
+    "d3": "Providing legal services which related to financial institutions and not a financial institution (non-bank)."
+  },
+  "law_page": {
+    "lawAndAsset": "Law and Asset Co.,Ltd",
+    "d1": "Law and Asset Co.,Ltd has the objective for providing legal services from request notification, prosecution in court to enforcement. The target group are financial institutions in the category of banks and non-bank. At present, we have expanded branches to support employers' services in all regions of Thailand and also aims to expand the service area for more covering in the future",
+    "mission": "Mission",
+    "d2": "The company has a law management system that has been specifically created by backing up data on AWS Cloud Storage, which is considered as data storage or database on a highly secure network and enable operations from all locations which can access to the network for respond in real time. There is also Line notify system to alert you before the scheduled appointment to the responsible for case lawyers and senior management to facilitate, prevent damage and can also check the quality of the operator",
+    "equipment": "Equipment and technology",
+    "d3": "Developing ourselves for keep up with international standards in the country and sincerity in providing services to the employer are the things that company attaches great importance is a guarantee that the organization has the potential to manage to deal with various emergencies that may occur for reduce the risk for contractors who trust our organization, build confidence to a stable and sustainable growth status and we promise that we will invent and develop ourselves to support the service continuously until endless",
+    "vision": "Vision"
+  },
+  "chamnan_page": {
+    "chamnan": "Chamnan International law Co.,LTD",
+    "p1": "Chamnan International law Co., LTD is the center of lawyers who have knowledge and experience person about the business and financial institution. Most of employees have been employees and lawyers at financial institutions. In addition, many lawyers have been consultants in various private companies, causing them encounter obstacles and problem of financial institution cases including legal work under concepts philosophy of the company as follows",
+    "p1-1": "Focus on use legal and economic principles together with correctly and honestly to create and bring peace to society",
+    "p1-2": "Focus on the professional standards of lawyers by acting as a lawyer with responsibility, full intelligence, knowledge, ability and expertise to protect the interests of the parties under fairness",
+    "p1-3": "Focus to creative work with consideration to the principles of morality, ethics, humanity and peace",
+    "p1-4": "Provide services that will respond the needs of customers with honesty, convenience, speed and saving",
+    "p1-5": "Focus on teamwork for getting accurate work, fast and highest standards",
+    "service": "Service extent",
+    "s1": "Legal action works",
+    "s1-1": "Legal action works including civil case, criminal case, labor case, bankruptcy case, intellectual property court case and all legal proceedings, etc. Works extent starting from case preparation, issue letter of claim before prosecution, making plan, placing crime scene, prepare documentary evidence, person witness, draft lawsuits and submit lawsuits to Court of First Instance until have judgment or deposition",
+    "s1-2": "Submit a defense case is a defense in the case of being defendant in civil case, criminal case, labor case and other case, etc.",
+    "s1-3": "Supplication or submit supplicated or petition defence are service from legal issues litigation action works or execution, judgment or deposition. In case of must use the supplicated or petition right or have to submit testimony for defence supplication or petition of other litigant or judgment debtor etc.",
+    "s1-4": "Legal execution in civil case, labor case, intellectual asset and international trade case are necessary to have a judgment or deposition execution. The office will provide judgment execution service or submit debt repayment in bankruptcy case until judgment creditor receives full debt payment and also include prosecution in the enforcement process such as request the average debt, claiming the rights, request for asset intervention, requesting repayment of preferential right debt along with resolving disputes arising from asset intervention and claiming the rights",
+    "s2": "Contract and form drafting works",
+    "s2-1": "Contracts drafting used to be bound by legal conditions including the service that define the pattern and conditions to be able bound parties to enforce the law along with the interpretation of the purpose, advantages and disadvantage of contract before considering use",
+    "s3": "Legal works",
+    "s3-1": "Registration all kind of legal acts, change ownership, contacting government agencies such as Department of Lands, Ministry of Commerce and Ministry of Industry",
+    "s4": "Reorganization plan of bankrupt debtor law works",
+    "s4-1": "Including the process of considering the reorganization of the debtor's business according to the Bankruptcy Act section 90/1 to section 90/90 according to the bankruptcy law 901 to 90 criteria.",
+    "s5": "Services for debt collection and debt composition",
+    "s5-1": "Including procedure of making accelerated debt plan, Debt collection Negotiating debt collection, compound debt and making debt restructuring plan, which group of debtors are still able to pay a debts and do not need to use harsh measures to prosecute, etc.",
+    "s6": "Person and asset Investigation",
+    "s6-1": "Including person investigation according the criminal law or ascertain lost person or investigate of asset. For the benefit of expedited debt collection or execution of a judgment or deposition, etc."
+  },
+  "chamnan_business_page": {
+    "chamnanBusiness": "Chamnan Business Group (Thailand) Co.,Ltd",
+    "p1": "Formerly known as TWS Law and Real Estate formerly intended to provide legal and real estate services only. But later changed the management team and concepts to focus on providing more comprehensive business services with hope that the organization can continue to grow to the international level",
+    "p2": "Now Chamnan Business Group (Thailand) Co., Ltd. has expanded its business for respond the needs of real concepts. and classified according expertise in the name of Law and Asset Co.,Ltd were providing legal services related to financial institutions and non-bank. Chamnan International Law Co., Ltd. provides legal services to general customers with Chamana Business Group (Thailand) Limited having expertise and will provide services business consulting, organization system, organization management which covers legal, financial, accounting or investment planning for every organization can manage business correctly according pattern and also providing complete real estate services as well"
+  },
+  "service_page": {
+    "service": "Legal consulting service",
+    "t1": "Legal consulting service",
+    "p1": "Legal consulting services for civil and commercial law，securities and exchange law, international investment and business law, intellectual property law, tax law, customs tariff law, bankruptcy law, construction law, condominium law, land law, expropriation law, labor law, arbitration, and others for organization, company, partnership or general person both Thai and foreigners as follows",
+    "p1-1": "Provide guidance to the management team, person with authority in the organization, company, partnership, or general person",
+    "p1-2": "Provide guidance to legal departments in the organization, company, partnership or general person",
+    "p1-3": "Providing guidance in specialized field of business",
+    "p1-4": "Provide guidance of legal proceedings in each step in investigative officers, court and enforcement prosecutors",
+    "t2": "Inferior quality debt management for debt collection service",
+    "p2": "Providing debt collection service by phone. This method is the first step in the enforcement process by debtor.Will have the reduction of principal and interest right and have better rights than the debtor was prosecute and enforced in court. In this legal process, result in debtors who have outstanding debt with the employer can pay the debt to employer more quickly and employer can reduce the process of prosecution and save expense and a lot of court fees",
+    "t3": "Permanent lawyer and defence lawyer service",
+    "p3": "Being a lawyer for the organization, company, partnership, or general person and whole kingdom being a defence lawyer service as follows",
+    "p3-1": "Being a consultant lawyer in organization, company, partnership, or general person",
+    "p3-2": "Being a specialized case lawyer service that have been assigned by the management team in an organization, company, partnership or general person",
+    "p3-3": "Being a lawyer in business service according the objectives of organization, company, partnership or general person",
+    "p3-4": "Have been authorized by bank and financial institutions to inform petition, following the debt collection, litigation and enforcement for banks and general financial institutions",
+    "t4": "Other legal services",
+    "p4-1": "Negotiation for debt restructuring, make a compromise agreement, making scope assigned in a commercial enterprise contract or coordinate with government agencies, state enterprises, juristic persons or individuals for request permission to operate in activities of the organization, company, partnership or general person. For example, accepting operational authority, claiming the rights, dispute rights and following up the benefits of the government organization, state enterprise, company, partnership or general person",
+    "p4-2": "Right and legal acts registration service that have done to the bank, financial institution and Asset Management Company",
+    "p4-3": "Registration and dissolution juristic person service",
+    "p4-4": "Contract drafting and checking services both within and outside country",
+    "p4-5": "Legal planning service for organization, company, partnership, or general person",
+    "p4-6": "Being an authorized representative of the bank. Financial institution, Asset Management Company, organization, company, partnership, or general person service that were assigned specific or all",
+    "p4-7": "Request and renewal for foreigners license service",
+    "p4-8": "Request passport and extend visa for every country service",
+    "p4-9": "Others",
+    "t5": "Asset management, financial, commerce business and debt restructuring services",
+    "p5-1": "Consulting advice service on solving financial problems, commercial business, debt restructuring, business restructuring including the management team, who have knowledge and expertise in conducting business and was a teacher teaching in real estate and in part there is a working in the real estate brokers association. In this part, company will provide advice to clients, coordinate in trades negotiations and including being an agent in buying and selling real estate or shares in movable property and real estate, coordinate debt negotiation for negotiating with creditors, provide funds for business of the debtor, give advice to the plan maker, the plan administrator in the preparation of the rehabilitation plan and the management of the rehabilitation plan. Including the implementation of processes in the step of rehabilitation from the beginning to the end of the process. It can be seen that the management team and the consultants are well known of the way of debt reconciliation and can advise debtors to find ways to pay off debt with financial institutions for customers who come to request service which can solve problems in managing their financial assets and legal problems successfully accomplished with fairness in society"
+  },
+  "all_article_page": {
+    "news": "News",
+    "article": "Article",
+    "activity": "Activity",
+    "all":"All",
+    "title":"News / Articles / Activities"
+  },
+  "all_sale_land_page":{
+    "title":"Land for sale (total)",
+    "sale":"Selling",
+    "searchByPrice":"Search by price range",
+    "search":"Search",
+    "searchAll":"Search All",
+    "create":"Create",
+    "check":"Please check the price range."
+  },
+  "my_page":{
+    "welcome":"Welcome",
+    "aboutYou":"About you",
+    "empty":"Empty",
+    "click":"Click for create"
+  },
+  "create_land_page":{
+    "preTitle":"Create your sale land",
+    "title":"title",
+    "detail":"detail",
+    "price":"price",
+    "area":"area",
+    "chooseCover":"Please choose your cover image",
+    "chooseDetail":"Please select a detail picture",
+    "choosePoint":"Please choose the desired point",
+    "create":"Create"
+  }
+}

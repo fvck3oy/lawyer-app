@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {  Router, Switch, Route, withRouter } from 'react-router-dom'
+import { Router, Switch, Route, withRouter } from 'react-router-dom'
 
 import Home from './pages/Home'
 import SaleLand from './pages/SaleLand'
@@ -27,12 +27,12 @@ import AboutCompanyVision from './pages/AboutCompanyVision';
 import AboutCompanyStructure from './pages/AboutCompanyStructure';
 import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
 import AboutCompanyChamnan from './pages/AboutCompanyChamnan';
+import AboutCompanyChamnanBusiness from './pages/AboutCompanyChamnanBusiness';
 
 
 import Admin from './pages/Admin';
 import Consultant from './pages/Consultant';
 import CreateArticle from './pages/CreateArticle';
-
 
 export default class App extends Component {
   state = {
@@ -59,6 +59,7 @@ export default class App extends Component {
           <Route exact path="/aboutCompany/structure" component={withRouter(AboutCompanyStructure)} />
           <Route exact path="/aboutCompany/lawAndAsset" component={withRouter(AboutCompanyLawAndAsset)} />
           <Route exact path="/aboutCompany/chamnan" component={withRouter(AboutCompanyChamnan)} />
+          <Route exact path="/aboutCompany/chamnanBusiness" component={withRouter(AboutCompanyChamnanBusiness)} />
           <Route exact path="/consultant" component={withRouter(Consultant)} />
 
           <Route exact path="/allArticle" component={withRouter(AllArticle)} />
@@ -75,7 +76,7 @@ export default class App extends Component {
 
           <Route exact path="/*" component={withRouter(Error404)} />
 
-          <Route exact path="/test" component={withRouter(TestMap)} />
+          {/* <Route exact path="/test" component={withRouter(TestMap)} /> */}
         </Switch>
         <Footer />
       </Router>

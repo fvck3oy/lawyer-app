@@ -17,6 +17,10 @@ import logo from '../../images/logo.jpg'
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
 import auth from "../../service/index"
+
+import i18n from '../../i18n'
+import { Translation } from 'react-i18next';
+
 const LoginFB = () => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
     return (
@@ -161,38 +165,42 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div>
-                <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
-                    <NavbarBrand href="/" style={{ color: '#fff' }}><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+            <Translation>{t =>
+                <div>
+                    <Navbar expand="md" style={{ backgroundColor: '#f90' }} dark>
+                        <NavbarBrand href="/" style={{ color: '#fff' }}><img src={logo} className="img-fluid mr-3" style={{ maxWidth: '50px' }} alt="logo" />ChamnanGroup</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
 
-                            <NavItem>
-                                <NavLink href="/" className="nav-color">หน้าแรก</NavLink>
-                            </NavItem>
+                                <NavItem>
+                                    <NavLink href="/" className="nav-color">{t('nav.home')}</NavLink>
+                                </NavItem>
 
-                            <Dropdown nav inNavbar onMouseOver={this.onMouseEnter1} onMouseLeave={this.onMouseLeave1} isOpen={this.state.dropdownOpen1} toggle={this.toggle1}>
-                                <DropdownToggle nav className="nav-color">
-                                    เกี่ยวกับองค์กร
+                                <Dropdown nav inNavbar onMouseOver={this.onMouseEnter1} onMouseLeave={this.onMouseLeave1} isOpen={this.state.dropdownOpen1} toggle={this.toggle1}>
+                                    <DropdownToggle nav className="nav-color">
+                                        {t('nav.about')}
                                     </DropdownToggle>
-                                <DropdownMenu right className="">
-                                    <DropdownItem href="/aboutCompany/vision">
-                                        วิสัยทัศน์
+                                    <DropdownMenu right className="">
+                                        <DropdownItem href="/aboutCompany/vision">
+                                        {t('nav.inAbout.vision')}
                                     </DropdownItem>
-                                    <DropdownItem href="/aboutCompany/structure">
-                                        โครงสร้างองค์กร
+                                        <DropdownItem href="/aboutCompany/structure">
+                                        {t('nav.inAbout.structure')}
                                     </DropdownItem>
-                                    <DropdownItem href="/aboutCompany/lawAndAsset">
-                                        บริษัทลอว์ แอนด์ แอสเซท จำกัด
+                                        <DropdownItem href="/aboutCompany/lawAndAsset">
+                                        {t('nav.inAbout.lawAndAsset')}
                                     </DropdownItem>
-                                    <DropdownItem href="/aboutCompany/chamnan">
-                                        บริษัท ชำนาญ อินเตอร์เนชั่นแนล ลอว์  จำกัด
+                                        <DropdownItem href="/aboutCompany/chamnan">
+                                        {t('nav.inAbout.chamnan')}
                                     </DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                                        <DropdownItem href="/aboutCompany/chamnanBusiness">
+                                        {t('nav.inAbout.chamnanBusiness')}
+                                    </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
 
-                            {/* <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
+                                {/* <Dropdown nav inNavbar onMouseOver={this.onMouseEnter2} onMouseLeave={this.onMouseLeave2} isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
                                 <DropdownToggle nav className="nav-color">
                                     ปรึกษา
                                     </DropdownToggle>
@@ -205,48 +213,54 @@ export default class Header extends Component {
                                         </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown> */}
-                            <NavItem>
-                                <NavLink href="/consultant" className="nav-color">ให้บริการและคำปรึกษา</NavLink>
-                            </NavItem>
+                                <NavItem>
+                                    <NavLink href="/consultant" className="nav-color">{t('nav.services')}</NavLink>
+                                </NavItem>
 
-                            <NavItem>
-                                <NavLink href="/allArticle" className="nav-color">บทความ/ข่าว</NavLink>
-                            </NavItem>
+                                <NavItem>
+                                    <NavLink href="/allArticle" className="nav-color">{t('nav.articles')}</NavLink>
+                                </NavItem>
 
-                            <NavItem>
-                                <NavLink href="/allSaleLand" className="nav-color">ขายที่ดิน</NavLink>
-                            </NavItem>
-                            {this.state.user &&
-                                (<NavItem>
-                                    <NavLink className="nav-color" href="/myPage">สวัสดีคุณ “{this.state.user}”</NavLink>
-                                </NavItem>)}
-                            {this.state.user && this.state.userRole === 'admin' &&
-                                (<NavItem>
-                                    <NavLink className="nav-color" href="/admin">ADMIN</NavLink>
-                                </NavItem>)}
-                            <NavItem>
-                                {/* <NavLink href="/login">Login</NavLink> */}
-                                
+                                <NavItem>
+                                    <NavLink href="/allSaleLand" className="nav-color">{t('nav.landTrading')}</NavLink>
+                                </NavItem>
+                                {this.state.user &&
+                                    (<NavItem>
+                                        <NavLink className="nav-color" href="/myPage">{t('nav.welcome')} “{this.state.user}”</NavLink>
+                                    </NavItem>)}
+                                {this.state.user && this.state.userRole === 'admin' &&
+                                    (<NavItem>
+                                        <NavLink className="nav-color" href="/admin">ADMIN</NavLink>
+                                    </NavItem>)}
+                                <NavItem>
+                                    {/* <NavLink href="/login">Login</NavLink> */}
+
                                     {/* <LoginFB/> */}
-                                {/* {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
+                                    {/* {this.state.user && <NavLink href="/login" onClick={() => logout()}>LogOut</NavLink>} */}
 
-                                {/* {!isAuthenticated && (
+                                    {/* {!isAuthenticated && (
                                     <NavLink href="/login">Login</NavLink>
                                 )} */}
 
-                                {/* {this.state.user && isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+                                    {/* {this.state.user && isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
 
-                                {!this.state.user && (
-                                    <NavLink className="nav-color" href="/login">Login</NavLink>
-                                )}
-                                {this.state.user && (
-                                    <NavLink className="nav-color" href="/" onClick={this.logOut}>LogOut</NavLink>
-                                )}
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+                                    {!this.state.user && (
+                                        <NavLink className="nav-color" href="/login">{t('nav.login')} </NavLink>
+                                    )}
+                                    {this.state.user && (
+                                        <NavLink className="nav-color" href="/" onClick={this.logOut}>{t('nav.logout')} </NavLink>
+                                    )}
+                                </NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('th') }}>TH</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('en') }}>EN</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('cn') }}>CN</NavLink></NavItem>
+                            </Nav>
+                        </Collapse>
+
+                    </Navbar>
+                </div>
+            }
+            </Translation>
         )
     }
 }

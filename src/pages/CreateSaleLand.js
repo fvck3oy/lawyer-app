@@ -27,6 +27,7 @@ import auth from "../service/index"
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
 import { stateToHTML } from "draft-js-export-html";
 import './CreateSaleLand.css'
+import { Translation } from 'react-i18next';
 const styles = {
   editor: {
     border: '1px solid gray',
@@ -356,27 +357,28 @@ class CreateSaleLands extends Component {
     );
 
     return (
+      <Translation>{t=>
       <Container>
         <Row className="p-5">
           <Col>
-            <h1>สร้างการประกาศขายที่ดิน</h1>
+            <h1>{t('create_land_page.preTitle')}</h1>
             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
               <Form.Item
                 label={
                   <span>
-                    หัวข้อ&nbsp;
+                    {t('create_land_page.title')}&nbsp;
               </span>
                 }
               >
                 {getFieldDecorator('title', {
                   rules: [{ required: true, message: 'Please input your title!', whitespace: true }],
-                })(<Input placeholder="หัวข้อเกี่ยวกับการขาย" />)}
+                })(<Input placeholder={t('create_land_page.title')} />)}
               </Form.Item>
 
               <Form.Item
                 label={
                   <span>
-                    รายละเอียด&nbsp;
+                    {t('create_land_page.detail')}&nbsp;
               </span>
                 }
               >
@@ -402,19 +404,19 @@ class CreateSaleLands extends Component {
               <Form.Item
                 label={
                   <span>
-                    ราคา &nbsp;
+                    {t('create_land_page.price')} &nbsp;
               </span>
                 }
               >
                 {getFieldDecorator('price', {
                   rules: [{ required: true, message: 'Please input your price!!' }],
-                })(<InputNumber placeholder="ราคา" />)}
+                })(<InputNumber placeholder={t('create_land_page.price')} />)}
               </Form.Item>
 
               <Form.Item
                 label={
                   <span>
-                    พื้นที่&nbsp;
+                    {t('create_land_page.area')}&nbsp;
               </span>
                 }
               >
@@ -426,7 +428,7 @@ class CreateSaleLands extends Component {
               <Form.Item
                 label={
                   <span>
-                    กรุณาเลือกภาพหน้าปกของคุณ&nbsp;
+                    {t('create_land_page.chooseCover')}&nbsp;
               </span>
                 }
               >
@@ -455,7 +457,7 @@ class CreateSaleLands extends Component {
               <Form.Item
                 label={
                   <span>
-                    กรุณาเลือกภาพรายละเอียด&nbsp;
+                    {t('create_land_page.chooseDetail')}&nbsp;
               </span>
                 }
               >
@@ -485,7 +487,7 @@ class CreateSaleLands extends Component {
               <Form.Item
                 label={
                   <span>
-                    กรุณาเลือกจุดที่ต้องการ&nbsp;
+                    {t('create_land_page.choosePoint')}&nbsp;
               </span>
                 }
               >
@@ -501,14 +503,15 @@ class CreateSaleLands extends Component {
               </Form.Item>
               <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit">
-                  Create
+                  {t('create_land_page.create')}
                 </Button>
               </Form.Item>
 
             </Form>
           </Col>
         </Row>
-      </Container>
+      </Container>}
+      </Translation>
     );
   }
 }

@@ -9,6 +9,7 @@ import Iframe from 'react-iframe'
 
 import Moment from 'react-moment'
 import auth from "../service/index"
+import { Translation } from 'react-i18next';
 const { Meta } = Card;
 const { Search } = Input;
 const { Text } = Typography;
@@ -133,7 +134,7 @@ export default class AllSaleLand extends Component {
     const urlSaleLand = "saleLand/"
 
 
-    return (
+    return (<Translation>{t=>
       <Container className="">
         <Row>
           {/* <Col lg={{ size: 8, offset: 2 }} md={{ size: 10, offset: 1 }} sm={{ size:12}}> */}
@@ -143,7 +144,7 @@ export default class AllSaleLand extends Component {
               <Row>
                 <Col md={6}>
                   <div className="">
-                    <h3>ขายที่ดิน (ทั้งหมด)</h3>
+                    <h3>{t('all_sale_land_page.title')}</h3>
                   </div>
                 </Col>
                 <Col md={6}>
@@ -176,7 +177,7 @@ export default class AllSaleLand extends Component {
                       <Col md={12}>
                         <div className="p-4" style={{ backgroundColor: '#f90' }}>
                           <Form>
-                            <Label style={{ fontSize: '24px', color: '#fff' }}><Icon type="search" style={{ fontSize: '30px', marginRight: '10px' }} />ค้นหาตามช่วงราคา </Label>
+                            <Label style={{ fontSize: '24px', color: '#fff' }}><Icon type="search" style={{ fontSize: '30px', marginRight: '10px' }} />{t('all_sale_land_page.searchByPrice')} </Label>
                             <Row form>
                               <Col md={4}>
                                 <FormGroup>
@@ -190,20 +191,20 @@ export default class AllSaleLand extends Component {
                               </Col>
                               <Col md={4}>
                                 {((parseInt(this.state.start_price) <= parseInt(this.state.end_price)) && parseInt(this.state.end_price) >= parseInt(this.state.start_price)) && <FormGroup>
-                                  <Button onClick={this.searchPrice} outline="true" color="primary">ค้นหา</Button>
+                                  <Button onClick={this.searchPrice} outline="true" color="primary">{t('all_sale_land_page.search')}</Button>
                                 </FormGroup>}
 
                                 {(parseInt(this.state.end_price) < parseInt(this.state.start_price)) && <FormGroup>
-                                  <Button outline="true" disabled>ค้นหา</Button>
+                                  <Button outline="true" disabled>{t('all_sale_land_page.search')}</Button>
                                 </FormGroup>}
                               </Col>
 
                             </Row>
                             <FormGroup>
-                              <Button onClick={this.getFirst} className="mr-3" outline="true" color="sucess">ค้นหาทั้งหมด</Button>
+                              <Button onClick={this.getFirst} className="mr-3" outline="true" color="sucess">{t('all_sale_land_page.searchAll')}</Button>
 
 
-                              <Button outline="true" onClick={this.createLand} icon="check" color="primary">สร้างประกาศ</Button>
+                              <Button outline="true" onClick={this.createLand} icon="check" color="primary">{t('all_sale_land_page.create')}</Button>
 
                             </FormGroup>
                           </Form>
@@ -214,7 +215,7 @@ export default class AllSaleLand extends Component {
 
                     {((this.state.end_price < this.state.start_price)) && <Row>
                       {/* <Col><h5>ตั้งแต่ {this.formatNumber(this.state.start_price)} ถึง {this.formatNumber(this.state.end_price)} บาท</h5></Col> */}
-                      <Col><Text type="danger">กรุณาตรวจสอบช่วงของราคา</Text></Col>
+                      <Col><Text type="danger">{t('all_sale_land_page.check')}</Text></Col>
                     </Row>}
 
                   </div>
@@ -225,7 +226,7 @@ export default class AllSaleLand extends Component {
               <Row>
                 <Col>
                   <div style={{ textAlign: 'center' }} className="pt-4 pb-4">
-                    <h1>ประกาศ</h1>
+                    <h1>{t('all_sale_land_page.sale')}</h1>
                   </div>
                 </Col>
               </Row>
@@ -272,7 +273,8 @@ export default class AllSaleLand extends Component {
             </div>
           </Col>
         </Row>
-      </Container>
+      </Container>}
+      </Translation>
     )
   }
 }
