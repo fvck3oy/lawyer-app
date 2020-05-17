@@ -61,9 +61,9 @@ const AddMarker = compose(
 
         onPositionChanged: async () => {
           const position = refs.marker.getPosition();
-          console.log("Position : ", position.toString());
+          // console.log("Position : ", position.toString());
           const latlong = position.toString().replace('(', '').split(',');
-          console.log("LatLng : ", latlong);
+          // console.log("LatLng : ", latlong);
 
           const latitude = parseFloat(latlong[0]);
           const longitude = parseFloat(latlong[1]);
@@ -116,7 +116,7 @@ class EditSaleLand extends Component {
     this.setState({ editorState });
     this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent()) })
     this.setState({ detailEditor: stateToHTML(editorState.getCurrentContent()) })
-    console.log("State : ", this.state.detailEditor);
+    // console.log("State : ", this.state.detailEditor);
   }
   setEditor = (editor) => {
     this.editor = editor;
@@ -129,8 +129,8 @@ class EditSaleLand extends Component {
 
 
   setLatLng = async (lat, lng) => {
-    console.log('set Lat : ', lat);
-    console.log('set Lng : ', lng);
+    // console.log('set Lat : ', lat);
+    // console.log('set Lng : ', lng);
     await this.setState({ lat: parseFloat(lat) })
     await this.setState({ lng: parseFloat(lng) })
   }
@@ -143,8 +143,8 @@ class EditSaleLand extends Component {
         let userId = userDecoded.id
 
         if (!err) {
-          console.log('value Lat : ', this.state.lat);
-          console.log('value Lng : ', this.state.lng);
+          // console.log('value Lat : ', this.state.lat);
+          // console.log('value Lng : ', this.state.lng);
           values.id = this.props.match.params.id
           values.user = userId
           values.lat = this.state.lat
@@ -152,18 +152,18 @@ class EditSaleLand extends Component {
           values.detail = this.state.detailEditor
           // values.user_type = 'register'
 
-          console.log('Received values of form: ', values);
+          // console.log('Received values of form: ', values);
           await axios.put(`${url}/lands/edit`, values).then(res => {
             const { data } = res
-            console.log("Res => ", res.data);
+            // console.log("Res => ", res.data);
 
             // this.setState({ idLand: data })
             if (res.data) {
-              console.log('ok');
+              // console.log('ok');
               this.openNotificationWithIcon('success')
               this.props.history.push(`/myPage`)
             } else {
-              console.log('else');
+              // console.log('else');
               this.openNotificationWithIcon('error')
             }
           })
@@ -178,20 +178,20 @@ class EditSaleLand extends Component {
             })
           }
           else {
-            console.log("fileList : ", this.state.fileList)
+            // console.log("fileList : ", this.state.fileList)
             // alert("No Image")
           }
         }
       });
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
   };
   openNotificationWithIcon = (type) => {
-    console.log(type);
+    // console.log(type);
 
     if (type == 'success') {
       notification[type]({
@@ -237,9 +237,9 @@ class EditSaleLand extends Component {
       const { data } = res
       await this.setState({ data });
 
-      console.log("Data : ", this.state.data);
+      // console.log("Data : ", this.state.data);
       await this.setState({ username: this.state.data.dataUser })
-      console.log("Data : ", this.state.username);
+      // console.log("Data : ", this.state.username);
       // await this.setState({ lat: data.lat })
       // await this.setState({ lng: data.lng })
 
@@ -248,7 +248,7 @@ class EditSaleLand extends Component {
       if (this.state.username.id !== userId) {
         this.props.history.push(`/`)
       } else {
-        console.log("user correct");
+        // console.log("user correct");
 
       }
 
@@ -267,7 +267,7 @@ class EditSaleLand extends Component {
       })
       this.setState({ image: urlImage + data.image })
       this.setState({ images: images })
-      console.log("Images : ", this.state.images);
+      // console.log("Images : ", this.state.images);
 
       let editorState
       const detail = data.detail.split("\n").join("<br/>")
@@ -292,7 +292,7 @@ class EditSaleLand extends Component {
     axios.get(`${url}/lands/${this.props.match.params.id}`).then(res => {
       const { data } = res
       this.setState({ data });
-      console.log("DataImage : ", data);
+      // console.log("DataImage : ", data);
       let images = []
       // const urlImage = "http://127.0.0.1:3013/"
       const urlImage = "https://www.chamnangroup.com/"
@@ -309,7 +309,7 @@ class EditSaleLand extends Component {
   }
   handleUploadImage = ({ fileList }) => {
 
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileListImage: fileList });
 
   }
@@ -329,7 +329,7 @@ class EditSaleLand extends Component {
       })
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
@@ -351,7 +351,7 @@ class EditSaleLand extends Component {
 
   savePathImage = async (data) => {
     await axios.put(`${url}/images/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
       this.setState({ fileListImage: [] })
     }).then(
       await this.getImage
@@ -366,7 +366,7 @@ class EditSaleLand extends Component {
   };
 
   handleOkImage = async e => {
-    console.log(e);
+    // console.log(e);
     await this.handleSubmitImage(e)
     await this.setState({
       visible: false,
@@ -375,7 +375,7 @@ class EditSaleLand extends Component {
   };
 
   handleCancelImage = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -389,15 +389,15 @@ class EditSaleLand extends Component {
     });
   };
   removeImage = async (id) => {
-    console.log("id => ", id);
+    // console.log("id => ", id);
 
     await axios.delete(`${url}/images/delLand/${id}`).then(res => {
-      console.log("delete : ", res)
+      // console.log("delete : ", res)
       if (res.data) {
-        console.log('ok');
+        // console.log('ok');
         this.openNotificationWithIcon('success')
       } else {
-        console.log('else');
+        // console.log('else');
         this.openNotificationWithIcon('error')
       }
     }).then(
@@ -426,7 +426,7 @@ class EditSaleLand extends Component {
 
   savePath = async (data) => {
     await axios.put(`${url}/lands/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
     })
     // this.props.history.push(`/`)
   }
@@ -441,7 +441,7 @@ class EditSaleLand extends Component {
   };
 
   handleUpload = ({ fileList }) => {
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileList });
   }
   fix = (e) => {

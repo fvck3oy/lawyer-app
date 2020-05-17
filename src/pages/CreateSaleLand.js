@@ -54,9 +54,9 @@ const AddMarker = compose(
 
         onPositionChanged: async () => {
           const position = refs.marker.getPosition();
-          console.log("Position : ", position.toString());
+          // console.log("Position : ", position.toString());
           const latlong = position.toString().replace('(', '').split(',');
-          console.log("LatLng : ", latlong);
+          // console.log("LatLng : ", latlong);
 
           const latitude = parseFloat(latlong[0]);
           const longitude = parseFloat(latlong[1]);
@@ -108,7 +108,7 @@ class CreateSaleLands extends Component {
     this.setState({ editorState });
     this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent())})
     this.setState({ detailEditor : stateToHTML(editorState.getCurrentContent()) })
-    console.log("State : ", this.state.detailEditor);
+    // console.log("State : ", this.state.detailEditor);
   }
   setEditor = (editor) => {
     this.editor = editor;
@@ -119,8 +119,8 @@ class CreateSaleLands extends Component {
     }
   };
   setLatLng = async (lat, lng) => {
-    console.log('set Lat : ', lat);
-    console.log('set Lng : ', lng);
+    // console.log('set Lat : ', lat);
+    // console.log('set Lng : ', lng);
     await this.setState({ lat: lat })
     await this.setState({ lng: lng })
   }
@@ -135,15 +135,15 @@ class CreateSaleLands extends Component {
         let userId = userDecoded.id
 
         if (!err) {
-          console.log('value Lat : ', this.state.lat);
-          console.log('value Lng : ', this.state.lng);
+          // console.log('value Lat : ', this.state.lat);
+          // console.log('value Lng : ', this.state.lng);
           values.user = userId
           values.lat = this.state.lat
           values.lng = this.state.lng
           values.user_type = 'register'
           values.detail = this.state.detailEditor
 
-          console.log('Received values of form: ', values);
+          // console.log('Received values of form: ', values);
           await axios.post(`${url}/lands/create`, values).then(res => {
             const { data } = res
             this.setState({ idLand: data.id })
@@ -159,13 +159,13 @@ class CreateSaleLands extends Component {
             })
           }
           else {
-            console.log("fileList : ", this.state.fileList)
+            // console.log("fileList : ", this.state.fileList)
             alert("No Image")
           }
           if (this.state.fileList2.length > 0) {
 
             this.state.fileList2.forEach(e => {
-              console.log("e : ", e)
+              // console.log("e : ", e)
               this.upload2(e).then(res => {
                 const data = {
                   id: this.state.idLand,
@@ -177,7 +177,7 @@ class CreateSaleLands extends Component {
             })
           }
           else {
-            console.log("fileList2 : ", this.state.fileList2)
+            // console.log("fileList2 : ", this.state.fileList2)
             alert("No Image Detail")
           }
           this.props.history.push(`/myPage`)
@@ -185,7 +185,7 @@ class CreateSaleLands extends Component {
       });
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
@@ -265,13 +265,13 @@ class CreateSaleLands extends Component {
 
   savePath = async (data) => {
     await axios.put(`${url}/lands/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
     })
     // this.props.history.push(`/`)
   }
   savePath2 = async (data) => {
     await axios.put(`${url}/images/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
     })
     // this.props.history.push(`/`)
   }
@@ -296,14 +296,14 @@ class CreateSaleLands extends Component {
 
   handleUpload = ({ fileList }) => {
 
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileList });
 
   }
 
   handleUpload2 = ({ fileList }) => {
 
-    console.log('fileList2', fileList);
+    // console.log('fileList2', fileList);
     this.setState({ fileList2: fileList });
 
   }

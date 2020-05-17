@@ -85,7 +85,7 @@ class EditArticle extends Component {
     await axios.get(`${url}/blogs/${this.props.match.params.id}`).then(async res => {
       const { data } = res
       this.setState({ data });
-      console.log("Data : ", data);
+      // console.log("Data : ", data);
       let images = []
       // const urlImage = "http://127.0.0.1:3013/"
       const urlImage = "https://www.chamnangroup.com/"
@@ -97,9 +97,9 @@ class EditArticle extends Component {
         }
         images.push(data)
       })
-      console.log("new : ", images);
+      // console.log("new : ", images);
       this.setState({ images: images })
-      console.log("ImageData : ", this.state.images)
+      // console.log("ImageData : ", this.state.images)
       
       this.props.form.setFieldsValue({
         title: data.title,
@@ -114,7 +114,7 @@ class EditArticle extends Component {
        editorState = EditorState.createWithContent(contentState)
       editorState = EditorState.moveFocusToEnd(editorState)
       await this.setState({ editorState : editorState})
-      console.log("Editor State : ", this.state.editorState);
+      // console.log("Editor State : ", this.state.editorState);
       
     })
 
@@ -183,7 +183,7 @@ class EditArticle extends Component {
 
   handleUpload = ({ fileList }) => {
 
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileList });
 
   }
@@ -194,11 +194,11 @@ class EditArticle extends Component {
 
       this.props.form.validateFieldsAndScroll(async (err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          // console.log('Received values of form: ', values);
           // values.user_type = 'register'
           values.id = this.props.match.params.id
           values.detail = this.state.detailEditor
-          console.log("Last Value : ",values);
+          // console.log("Last Value : ",values);
           
           await axios.put(`${url}/blogs/edit`, values).then(res => {
             const { data } = res
@@ -233,7 +233,7 @@ class EditArticle extends Component {
             })
           }
           else {
-            console.log("fileList : ", this.state.fileList)
+            // console.log("fileList : ", this.state.fileList)
             // alert("No Image")
           }
           this.props.history.push(`/allArticle`)
@@ -241,14 +241,14 @@ class EditArticle extends Component {
       });
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
   };
   handleUploadImage = ({ fileList }) => {
 
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileListImage: fileList });
 
   }
@@ -269,7 +269,7 @@ class EditArticle extends Component {
       
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
@@ -291,7 +291,7 @@ class EditArticle extends Component {
 
   savePathImage = async (data) => {
     await axios.put(`${url}/images/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
       this.setState({ fileListImage: [] })
     }).then(
       await this.getImage
@@ -304,7 +304,7 @@ class EditArticle extends Component {
   };
 
   handleOkImage = async e => {
-    console.log(e);
+    // console.log(e);
     await this.handleSubmitImage(e)
     await this.setState({
       visible: false,
@@ -313,7 +313,7 @@ class EditArticle extends Component {
   };
 
   handleCancelImage = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -327,15 +327,15 @@ class EditArticle extends Component {
     });
   };
   removeImage = async (id) => {
-    console.log("id => ", id);
+    // console.log("id => ", id);
 
     await axios.delete(`${url}/images/delBlog/${id}`).then(res => {
-      console.log("delete : ", res)
+      // console.log("delete : ", res)
       if (res.data) {
-        console.log('ok');
+        // console.log('ok');
         this.openNotificationWithIcon('success')
       } else {
-        console.log('else');
+        // console.log('else');
         this.openNotificationWithIcon('error')
       }
     }).then(
@@ -344,7 +344,7 @@ class EditArticle extends Component {
 
   }
   openNotificationWithIcon = (type) => {
-    console.log(type);
+    // console.log(type);
 
     if (type == 'success') {
       notification[type]({
@@ -367,7 +367,7 @@ class EditArticle extends Component {
     axios.get(`${url}/blogs/${this.props.match.params.id}`).then(res => {
       const { data } = res
       this.setState({ data });
-      console.log("DataImage : ", data);
+      // console.log("DataImage : ", data);
       let images = []
       const urlImage = "http://127.0.0.1:3013/"
       // const urlImage = "https://www.chamnangroup.com/"

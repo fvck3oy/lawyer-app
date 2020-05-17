@@ -35,15 +35,15 @@ export default class AllArticle extends Component {
   // }
   
   getFilter = async (value, page_number) => {
-    console.log("Log Filter : ", value)
-    console.log("Log Page : ", page_number);
+    // console.log("Log Filter : ", value)
+    // console.log("Log Page : ", page_number);
 
     await axios.get(`${url}/blogs/filter/${value}/${page_number - 1}`).then(async res => {
       const { data } = res
       await this.setState({ data: data.result });
-      console.log("DataFilter : ", data);
+      // console.log("DataFilter : ", data);
       await this.setState({ total: data.total })
-      console.log("lenght : ",this.state.total)
+      // console.log("lenght : ",this.state.total)
 
       // if ((lenght <= 15) && (page_number==2)){
       //   await this.setState({
@@ -59,7 +59,7 @@ export default class AllArticle extends Component {
   }
 
   filter = async (value, event) => {
-    console.log("filter income : ", value);
+    // console.log("filter income : ", value);
 
     // this.onPageChange(1)
     if (value == 0) {
@@ -81,11 +81,11 @@ export default class AllArticle extends Component {
       this.setState({ text: 'กิจกรรม' })
       this.getFilter(this.state.value, 1)
     }
-    console.log("Filter : ", this.state.value);
+    // console.log("Filter : ", this.state.value);
   }
 
   onChange = async page => {
-    console.log("Page Change : ", page);
+    // console.log("Page Change : ", page);
     await this.setState({
       current: page,
     });

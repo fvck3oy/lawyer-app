@@ -33,7 +33,7 @@ class Register extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         values.user_type = 'register'
         axios.post(`${url}/users/create`, values).then(res => {
           const { data } = res

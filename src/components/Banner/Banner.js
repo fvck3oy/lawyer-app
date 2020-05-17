@@ -33,7 +33,7 @@ export default class Banner extends Component {
     getImage = async () => {
         await axios.get(`${url}/banners`).then(res => {
             const { data } = res
-            console.log("Dataaaaaaa => ", data);
+            // console.log("Dataaaaaaa => ", data);
             const urlImage = "https://www.chamnangroup.com/"
             // const urlImage = "http://127.0.0.1:3013/"
             // this.setState({ data });
@@ -48,7 +48,7 @@ export default class Banner extends Component {
                 this.state.items2.push(data2)
             })
             this.setState({ items: this.state.items2 })
-            console.log("DataImage : ", this.state.items);
+            // console.log("DataImage : ", this.state.items);
         })
 
 

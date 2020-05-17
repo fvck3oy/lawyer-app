@@ -65,19 +65,19 @@ export default class SaleLand extends Component {
 
     await axios.get(`${url}/lands/${this.props.match.params.id}`).then(async res => {
       const { data } = res
-      console.log("res data : ", res.data)
+      // console.log("res data : ", res.data)
 
       if (Object.entries(res.data).length === 0 && res.data.constructor === Object) {
-        console.log("True");
+        // console.log("True");
         this.props.history.push(`/allSaleLand`)
       } else {
-        console.log("False");
+        // console.log("False");
 
 
         await this.setState({ data });
-        console.log("Data : ", this.state.data);
+        // console.log("Data : ", this.state.data);
         await this.setState({ username: this.state.data.dataUser })
-        console.log("Data : ", this.state.username);
+        // console.log("Data : ", this.state.username);
         await this.setState({ lat: data.lat })
         await this.setState({ lng: data.lng })
         await this.setState({ check: true })
@@ -108,7 +108,7 @@ export default class SaleLand extends Component {
         })
 
 
-        console.log("new : ", images);
+        // console.log("new : ", images);
         this.setState({ images: images })
       }
 
@@ -117,7 +117,7 @@ export default class SaleLand extends Component {
 
 
   formatNumber = (num) => {
-    console.log("num : ", num);
+    // console.log("num : ", num);
 
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }

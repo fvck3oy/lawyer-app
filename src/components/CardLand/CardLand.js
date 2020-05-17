@@ -46,7 +46,7 @@ export default class CardLand extends Component {
         await axios.get(`${url}/lands/level2`).then(res => {
             const { data } = res
             this.setState({ data });
-            console.log("DataImage : ", data);
+            // console.log("DataImage : ", data);
 
         })
     }

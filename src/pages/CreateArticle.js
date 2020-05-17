@@ -75,7 +75,7 @@ class CreateArticle extends Component {
     this.setState({ editorState });
     this.setState({ editorContentHtml: stateToHTML(editorState.getCurrentContent())})
     this.setState({ detailEditor : stateToHTML(editorState.getCurrentContent()) })
-    console.log("State : ", this.state.editorContentHtml);
+    // console.log("State : ", this.state.editorContentHtml);
   }
 
 
@@ -116,7 +116,7 @@ class CreateArticle extends Component {
 
   handleUpload = ({ fileList }) => {
 
-    console.log('fileList', fileList);
+    // console.log('fileList', fileList);
     this.setState({ fileList });
 
   }
@@ -127,7 +127,7 @@ class CreateArticle extends Component {
 
       this.props.form.validateFieldsAndScroll(async (err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          // console.log('Received values of form: ', values);
           values.user_type = 'register'
           values.detail = this.state.detailEditor
           await axios.post(`${url}/blogs/create`, values).then(res => {
@@ -143,7 +143,7 @@ class CreateArticle extends Component {
           //   this.savePath(data)
           // })
           this.state.fileList.forEach(e => {
-            console.log("e : ", e)
+            // console.log("e : ", e)
             this.upload(e).then(res => {
               const data = {
                 id: this.state.idBlog,
@@ -158,7 +158,7 @@ class CreateArticle extends Component {
       });
 
     } catch (error) {
-      console.log("Catch : ", error);
+      // console.log("Catch : ", error);
 
       message.error('Please choose you Banner');
     }
@@ -178,7 +178,7 @@ class CreateArticle extends Component {
 
   savePath = async (data) => {
     await axios.put(`${url}/images/savePathImage`, data).then(res => {
-      console.log("saved : ", res)
+      // console.log("saved : ", res)
     })
     this.props.history.push(`/admin`)
   }

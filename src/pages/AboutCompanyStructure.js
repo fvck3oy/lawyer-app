@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import chamnangroup from '../images/chamnangroup.jpg'
+import chamnangroup from '../images/chamnanBusiness.jpg'
 import lawandasset from '../images/lawandasset.jpg'
 import chamnaninter from '../images/chamnaninter.jpg'
 import './AboutCompanyStructure.css'

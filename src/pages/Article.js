@@ -23,11 +23,11 @@ export default class Article extends Component {
     await axios.get(`${url}/blogs/${this.props.match.params.id}`).then(res => {
       const { data } = res
       if (Object.entries(res.data).length === 0 && res.data.constructor === Object) {
-        console.log("True");
+        // console.log("True");
         this.props.history.push(`/allArticle`)
       } else {
         this.setState({ data });
-        console.log("Data : ", data);
+        // console.log("Data : ", data);
         let images = []
         // const urlImage = "http://127.0.0.1:3013/"
         const urlImage = "https://www.chamnangroup.com/"
@@ -41,7 +41,7 @@ export default class Article extends Component {
         })
 
 
-        console.log("new : ", images);
+        // console.log("new : ", images);
         this.setState({ images: images })
 
       }

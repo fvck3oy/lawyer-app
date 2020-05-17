@@ -40,14 +40,14 @@ class MyPage extends Component {
   mySaleLand = async (userId) => {
     await axios.get(`${url}/lands/myLand/${userId}`).then(async res => {
       const { data } = res
-      console.log("Data My Land : ", res.data);
+      // console.log("Data My Land : ", res.data);
       await this.setState({ dataLand: data });
       if (res.data.length === 0) {
 
-        console.log("empty");
+        // console.log("empty");
       } else {
         this.setState({ check: true })
-        console.log("not empty", res.data);
+        // console.log("not empty", res.data);
 
       }
 
@@ -56,7 +56,7 @@ class MyPage extends Component {
   profile = async (userId) => {
     await axios.get(`${url}/users/${userId}`).then(async res => {
       const { data } = res
-      console.log("Data User : ", res.data);
+      // console.log("Data User : ", res.data);
       this.props.form.setFieldsValue({
         firstname: data.firstname,
         lastname: data.lastname,
@@ -91,15 +91,15 @@ class MyPage extends Component {
     await this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         values.id = this.state.userId
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         await axios.put(`${url}/users/edit`, values).then(async res => {
           const { data } = res
-          console.log("UserEdited : ", res.data);
+          // console.log("UserEdited : ", res.data);
           if (data.message === true) {
             await this.profile(this.state.userId)
             this.openNotificationWithIcon('success')
           } else {
-            console.log('else');
+            // console.log('else');
             this.openNotificationWithIcon('error')
           }
         })
@@ -116,12 +116,12 @@ class MyPage extends Component {
     // e.preventDefault();
     await axios.delete(`${url}/lands/${landsId}`).then(async res => {
       const { data } = res
-      console.log("Post Delete : ", res.data);
+      // console.log("Post Delete : ", res.data);
       if (data.message === true) {
         this.openNotificationDelete('success')
         await this.mySaleLand(this.state.userId)
       } else {
-        console.log('else');
+        // console.log('else');
         this.openNotificationDelete('error')
       }
     })
@@ -129,7 +129,7 @@ class MyPage extends Component {
   };
 
   openNotificationDelete = (type, landId, landLevel) => {
-    console.log(type);
+    // console.log(type);
 
     if (type == 'success') {
       notification[type]({
@@ -148,7 +148,7 @@ class MyPage extends Component {
   };
 
   openNotificationWithIcon = (type, landId, landLevel) => {
-    console.log(type);
+    // console.log(type);
 
     if (type == 'success') {
       notification[type]({
@@ -167,14 +167,14 @@ class MyPage extends Component {
   };
 
   handleCancel = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   handleCancel2 = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible2: false,
     });

@@ -18,7 +18,7 @@ export default class Admin extends Component {
   }
   componentDidMount = e => {
     let user = auth.getToken()
-    console.log("User : ", user);
+    // console.log("User : ", user);
     let userDecoded = auth.decodeToken(user)
     let userId = userDecoded.id
     let userFirstName = userDecoded.firstname
@@ -31,7 +31,7 @@ export default class Admin extends Component {
   }
 
   menuOnClick = (menu) => {
-    console.log('Click', menu);
+    // console.log('Click', menu);
     this.setState({ menu: menu })
 
   }

@@ -127,14 +127,14 @@ export default class Header extends Component {
 
     componentDidMount = async e => {
         let user = auth.getToken()
-        console.log("User : ", user);
+        // console.log("User : ", user);
         if (user != null) {
             let userDecoded = auth.decodeToken(user)
             let userId = userDecoded.id
             let userFirstName = userDecoded.firstname
             let userLastName = userDecoded.lastname
             let userRole = userDecoded.role
-            console.log("userROle : ", userRole);
+            // console.log("userROle : ", userRole);
 
             await this.setState({ user: userFirstName })
             if (userRole === 'admin') {
@@ -146,7 +146,7 @@ export default class Header extends Component {
 
     componentWillReceiveProps = async nextProps => {
         if (nextProps.user !== null) {
-            console.log("nestProps : ", nextProps);
+            // console.log("nestProps : ", nextProps);
             // this.setState({ user: nextProps.user.data.token });
             // console.log("user : ",this.state.user);
             let user = auth.getToken()

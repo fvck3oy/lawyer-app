@@ -39,7 +39,7 @@ export default class AllSaleLand extends Component {
     await axios.get(`${url}/lands/filter/0`).then(async res => {
       const { data } = res
       this.setState({ data: data.result });
-      console.log("first : ", data);
+      // console.log("first : ", data);
       await this.setState({ total: data.total })
       await this.setState({
         current: 1,
@@ -48,12 +48,12 @@ export default class AllSaleLand extends Component {
   }
 
   getData = async (page_number, start_price, end_price) => {
-    console.log("Start : ", start_price);
-    console.log("End : ", end_price);
+    // console.log("Start : ", start_price);
+    // console.log("End : ", end_price);
     await axios.get(`${url}/lands/filter/${page_number - 1}/price/${start_price}/${end_price}`).then(async res => {
       const { data } = res
       this.setState({ data: data.result });
-      console.log("Data : ", data);
+      // console.log("Data : ", data);
       await this.setState({ total: data.total })
     })
   }
@@ -63,7 +63,7 @@ export default class AllSaleLand extends Component {
   }
 
   onChange = async page => {
-    console.log("Page Change : ", page);
+    // console.log("Page Change : ", page);
     await this.setState({
       current: page,
     });
@@ -82,7 +82,7 @@ export default class AllSaleLand extends Component {
   handleInputChange = e => {
     const { name, value } = e.target
     this.setState({ [name]: value })
-    console.log({ [name]: value })
+    // console.log({ [name]: value })
     if (e.target.value === "") {
       this.setState({ [name]: 0 })
     }
@@ -90,22 +90,22 @@ export default class AllSaleLand extends Component {
   }
 
   findData = async (find, page) => {
-    console.log("FindData : ", find);
-    console.log("Find Page : ", page);
+    // console.log("FindData : ", find);
+    // console.log("Find Page : ", page);
     this.setState({ check: false })
     this.setState({ find: find })
 
     await axios.get(`${url}/lands/find/${find}/${page - 1}`).then(async res => {
       const { data } = res
       this.setState({ data: data.result });
-      console.log("Find Data : ", data);
+      // console.log("Find Data : ", data);
       await this.setState({ total: data.total })
 
     })
   }
 
   searchPrice = async () => {
-    console.log("search ");
+    // console.log("search ");
     await this.setState({
       current: 1,
     });
@@ -116,7 +116,7 @@ export default class AllSaleLand extends Component {
 
   createLand = e => {
     let user = auth.getToken()
-    console.log("userCheck : ", user);
+    // console.log("userCheck : ", user);
     if (user != null) {
       let userDecoded = auth.decodeToken(user)
       let userId = userDecoded.id

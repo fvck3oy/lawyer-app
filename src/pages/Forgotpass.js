@@ -10,10 +10,10 @@ class Forgotpass extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         axios.post(`${url}/users/forgotpass`, values).then(async res => {
           const { data } = res
-          console.log("Data ", data);
+          // console.log("Data ", data);
           alert("Please Check Your Email !")
           this.props.history.push(`/`)
 

@@ -24,14 +24,14 @@ class Login extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         axios.post(`${url}/users/login`, values).then(async res => {
           const { data } = res
-          console.log("Data ", data);
+          // console.log("Data ", data);
           if (data.message === 'Invalid password' || data.message === 'Email not found' || data.message === ' Email or Password Invalid') {
             alert(`${data.message}`)
           } else {
-            console.log('else token : ', data.token);
+            // console.log('else token : ', data.token);
             if (data.token != undefined) {
               await localStorage.setItem('token', data.token)
               await this.props.onUserChanged(data.token);
@@ -46,9 +46,9 @@ class Login extends Component {
     });
   };
   callbackFB = (cb) => {
-    console.log("CB : ", cb);
+    // console.log("CB : ", cb);
     const firstname = cb.name.split(" ")
-    console.log("Split : ", firstname);
+    // console.log("Split : ", firstname);
 
     const dataLogin = {
       "facebook": true,
@@ -60,7 +60,7 @@ class Login extends Component {
 
     axios.post(`${url}/users/login`, dataLogin).then(async res => {
       const { data } = res
-      console.log("Data ", data);
+      // console.log("Data ", data);
       if (data.token != undefined) {
         await localStorage.setItem('token', data.token)
         await this.props.onUserChanged(data.token);
