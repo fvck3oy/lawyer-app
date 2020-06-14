@@ -163,6 +163,12 @@ export default class Header extends Component {
         }
     };
 
+    changeLanguage = code => e => {
+        i18n.changeLanguage(code)
+        localStorage.setItem('language', code);
+        // window.location.reload();
+      }
+
     render() {
         return (
             <Translation>{t =>
@@ -251,9 +257,9 @@ export default class Header extends Component {
                                         <NavLink className="nav-color" href="/" onClick={this.logOut}>{t('nav.logout')} </NavLink>
                                     )}
                                 </NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('th') }}>TH</NavLink></NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('en') }}>EN</NavLink></NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={() => { i18n.changeLanguage('cn') }}>CN</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('th')}>TH</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('en')}>EN</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('cn')}>CN</NavLink></NavItem>
                             </Nav>
                         </Collapse>
 

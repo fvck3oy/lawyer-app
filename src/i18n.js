@@ -30,10 +30,21 @@ import i18n from 'i18next'
 import XHR from 'i18next-xhr-backend'
 import { initReactI18next } from 'react-i18next'
 
+const allowedLanguages = ['en', 'th', 'cn'];
+
+const defaultLng = 'th';
+let lng = defaultLng;
+
+const storageLanguage = localStorage.getItem('language');
+if (storageLanguage && allowedLanguages.indexOf(storageLanguage) > -1) {
+  lng = storageLanguage;
+}
+
 i18n
   .use(XHR)
   .use(initReactI18next)
   .init({
+		lng,
   	fallbackLng: 'th',
   	ns: ['translations'],
   	defaultNS: 'translations',
