@@ -9,7 +9,7 @@ export default class AboutCompanyVision extends Component {
         <Row>
           <Col md={{ size:8, offset:2}}>
           <div className="p-4">
-            <h4>{t('vision_page.philosophy')}</h4><br />
+            <h4>{t('vision_page.vision')}</h4><br />
             <p style={{ textIndent:'10%'}}>
             {t('vision_page.ar1')}
           </p>
@@ -19,7 +19,7 @@ export default class AboutCompanyVision extends Component {
         <Row>
           <Col md={{ size:8, offset:2}}>
           <div className="p-4">
-            <h4>{t('vision_page.vision')}</h4><br />
+            <h4>{t('vision_page.philosophy')}</h4><br />
             <p style={{ textIndent:'10%'}}>
             {t('vision_page.ar2')}
           </p>
@@ -29,7 +29,7 @@ export default class AboutCompanyVision extends Component {
         <Row>
           <Col md={{ size:8, offset:2}}>
           <div className="p-4">
-            <h4>{t('vision_page.goals')}</h4><br />
+            {/* <h4>{t('vision_page.goals')}</h4><br /> */}
             <p style={{ textIndent:'10%'}}>
             {t('vision_page.ar3')}
           </p>

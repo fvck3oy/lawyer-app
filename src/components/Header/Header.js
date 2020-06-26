@@ -257,9 +257,9 @@ export default class Header extends Component {
                                         <NavLink className="nav-color" href="/" onClick={this.logOut}>{t('nav.logout')} </NavLink>
                                     )}
                                 </NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('th')}>TH</NavLink></NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('en')}>EN</NavLink></NavItem>
-                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('cn')}>CN</NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('th')}><img style={{ maxWidth:'20px'}} src="https://cdn.countryflags.com/thumbs/thailand/flag-round-250.png"/></NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('en')}><img style={{ maxWidth:'20px'}} src="https://cdn1.iconfinder.com/data/icons/world-flags-circular/1000/Flag_of_United_Kingdom_-_Circle-512.png"/></NavLink></NavItem>
+                                <NavItem><NavLink className="nav-color" onClick={this.changeLanguage('cn')}><img style={{ maxWidth:'20px'}} src="https://cdn.webshopapp.com/shops/94414/files/53642776/china-flag-icon-free-download.jpg"/></NavLink></NavItem>
                             </Nav>
                         </Collapse>
 

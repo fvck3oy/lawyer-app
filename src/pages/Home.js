@@ -106,19 +106,19 @@ class Home extends Component {
                                 </div>
                                 </a>
 
-                                <a href="http://www.led.go.th" style={{ color: '#f90' }}>
+                                <a href="http://asset.led.go.th/newbid" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2 mb-2">
                                         <img src={image2} className="mr-2 menu-image" alt="image2" />{t('home_page.menu.legalExecutionDepartment')}
                                     </div>
                                 </a>
 
-                                <a href="https://www.dol.go.th" style={{ color: '#f90' }}>
+                                <a href="http://property.treasury.go.th/pvmwebsite" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2 mb-2">
                                         <img src={image3} className="mr-2 menu-image" alt="image3" />{t('home_page.menu.departmentOfLands')}
                                     </div>
                                 </a>
 
-                                <a href="https://www.dbd.go.th" style={{ color: '#f90' }}>
+                                <a href="https://datawarehouse.dbd.go.th" style={{ color: '#f90' }}>
                                     <div className="each-menu p-2 mt-2">
                                         <img src={image4} className="menu-image" alt="image4" />{t('home_page.menu.departmentOfBusinessDevelopment')}
                                 </div>

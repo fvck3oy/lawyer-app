@@ -25,6 +25,9 @@ export default class AboutCompanyLawAndAsset extends Component {
               <p style={{ textIndent: '10%' }}>
               {t('chamnan_page.p1')}</p>
               <div>
+              <p style={{ marginBottom: '10px' }}>
+              {t('chamnan_page.p1-0')}
+              </p>
                 <ol>
                   <li>
                   {t('chamnan_page.p1-1')}
@@ -41,13 +44,16 @@ export default class AboutCompanyLawAndAsset extends Component {
                   <li>
                   {t('chamnan_page.p1-5')}
                 </li>
+                <li>
+                  {t('chamnan_page.p1-6')}
+                </li>
                 </ol>
               </div>
 
             </div>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col md={{ size: 10, offset: 1 }}>
             <div className="pt-2 pr-5 pl-5 pb-5 law-asset-text">
               <div>
@@ -77,7 +83,7 @@ export default class AboutCompanyLawAndAsset extends Component {
               </div>
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
       </Container>}
       </Translation>

@@ -11,7 +11,7 @@
       "chamnanBusiness": "Chamnan Business Group (Thailand) Co.,Ltd"
     },
     "services": "Services and Advice",
-    "articles": "Article/News",
+    "articles": "Knowledge/Public Relations",
     "landTrading": "Land Trading",
     "welcome": "Welcome",
     "login": "Login",
@@ -25,8 +25,8 @@
       "departmentOfLands": "Department of Lands",
       "departmentOfBusinessDevelopment": "Department of Business Development"
     },
-    "news": "News",
-    "article": "Article",
+    "news": "Public Relations",
+    "article": "Knowledge",
     "activity": "Activity"
   },
   "login_page": {
@@ -51,21 +51,21 @@
     "sent": "Sent"
   },
   "vision_page": {
-    "philosophy": "Philosophy",
-    "ar1": "The lives of humans are living the clockwise direction. Under the subconscious mind of each person, some people call 'life clock'. There must be greed, anger and delusion occurring within that society. Is the problems and obstacles of human life in society We have foreseen the problems and obstacles in society and we are a part of society. The organization's business services in solving social problems and obstacles must not cause or aggravate the problems and Additional obstacles to those people mentioned again If we do like that again Naturally Adding various problems to fellow human beings in society And it is considered that we, who are lawyers, are creating problems for society as well.",
     "vision": "Vision",
-    "ar2": "As a service organization, it conducts business administration, provides consultancy, help and advice so that clients can see solutions to financial problems, liabilities, and property management under legal fair borders. And accurate in the spirit of the law And being sincere in the service of the organization.",
+    "ar1": "Our organization sees that business operations to achieve the goals of organization, the entrepreneurs must collect experience gained from experts for creating marketing strategy, creating business development progressive and defensive plans for emergency situations. Providing the business with the highest success under legal regulation for the stable and sustainable growth of those organizations",
+    "philosophy": "Mission",
+    "ar2": "We are an organization which providing consult, help, advice services to private entrepreneurs both in and out countries about internal organization management, business planning including tax, accounting and assessing the potential of personnel within that organization for business can operate their business under the scope of law",
     "goals": "Goals and missions",
-    "ar3": "The organization aims to provide services to clients By suggesting the best solution to various people Whether it's creditors or debtors To prevent problems that may occur in the future To help heal problems that have already occurred Giving creditors and debtors the opportunity to live a normal social life One prevention and solution Is one of the happiness of the organization We will develop and lead the organization with the mission to service goals. With personnel that must learn continuously In order to have knowledge and expertise In order to build trust and satisfaction with clients Which can check Periodic Performance Report With the strictness of every service process With fast, accurate Under the morality and honesty of the lawyer profession."
+    "ar3": "And also in our business group are still have legal services, prosecution and execution of financial institutions and not financial institutions including contract application for registration of various business licenses to government sectors"
   },
   "structure_page": {
     "structure": "Structure",
     "chamnan": "Chamnan International Law Co.,Ltd",
-    "d1": "Providing services about civil and criminal cases for general customers, draft agreements with various department.",
+    "d1": "Providing legal services about conduct a case in court, drafting contracts, checking contracts, debt composition and registration for intellectual property, trademark, requesting the Food and Drug Administration license (FDA), requesting visa, requesting Work Permit and requesting a license from government sector, etc.",
     "chamnanBusiness": "Chamnan Business Group (Thailand) Co.,Ltd",
     "d2": "Providing business consulting services, organization system, management of organizations and real estate brokers.",
     "lawAndAsset": "Law and Asset Co.,Ltd",
-    "d3": "Providing legal services which related to financial institutions and not a financial institution (non-bank)."
+    "d3": "Providing legal services which related to financial institutions and Non-Bank institutions."
   },
   "law_page": {
     "lawAndAsset": "Law and Asset Co.,Ltd",
@@ -79,11 +79,13 @@
   "chamnan_page": {
     "chamnan": "Chamnan International law Co.,LTD",
     "p1": "Chamnan International law Co., LTD is the center of lawyers who have knowledge and experience person about the business and financial institution. Most of employees have been employees and lawyers at financial institutions. In addition, many lawyers have been consultants in various private companies, causing them encounter obstacles and problem of financial institution cases including legal work under concepts philosophy of the company as follows",
-    "p1-1": "Focus on use legal and economic principles together with correctly and honestly to create and bring peace to society",
-    "p1-2": "Focus on the professional standards of lawyers by acting as a lawyer with responsibility, full intelligence, knowledge, ability and expertise to protect the interests of the parties under fairness",
-    "p1-3": "Focus to creative work with consideration to the principles of morality, ethics, humanity and peace",
-    "p1-4": "Provide services that will respond the needs of customers with honesty, convenience, speed and saving",
-    "p1-5": "Focus on teamwork for getting accurate work, fast and highest standards",
+    "p1-0":"Service Job Description",
+    "p1-1": "Accepted that the defense of civil cases, criminal cases, intellectual property and international trade cases Juvenile and family cases, bankruptcy, labor cases, tax cases",
+    "p1-2": "Company registration service Requesting for investment promotion certificates (BOI), requesting for electronic commerce registration (E-Commerce), requesting permission to establish a factory",
+    "p1-3": "Registration service regarding the Department of Intellectual Property and International Trade such as copyright, trademark, patent",
+    "p1-4": "PASSPORT, Visa Application or Renewal, Work Permit, Residence Resident Certificate, Alien Identity",
+    "p1-5": "Food and Drug Administration (FDA) submits food application requests such as Requesting permission to bring or order food into the Kingdom Food approval formulas Application for use of labels Application for food quality inspection, requesting food product authorization for food serial numbers Requesting permission to advertise food, etc.",
+    "p1-6": "The service requesting permission regarding the Ministry of Public Health Requesting permission to open a health establishment such as a health spa and requesting a license or registration of other government agencies",
     "service": "Service extent",
     "s1": "Legal action works",
     "s1-1": "Legal action works including civil case, criminal case, labor case, bankruptcy case, intellectual property court case and all legal proceedings, etc. Works extent starting from case preparation, issue letter of claim before prosecution, making plan, placing crime scene, prepare documentary evidence, person witness, draft lawsuits and submit lawsuits to Court of First Instance until have judgment or deposition",
@@ -136,11 +138,11 @@
     "p5-1": "Consulting advice service on solving financial problems, commercial business, debt restructuring, business restructuring including the management team, who have knowledge and expertise in conducting business and was a teacher teaching in real estate and in part there is a working in the real estate brokers association. In this part, company will provide advice to clients, coordinate in trades negotiations and including being an agent in buying and selling real estate or shares in movable property and real estate, coordinate debt negotiation for negotiating with creditors, provide funds for business of the debtor, give advice to the plan maker, the plan administrator in the preparation of the rehabilitation plan and the management of the rehabilitation plan. Including the implementation of processes in the step of rehabilitation from the beginning to the end of the process. It can be seen that the management team and the consultants are well known of the way of debt reconciliation and can advise debtors to find ways to pay off debt with financial institutions for customers who come to request service which can solve problems in managing their financial assets and legal problems successfully accomplished with fairness in society"
   },
   "all_article_page": {
-    "news": "News",
-    "article": "Article",
+    "news": "Public Relations",
+    "article": "Knowledge",
     "activity": "Activity",
     "all":"All",
-    "title":"News / Articles / Activities"
+    "title":"Public Relations / Knowledge / Activities"
   },
   "all_sale_land_page":{
     "title":"Land for sale (total)",
