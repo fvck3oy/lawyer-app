@@ -18,9 +18,9 @@ export default class CardNews extends Component {
         await axios.get(`${url}/blogs/lastImage`).then(async res => {
             const { data } = res
             const urlImage = "https://www.chamnangroup.com/"
-            console.log(data.type1);
-            console.log(data.type2);
-            console.log(data.type3);
+            // console.log(data.type1);
+            // console.log(data.type2);
+            // console.log(data.type3);
             this.setState({
                 dataImage1: data.type1 != null ? urlImage+data.type1.image : news,
                 dataImage2:  data.type2 != null ? urlImage+data.type1.image : news,
@@ -37,7 +37,7 @@ export default class CardNews extends Component {
                 <Container className="pb-5">
                     <Row>
                         <Col md={4} sm={4} className="mb-2 mt-2">
-                            <Link to="/allArticle">
+                            <Link to={{ pathname: '/allArticle', query: { value: 1 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                     <CardImg top src={this.state.dataImage1} alt="news" />
                                     <CardBody>
@@ -50,7 +50,7 @@ export default class CardNews extends Component {
                         </Col>
 
                         <Col md={4} sm={4} className="mb-2 mt-2">
-                            <Link to="/allArticle">
+                            <Link to={{ pathname: '/allArticle', query: { value: 2 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                     <CardImg top src={this.state.dataImage2} alt="news" />
                                     <CardBody>
@@ -63,7 +63,8 @@ export default class CardNews extends Component {
                         </Col>
 
                         <Col md={4} sm={4} className="mb-2 mt-2">
-                            <Link to="/allArticle">
+                            {/* <Link to="/allArticle" */}
+                            <Link to={{ pathname: '/allArticle', query: { value: 3 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
                                     <CardImg top src={this.state.dataImage3} alt="news" />
                                     <CardBody>
