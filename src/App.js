@@ -29,7 +29,6 @@ import AboutCompanyLawAndAsset from './pages/AboutCompanyLawAndAsset';
 import AboutCompanyChamnan from './pages/AboutCompanyChamnan';
 import AboutCompanyChamnanBusiness from './pages/AboutCompanyChamnanBusiness';
 
-
 import Admin from './pages/Admin';
 import Consultant from './pages/Consultant';
 import CreateArticle from './pages/CreateArticle';
@@ -49,6 +48,7 @@ export default class App extends Component {
         <Header user={user} />
         <Switch>
           <Route exact path="/" component={withRouter(Home)} />
+          {/* <Route exact path="/home" component={withRouter(Home)} /> */}
           <Route exact path="/register" component={withRouter(Register)} />
           {/* <Route exact path="/login" component={withRouter(Login)} /> */}
           <Route exact path="/login" component={() => <Login onUserChanged={this.onUserChanged} />} />

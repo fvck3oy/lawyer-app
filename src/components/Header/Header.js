@@ -13,7 +13,7 @@ import {
     DropdownItem,
 } from 'reactstrap';
 import './Header.css'
-import logo from '../../images/logo.jpg'
+import logo from '../../images/logo.png'
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
 import auth from "../../service/index"

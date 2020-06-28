@@ -159,7 +159,7 @@ export default class AllSaleLand extends Component {
               <Row className="pt-4 pb-4">
                 <Col md={4}>
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
-                    <Iframe url="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%25E0%25B8%259A%25E0%25B8%25A3%25E0%25B8%25B4%25E0%25B8%25A9%25E0%25B8%25B1%25E0%25B8%2597-%25E0%25B8%25A5%25E0%25B8%25AD%25E0%25B8%25A7%25E0%25B9%258C-%25E0%25B9%2581%25E0%25B8%25AD%25E0%25B8%2599%25E0%25B8%2594%25E0%25B9%258C-%25E0%25B9%2581%25E0%25B8%25AD%25E0%25B8%25AA%25E0%25B9%2580%25E0%25B8%258B%25E0%25B8%2597-%25E0%25B8%2588%25E0%25B8%25B3%25E0%25B8%2581%25E0%25B8%25B1%25E0%25B8%2594-219129021946485%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=794785114267927"
+                    <Iframe url="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FChamnanInternationalLaw%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=794785114267927"
                       // position="absolute"
                       width="100%"
                       style={{ overflow: 'hidden' }}
