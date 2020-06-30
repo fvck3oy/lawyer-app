@@ -503,8 +503,8 @@ class EditArticle extends Component {
                   rules: [{ required: true, message: 'กรุณาเลือกประเภทของบทความ !' }],
                 })(
                   <Select placeholder="กรุณาเลือกประเภทของบทความ !">
-                    <Option value="1">ข่าว</Option>
-                    <Option value="2">บทความ</Option>
+                    <Option value="1">ประชาสัมพันธ์</Option>
+                    <Option value="2">ความรู้</Option>
                     <Option value="3">กิจกรรม</Option>
                   </Select>,
                 )}

@@ -179,9 +179,9 @@ export default class ManageArticles extends React.Component {
       await this.setState({
         dataSource: data.map(e => {
           if (e.type === 1) {
-            e.type = "ข่าว"
+            e.type = "ประชาสัมพันธ์"
           } else if (e.type === 2) {
-            e.type = "บทความ"
+            e.type = "ความรู้"
           } else {
             e.type = "กิจกรรม"
           }

@@ -69,12 +69,12 @@ export default class AllArticle extends Component {
       this.getFilter(this.state.value, 1)
     } else if (value == 1) {
       await this.setState({ value: 1 })
-      this.setState({ text: 'ข่าว' })
+      this.setState({ text: 'ประชาสัมพันธ์' })
       this.getFilter(this.state.value, 1)
     }
     else if (value == 2) {
       await this.setState({ value: 2 })
-      this.setState({ text: 'บทความ' })
+      this.setState({ text: 'ความรู้' })
       this.getFilter(this.state.value, 1)
     }
     else {
@@ -128,14 +128,6 @@ export default class AllArticle extends Component {
                 {
                   this.state.data.map(e => {
                     console.log("type : ", typeof (e.type));
-
-                    // if (e.type === 1) {
-                    //   e.type = "ข่าว"
-                    // } else if (e.type === 2) {
-                    //   e.type = "บทความ"
-                    // } else {
-                    //   e.type = "กิจกรรม"
-                    // }
 
                     return (
                       <Col md={4} key={e.id}>
