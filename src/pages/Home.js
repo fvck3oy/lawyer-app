@@ -75,12 +75,12 @@ class Home extends Component {
 
     render() {
         return (
-            <Translation>{t=>
-            <div>
-                {/* <Header /> */}
-                <Banner />
-                <Container className="pt-2 pb-5">
-                    {/* <Row>
+            <Translation>{t =>
+                <div>
+                    {/* <Header /> */}
+                    <Banner />
+                    <Container className="pt-2 pb-5">
+                        {/* <Row>
                         <Col>
                             <button onClick={this.onUnderlineClick}>U</button>
                             <button onClick={this.onBoldClick}><b>B</b></button>
@@ -95,49 +95,49 @@ class Home extends Component {
                             </div>
                         </Col>
                     </Row> */}
-                    <Row className="mt-5">
-                    
-                        <Col md={3} sm={12}>
-                            <div className="home-menu mt-2 mb-2">
-                                <a href="http://deka.supremecourt.or.th/" style={{ color: '#f90' }}>
-                                    <div className="each-menu p-2 mb-2">
-                                        <img src={image1} className="mr-2 menu-image" alt="image1" />
-                                        {t('home_page.menu.petition')}
+                        <Row className="mt-5">
+
+                            <Col md={3} sm={12}>
+                                <div className="home-menu mt-2 mb-2">
+                                    <a href="http://deka.supremecourt.or.th/" style={{ color: '#f90' }}>
+                                        <div className="each-menu p-2 mb-2">
+                                            <img src={image1} className="mr-2 menu-image" alt="image1" />
+                                            {t('home_page.menu.petition')}
+                                        </div>
+                                    </a>
+
+                                    <a href="http://asset.led.go.th/newbid" style={{ color: '#f90' }}>
+                                        <div className="each-menu p-2 mt-2 mb-2">
+                                            <img src={image2} className="mr-2 menu-image" alt="image2" />{t('home_page.menu.legalExecutionDepartment')}
+                                        </div>
+                                    </a>
+
+                                    <a href="http://property.treasury.go.th/pvmwebsite" style={{ color: '#f90' }}>
+                                        <div className="each-menu p-2 mt-2 mb-2">
+                                            <img src={image3} className="mr-2 menu-image" alt="image3" />{t('home_page.menu.departmentOfLands')}
+                                        </div>
+                                    </a>
+
+                                    <a href="https://datawarehouse.dbd.go.th" style={{ color: '#f90' }}>
+                                        <div className="each-menu p-2 mt-2">
+                                            <img src={image4} className="menu-image" alt="image4" />{t('home_page.menu.departmentOfBusinessDevelopment')}
+                                        </div>
+                                    </a>
                                 </div>
-                                </a>
+                            </Col>
+                            <Col md={9} sm={12} >
+                                <CardNews />
+                            </Col>
+                        </Row>
 
-                                <a href="http://asset.led.go.th/newbid" style={{ color: '#f90' }}>
-                                    <div className="each-menu p-2 mt-2 mb-2">
-                                        <img src={image2} className="mr-2 menu-image" alt="image2" />{t('home_page.menu.legalExecutionDepartment')}
-                                    </div>
-                                </a>
-
-                                <a href="http://property.treasury.go.th/pvmwebsite" style={{ color: '#f90' }}>
-                                    <div className="each-menu p-2 mt-2 mb-2">
-                                        <img src={image3} className="mr-2 menu-image" alt="image3" />{t('home_page.menu.departmentOfLands')}
-                                    </div>
-                                </a>
-
-                                <a href="https://datawarehouse.dbd.go.th" style={{ color: '#f90' }}>
-                                    <div className="each-menu p-2 mt-2">
-                                        <img src={image4} className="menu-image" alt="image4" />{t('home_page.menu.departmentOfBusinessDevelopment')}
-                                </div>
-                                </a>
-                            </div>
-                        </Col>
-                        <Col md={9} sm={12} >
-                            <CardNews />
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col><div style={{ textAlign:'center', fontSize:'36px', padding:'20px'}}>{t('home_page.selling')}</div></Col>
-                    </Row>
-                    <Row>
-                        <CardLands />
-                    </Row>
-                </Container>
-            </div >}
+                        <Row>
+                            <Col><div style={{ textAlign: 'center', fontSize: '36px', padding: '20px' }}>{t('home_page.selling')}</div></Col>
+                        </Row>
+                        <Row>
+                            <CardLands />
+                        </Row>
+                    </Container>
+                </div >}
             </Translation>
         )
     }
