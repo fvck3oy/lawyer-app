@@ -134,14 +134,14 @@ class CreateArticle extends Component {
             const { data } = res
             this.setState({ idBlog: data.id })
           })
-          // this.upload(this.state.fileList).then(res => {
+          this.upload(this.state.fileList).then(res => {
             
-          //   const data = {
-          //     id: this.state.idBlog,
-          //     url: res.data.file.filename
-          //   }
-          //   this.savePath(data)
-          // })
+            const data = {
+              id: this.state.idBlog,
+              url: res.data.file.filename
+            }
+            this.savePath1(data)
+          })
           this.state.fileList.forEach(e => {
             // console.log("e : ", e)
             this.upload(e).then(res => {
@@ -174,6 +174,13 @@ class CreateArticle extends Component {
       }
     }
     return post(urlUpload, formData, config)
+  }
+
+  savePath1 = async (data) => {
+    await axios.put(`${url}/blogs/savePathImage`, data).then(res => {
+      // console.log("saved : ", res)
+    })
+    // this.props.history.push(`/admin`)
   }
 
   savePath = async (data) => {
