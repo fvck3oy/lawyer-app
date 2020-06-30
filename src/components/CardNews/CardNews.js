@@ -23,8 +23,8 @@ export default class CardNews extends Component {
             // console.log(data.type3);
             this.setState({
                 dataImage1: data.type1 != null ? urlImage+data.type1.image : news,
-                dataImage2:  data.type2 != null ? urlImage+data.type1.image : news,
-                dataImage3:  data.type3 != null ? urlImage+data.type1.image : news,
+                dataImage2:  data.type2 != null ? urlImage+data.type2.image : news,
+                dataImage3:  data.type3 != null ? urlImage+data.type3.image : news,
             });
             
         })
