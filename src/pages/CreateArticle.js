@@ -134,14 +134,14 @@ class CreateArticle extends Component {
             const { data } = res
             this.setState({ idBlog: data.id })
           })
-          this.upload(this.state.fileList).then(res => {
+          // this.upload(this.state.fileList).then(res => {
             
-            const data = {
-              id: this.state.idBlog,
-              url: res.data.file.filename
-            }
-            this.savePath1(data)
-          })
+          //   const data = {
+          //     id: this.state.idBlog,
+          //     url: res.data.file.filename
+          //   }
+          //   this.savePath1(data)
+          // })
           this.state.fileList.forEach(e => {
             // console.log("e : ", e)
             this.upload(e).then(res => {
@@ -150,6 +150,11 @@ class CreateArticle extends Component {
                 url: res.data.file.filename,
                 type: 2
               }
+              const data1 = {
+                id: this.state.idBlog,
+                url: res.data.file.filename,
+              }
+              this.savePath1(data1)
               this.savePath(data)
             })
           })
