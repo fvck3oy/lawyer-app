@@ -47,6 +47,9 @@ export default class AboutCompanyLawAndAsset extends Component {
                 <li>
                   {t('chamnan_page.p1-6')}
                 </li>
+                <li>
+                  {t('chamnan_page.p1-7')}
+                </li>
                 </ol>
               </div>
 

@@ -12,7 +12,7 @@ export default class LineContact extends Component {
           <div style={{ fontSize:'36px'}} >
           <a href="http://m.me/ChamnanInternationalLaw"><i style={{ padding:'10px', color:'#fff'}} class="fab fa-facebook-messenger"></i></a>
           <a href="https://lin.ee/lG0DFGy"><i style={{ padding:'10px', color:'#fff'}} class="fab fa-line"></i></a>
-          <a href="https://www.facebook.com/laweradmin/"><i style={{ padding:'10px', color:'#fff'}} class="fab fa-facebook"></i></a>
+          <a href="https://www.facebook.com/ChamnanInternationalLaw"><i style={{ padding:'10px', color:'#fff'}} class="fab fa-facebook"></i></a>
           </div>
           </Col>
       </Row>
