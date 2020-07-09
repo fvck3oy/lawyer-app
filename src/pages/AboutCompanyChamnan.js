@@ -22,7 +22,7 @@ export default class AboutCompanyLawAndAsset extends Component {
           <Col md={{ size: 10, offset: 1 }}>
             <div style={{ textAlign: 'center' }}><h4>{t('chamnan_page.chamnan')}</h4></div>
             <div className="p-4 law-asset-text">
-              <p style={{ textIndent: '10%' }}>
+              <p style={{ textIndent: '10%' , textAlign:'justify'}}>
               {t('chamnan_page.p1')}</p>
               <div>
               <p style={{ marginBottom: '10px' }}>

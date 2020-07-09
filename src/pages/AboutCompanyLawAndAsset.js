@@ -7,7 +7,7 @@ export default class AboutCompanyLawAndAsset extends Component {
   render() {
     return (
       <Translation>{t=>
-      <Container className="pt-5 pb-5">
+      <Container className="pt-5 pb-5" style={{  textAlign:'justify'}}>
         <Row>
           <Col md={{ size: 8, offset: 2 }}>
             <div className="p-4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
