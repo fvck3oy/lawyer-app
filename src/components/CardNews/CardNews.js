@@ -22,11 +22,11 @@ export default class CardNews extends Component {
             // console.log(data.type2);
             // console.log(data.type3);
             this.setState({
-                dataImage1: data.type1 != null ? urlImage+data.type1.image : news,
-                dataImage2:  data.type2 != null ? urlImage+data.type2.image : news,
-                dataImage3:  data.type3 != null ? urlImage+data.type3.image : news,
+                dataImage1: data.type1 != null ? urlImage + data.type1.image : news,
+                dataImage2: data.type2 != null ? urlImage + data.type2.image : news,
+                dataImage3: data.type3 != null ? urlImage + data.type3.image : news,
             });
-            
+
         })
 
     }
@@ -39,9 +39,9 @@ export default class CardNews extends Component {
                         <Col md={4} sm={4} className="mb-2 mt-2">
                             <Link to={{ pathname: '/allArticle', query: { value: 1 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
-                                    <CardImg top src={this.state.dataImage1} alt="news" />
                                     <CardBody>
-                                        <CardTitle>{t('home_page.news')}</CardTitle>
+                                        <CardTitle style={{ textAlign:'right'}}>{t('home_page.news')}</CardTitle>
+                                        <CardImg top style={{ height: '200px' }} src={this.state.dataImage1} alt="news" />
                                         {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                         {/* <CardText>Some quick example text.</CardText> */}
                                     </CardBody>
@@ -52,9 +52,9 @@ export default class CardNews extends Component {
                         <Col md={4} sm={4} className="mb-2 mt-2">
                             <Link to={{ pathname: '/allArticle', query: { value: 2 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
-                                    <CardImg top src={this.state.dataImage2} alt="news" />
                                     <CardBody>
-                                        <CardTitle>{t('home_page.article')}</CardTitle>
+                                        <CardTitle style={{ textAlign:'right'}}>{t('home_page.article')}</CardTitle>
+                                        <CardImg top style={{ height: '200px' }} src={this.state.dataImage2} alt="news" />
                                         {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                         {/* <CardText>Some quick example text.</CardText> */}
                                     </CardBody>
@@ -66,9 +66,9 @@ export default class CardNews extends Component {
                             {/* <Link to="/allArticle" */}
                             <Link to={{ pathname: '/allArticle', query: { value: 3 } }}>
                                 <Card className="mt-2 mb-2" style={{ height: '100%', cursor: 'pointer' }}>
-                                    <CardImg top src={this.state.dataImage3} alt="news" />
                                     <CardBody>
-                                        <CardTitle>{t('home_page.activity')}</CardTitle>
+                                        <CardTitle style={{ textAlign:'right'}}>{t('home_page.activity')}</CardTitle>
+                                        <CardImg top style={{ height: '200px' }} src={this.state.dataImage3} alt="news" />
                                         {/* {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
                                         {/* <CardText>Some quick example text.</CardText> */}
                                     </CardBody>
